@@ -1,0 +1,9 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "Sign up") %>
+  </h1>
+</div>
+<div class="container-narrow">
+  <%= render :partial => 'form' %>
+</div>

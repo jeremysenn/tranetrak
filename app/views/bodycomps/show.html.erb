@@ -1,0 +1,75 @@
+<%- model_class = Bodycomp -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @bodycomp.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:client_id) %>:</strong></dt>
+  <dd><%= @bodycomp.client_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:age) %>:</strong></dt>
+  <dd><%= @bodycomp.age %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:height) %>:</strong></dt>
+  <dd><%= @bodycomp.height %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:height_units) %>:</strong></dt>
+  <dd><%= @bodycomp.height_units %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weight) %>:</strong></dt>
+  <dd><%= @bodycomp.weight %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weight_units) %>:</strong></dt>
+  <dd><%= @bodycomp.weight_units %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:pec) %>:</strong></dt>
+  <dd><%= @bodycomp.pec %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tri) %>:</strong></dt>
+  <dd><%= @bodycomp.tri %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:subscap) %>:</strong></dt>
+  <dd><%= @bodycomp.subscap %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:suprailiac) %>:</strong></dt>
+  <dd><%= @bodycomp.suprailiac %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:midaxil) %>:</strong></dt>
+  <dd><%= @bodycomp.midaxil %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:umbilical) %>:</strong></dt>
+  <dd><%= @bodycomp.umbilical %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:calf) %>:</strong></dt>
+  <dd><%= @bodycomp.calf %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bicep) %>:</strong></dt>
+  <dd><%= @bodycomp.bicep %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:low_back) %>:</strong></dt>
+  <dd><%= @bodycomp.low_back %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:quad) %>:</strong></dt>
+  <dd><%= @bodycomp.quad %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sex) %>:</strong></dt>
+  <dd><%= @bodycomp.sex %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:waist) %>:</strong></dt>
+  <dd><%= @bodycomp.waist %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hip) %>:</strong></dt>
+  <dd><%= @bodycomp.hip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:neck) %>:</strong></dt>
+  <dd><%= @bodycomp.neck %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:shoulder) %>:</strong></dt>
+  <dd><%= @bodycomp.shoulder %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:chest) %>:</strong></dt>
+  <dd><%= @bodycomp.chest %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:arm) %>:</strong></dt>
+  <dd><%= @bodycomp.arm %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:thigh) %>:</strong></dt>
+  <dd><%= @bodycomp.thigh %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:gastroc) %>:</strong></dt>
+  <dd><%= @bodycomp.gastroc %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:circumference_units) %>:</strong></dt>
+  <dd><%= @bodycomp.circumference_units %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:notes) %>:</strong></dt>
+  <dd><%= @bodycomp.notes %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              bodycomps_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_bodycomp_path(@bodycomp), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              bodycomp_path(@bodycomp),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

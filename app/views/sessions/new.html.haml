@@ -1,0 +1,76 @@
+.container-narrow
+  - unless mobile_device?
+    .jumbotron
+      %h2
+        %i.icon-star.text-error
+        Wicked easy to track what’s going on with your personal training clients
+      %p.lead
+        Get a handle on your personal training business. TraneTrak does all the work of organizing your client data and appointments.
+        Track everything that is important to you as a trainer, and help your clients achieve their goals.
+      %a{:href => signup_path, :class => "btn btn-large btn-warning"}
+        Get started now
+        %i.icon-play
+  - else
+    = form_tag sessions_path do
+      = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
+      = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
+      = button_tag(:type => 'submit', :class => 'btn') do
+        Log in <i class="icon-lock"></i>
+    Don't have an account?
+    %a{:href => signup_path, :class => "btn btn-warning"}
+      Sign up
+      %i.icon-play
+
+  .nav.nav-list
+    %li.divider
+
+  .row-fluid.marketing
+    .span6
+      %h4
+        %a{:href => '#'}
+          = "Track Client Workouts"
+          %i.icon-tasks
+      %p Weight, sets, reps, rest, etc. Track everything that goes into a client's workout.
+
+      %h4
+        %a{:href => '#'}
+          = "Body Composition Assessments"
+          %i.icon-th-list
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+      %h4
+        %a{:href => '#'}
+          = "Graphs & Pictures"
+          %i.icon-camera
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+      %h4
+        %a{:href => '#'}
+          = "Calendar Organized"
+          %i.icon-calendar
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+    .span6
+      %h4
+        %a{:href => '#'}
+          = "Email & Text Notifications"
+          %i.icon-envelope
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+      %h4
+        %a{:href => '#'}
+          = "Client Portal"
+          %i.icon-user
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+      %h4
+        %a{:href => '#'}
+          = "Mobile Ready"
+          %i.icon-thumbs-up
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+
+      %h4
+        %a{:href => '#'}
+          = "Exercise Videos"
+          %i.icon-facetime-video
+      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.

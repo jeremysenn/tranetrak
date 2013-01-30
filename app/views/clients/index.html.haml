@@ -1,0 +1,35 @@
+- model_class = Client
+%h3.text-info
+  Clients
+  %i.icon-user
+  %i.icon-user
+  %i.icon-user
+.span8
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th First Name
+        %th Last Name
+        %th Email
+        %th Phone
+        %th DOB
+        %th Role
+        %th Created at
+        %th Actions
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td= model_class.human_attribute_name(:first_name)
+          %td= model_class.human_attribute_name(:last_name)
+          %td= model_class.human_attribute_name(:email)
+          %td= model_class.human_attribute_name(:phone)
+          %td= model_class.human_attribute_name(:dob)
+          %td= user.roles.first.name.titleize unless user.roles.first.nil?
+          %td= model_class.human_attribute_name(:created_at)
+          %td
+            %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
+            =# render user
+          %td= link_to("Delete client", client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini')
+  = link_to t('.new', :default => t("helpers.links.new")), new_client_path, :class => 'btn btn-primary'
+  = link_to t('Back'), :back, :class => 'btn'
+  

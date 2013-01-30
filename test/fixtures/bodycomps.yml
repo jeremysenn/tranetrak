@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2012-12-10
+  client_id: 1
+  age: 1
+  height: 1
+  height_units: MyString
+  weight: 1
+  weight_units: MyString
+  pec: 1.5
+  tri: 1.5
+  subscap: 1.5
+  suprailiac: 1.5
+  midaxil: 1.5
+  umbilical: 1.5
+  calf: 1.5
+  bicep: 1.5
+  low_back: 1.5
+  quad: 1.5
+  sex: MyString
+  waist: 1.5
+  hip: 1.5
+  neck: 1.5
+  shoulder: 1.5
+  chest: 1.5
+  arm: 1.5
+  thigh: 1.5
+  gastroc: 1.5
+  circumference_units: MyString
+  notes: MyText
+
+two:
+  date: 2012-12-10
+  client_id: 1
+  age: 1
+  height: 1
+  height_units: MyString
+  weight: 1
+  weight_units: MyString
+  pec: 1.5
+  tri: 1.5
+  subscap: 1.5
+  suprailiac: 1.5
+  midaxil: 1.5
+  umbilical: 1.5
+  calf: 1.5
+  bicep: 1.5
+  low_back: 1.5
+  quad: 1.5
+  sex: MyString
+  waist: 1.5
+  hip: 1.5
+  neck: 1.5
+  shoulder: 1.5
+  chest: 1.5
+  arm: 1.5
+  thigh: 1.5
+  gastroc: 1.5
+  circumference_units: MyString
+  notes: MyText

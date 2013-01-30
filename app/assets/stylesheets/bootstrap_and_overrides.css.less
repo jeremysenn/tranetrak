@@ -1,0 +1,71 @@
+@import "twitter/bootstrap/bootstrap";
+
+body { padding-top: 60px; } 
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings");
+@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot#iefix");
+@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-path("fontawesome-webfont.svg");
+
+// Font Awesome
+@import "fontawesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+.btn-purple {
+  background-color: hsl(277, 100%, 28%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#58008e", endColorstr="#58008e");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#58008e), to(#58008e));
+  background-image: -moz-linear-gradient(top, #58008e, #58008e);
+  background-image: -ms-linear-gradient(top, #58008e, #58008e);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #58008e), color-stop(100%, #58008e));
+  background-image: -webkit-linear-gradient(top, #58008e, #58008e);
+  background-image: -o-linear-gradient(top, #58008e, #58008e);
+  background-image: linear-gradient(#58008e, #58008e);
+  border-color: #58008e #58008e hsl(277, 100%, 28%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  font-weight:bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-yellow {
+  background-color: hsl(53, 100%, 48%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f4d800", endColorstr="#f4d800");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f4d800), to(#f4d800));
+  background-image: -moz-linear-gradient(top, #f4d800, #f4d800);
+  background-image: -ms-linear-gradient(top, #f4d800, #f4d800);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4d800), color-stop(100%, #f4d800));
+  background-image: -webkit-linear-gradient(top, #f4d800, #f4d800);
+  background-image: -o-linear-gradient(top, #f4d800, #f4d800);
+  background-image: linear-gradient(#f4d800, #f4d800);
+  border-color: #f4d800 #f4d800 hsl(53, 100%, 48%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  font-weight:bold;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,96 @@
+- if false
+  %h1.text-error.pagination-centered
+    %i.icon-star
+    tranetrak.com
+
+.container-fluid
+  .row-fluid.pagination-centered
+    - if false
+      .span3
+        .well.sidebar-nav
+          .nav.nav-list
+            %li.nav-header
+              Clients
+              %i.icon-user
+            %p= link_to "Client 1", '#'
+            %p= link_to "Client 2", '#'
+            %li.nav-header
+              Workouts
+              %i.icon-tasks
+            %p= link_to "Workout 1", '#'
+            %p= link_to "Workout 2", '#'
+            %li.nav-header
+              Bodycomps
+              %i.icon-th-list
+            %p= link_to "Bodycomp 1", '#'
+            %p= link_to "Bodycomp 2", '#'
+    .span12.hero-unit
+      %a{:href => '#', :class => "btn-large btn-success"}
+        = "Calendar"
+        %i.icon-calendar
+      &nbsp;
+      %a{:href => '#', :class => "btn-large btn-primary"}
+        = "Workout"
+        %i.icon-tasks
+      &nbsp;
+      %a{:href => '#', :class => "btn-large btn-warning"}
+        = "Bodycomp"
+        %i.icon-th-list
+      &nbsp;
+      %a{:href => clients_path, :class => "btn-large btn-info"}
+        = "Client"
+        %i.icon-user
+      &nbsp;
+      %a{:href => '#', :class => "btn-large btn-yellow"}
+        = "Notify"
+        %i.icon-envelope
+      &nbsp;
+      %a{:href => '#', :class => "btn-large btn-purple"}
+        = "Document"
+        %i.icon-file
+      &nbsp;
+      %a{:href => '#', :class => "btn-large btn-danger"}
+        = "Picture"
+        %i.icon-camera
+      &nbsp;
+  - if false
+    .jumbotron
+      .row
+        .form-signin.span6
+          - if current_user.is_client?
+            %p= link_to "My BodyComps", bodycomps_path, :class => "btn btn-primary"
+            %p= link_to "My Images", '#', :class => "btn  btn-block btn-small btn-success"
+          - if current_user.is_trainer?
+            %p= link_to "New Client", new_client_path, :class => "btn btn-primary"
+            %p= link_to "My Clients", clients_path, :class => "btn btn-primary"
+          - if current_user.username == "jeremysenn"
+            %p= link_to "SUPER USER", '#', :class => "btn btn-danger"
+        .form-signin.span6
+          - if current_user.is_client?
+            %p= link_to "My BodyComps", bodycomps_path, :class => "btn btn-primary"
+            %p= link_to "My Images", '#', :class => "btn  btn-block btn-small btn-success"
+          - if current_user.is_trainer?
+            %p= link_to "New BodyComp", new_bodycomp_path, :class => "btn btn-success"
+            %p= link_to "My BodyComps", bodycomps_path, :class => "btn btn-success"
+          - if current_user.username == "jeremysenn"
+            %p= link_to "SUPER USER", '#', :class => "btn btn-danger"
+      .row
+        .form-signin.span6
+          - if current_user.is_client?
+            %p= link_to "My BodyComps", bodycomps_path, :class => "btn btn-primary"
+            %p= link_to "My Images", '#', :class => "btn btn-success"
+          - if current_user.is_trainer?
+            %p= link_to "New Document", '#', :class => "btn btn-warning"
+            %p= link_to "My Documents", '#', :class => "btn btn-warning"
+          - if current_user.username == "jeremysenn"
+            %p= link_to "SUPER USER", '#', :class => "btn btn-danger"
+        .form-signin.span6
+          - if current_user.is_client?
+            %p= link_to "My BodyComps", bodycomps_path, :class => "btn btn-primary"
+            %p= link_to "My Images", '#', :class => "btn btn-success"
+          - if current_user.is_trainer?
+            %p= link_to "New Image", '#', :class => "btn btn-danger"
+            %p= link_to "My Images", '#', :class => "btn btn-danger"
+          - if current_user.username == "jeremysenn"
+            %p= link_to "SUPER USER", '#', :class => "btn btn-danger"
+      

@@ -1,0 +1,76 @@
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <% @user.errors.each do |attr, msg| %>
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <%= "#{attr} #{msg}" if @user.errors[attr].first == msg %>
+    </div>
+  <%end%>
+  <div class="control-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :username, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :username, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <%- if false%>
+    <div class="control-group">
+      <%= f.label "Trainer", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_trainer, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label "Client", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_client, :class => 'text_field' %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :is_trainer, :value => true %>
+
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Password Confirmation', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => 'btn btn-warning' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+<script>
+  $("#user_is_trainer").click(function(){
+    $("#user_is_client").attr('checked', false);
+  });
+  $("#user_is_client").click(function(){
+    $("#user_is_trainer").attr('checked', false);
+  });
+</script>

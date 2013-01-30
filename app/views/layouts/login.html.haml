@@ -1,0 +1,52 @@
+!!!
+%html
+
+  %head
+    %title= content_for?(:title) ? yield(:title) : "tranetrak"
+    = favicon_link_tag 'favicon.ico'
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "application"
+    =# stylesheet_link_tag 'mobile' if mobile_device?
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    = yield(:head)
+
+  %body
+    #container
+      - flash.each do |name, msg|
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          = content_tag :div, msg, :id => "flash_#{name}"
+
+      - if show_title?
+        %h1= yield(:title)
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.brand{:href => "/login"}
+              %i.icon-star
+              tranetrak.com
+            .nav-collapse.collapse
+              %ul.nav
+                %li= link_to "WHAT IS TRANETRAK?", '#'
+                %li= link_to "HOW IT WORKS", '#'
+                %li= link_to "ABOUT US", '#'
+              .navbar-form.pull-right
+                = form_tag sessions_path do
+                  = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
+                  = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
+                  = button_tag(:type => 'submit', :class => 'btn') do
+                    Log in <i class="icon-lock"></i>
+                  %a{:href => signup_path, :class => "btn btn-warning"}
+                    Sign up
+                    %i.icon-lock
+
+      = yield
