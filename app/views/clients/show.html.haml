@@ -1,26 +1,146 @@
 - model_class = Client
-%h3.text-info
-  Client
-  %i.icon-user
+.container-narrow
+  .row-fluid
+    .span4
+      .well.sidebar-nav
+        - unless @client.image.blank?
+          = image_tag(@client.image_url(:thumb).to_s)
+        - else
+          = image_tag('/no_avatar.gif')
+        %h4.text-success
+          %i.icon-user
+          = @client.full_name
+        %p
+          %strong= "Username"
+          - unless @client.user.blank?
+            = @client.user.username
+          - else
+            = "Not yet signed up"
+        %p
+          %strong= "Trainer"
+          - unless @client.trainer.blank?
+            = @client.trainer.full_name
+          - else
+            = "None"
+        %p
+          %strong= model_class.human_attribute_name(:email)
+          = @client.email
+        %p
+          %strong= model_class.human_attribute_name(:phone)
+          = @client.phone
+        %p
+          %strong= model_class.human_attribute_name(:dob)
+          = @client.dob.strftime("%m/%d/%Y")
+        %p
+          %strong= "Age"
+          = @client.dob_age
+    .span8
+      .tabbable{:style => "margin-bottom: 18px;"}
+        - if false
+          %ul.nav.nav-tabs
+        .btn-group
+          %ul.nav.nav-pills
+            %li.active
+              %a{:href => "#workouts", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Workouts"}
+                %button.btn
+                  %strong.text-orange
+                    %i.icon-tasks
+            %li
+              %a{:href => "#bodycomps", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Bodycomps"}
+                %button.btn
+                  %strong.text-error
+                    %i.icon-th-list
+            %li
+              %a{:href => "#pictures", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Pictures"}
+                %button.btn
+                  %strong
+                    %i.icon-camera
+            %li
+              %a{:href => "#documents", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Documents"}
+                %button.btn
+                  %strong.text-yellow
+                    %i.icon-file
+            %li
+              %a{:href => "#notifications", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Notifications"}
+                %button.btn
+                  %strong.text-info
+                    %i.icon-envelope
+        .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
+          .tab-pane.active{:id => "workouts"}
+            %p
+              %a{:href => '#', :rel => 'tooltip', :title => "Create a new Workout for #{@client.first_name}"}
+                %button.btn.btn-small
+                  .text-orange
+                    %i.icon-tasks
+                    New
+          .tab-pane{:id => "bodycomps"}
+            %p
+              - @client.bodycomps.reverse.each do |bodycomp|
+                %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View details of #{@client.first_name}'s #{bodycomp.date.strftime("%m/%d/%Y")} Bodycomp"}
+                  %button.btn
+                    .text-error
+                      %i.icon-th-list
+                      = bodycomp.date.strftime("%m/%d/%Y")
+            %p
+              %a{:href => new_bodycomp_path(:client => @client), :rel => 'tooltip', :title => "Create a new Bodycomp for #{@client.first_name}"}
+                %button.btn.btn-small
+                  .text-error
+                    %i.icon-th-list
+                    New
+          .tab-pane{:id => "pictures"}
+            %p Pictures
+          .tab-pane{:id => "documents"}
+            %p Documents
+          .tab-pane{:id => "notifications"}
+            %p Notifications
 
-%dl.dl-horizontal
-  %dt
-    %strong= model_class.human_attribute_name(:first_name)
-  %dd= @client.first_name
-  %dt
-    %strong= model_class.human_attribute_name(:last_name)
-  %dd= @client.last_name
-  %dt
-    %strong= model_class.human_attribute_name(:email)
-  %dd= @client.email
-  %dt
-    %strong= model_class.human_attribute_name(:phone)
-  %dd= @client.phone
-  %dt
-    %strong= model_class.human_attribute_name(:dob)
-  %dd= @client.dob
+  .form-actions
+    %a{:href => clients_path, :class => 'btn'}
+      %i.icon-chevron-left
+      Back
+    %a{:href => edit_client_path(@client), :class => 'btn'}
+      = "Edit"
+      %i.icon-edit
+    %a{:href => client_path(@client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
+      = "Delete"
+      %i.icon-remove
+  - if false
+    %dl.dl-horizontal
+      %dt
+        %strong= "Name"
+      %dd= @client.full_name
+      %dt
+        %strong= "Username"
+      - unless @client.user.blank?
+        %dd= @client.user.username
+      - else
+        %dd= "Not yet signed up"
+      %dt
+        %strong= "Trainer"
+      - unless @client.trainer.blank?
+        %dd= @client.trainer.full_name
+      - else
+        %dd= "None"
+      %dt
+        %strong= model_class.human_attribute_name(:email)
+      %dd= @client.email
+      %dt
+        %strong= model_class.human_attribute_name(:phone)
+      %dd= @client.phone
+      %dt
+        %strong= model_class.human_attribute_name(:dob)
+      %dd= @client.dob.strftime("%m/%d/%Y")
+      %dt
+        %strong= "Age"
+      %dd= @client.dob_age
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), clients_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(@client), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), client_path(@client), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    .form-actions
+      %a{:href => clients_path, :class => 'btn'}
+        %i.icon-chevron-left
+        Back
+      %a{:href => edit_client_path(@client), :class => 'btn'}
+        = "Edit"
+        %i.icon-edit
+      %a{:href => client_path(@client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
+        = "Delete"
+        %i.icon-remove

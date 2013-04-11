@@ -3,9 +3,9 @@ class BodycompsController < ApplicationController
   # GET /bodycomps.json
   def index
     unless current_user.username == 'jeremysenn'
-      @bodycomps = current_user.trainer.clients
+      @bodycomps = current_user.trainer.bodycomps.page(params[:page]).per(4)
     else
-      @bodycomps = Bodycomp.all
+      @bodycomps = Bodycomp.all.page(params[:page]).per(4)
     end
 
     respond_to do |format|

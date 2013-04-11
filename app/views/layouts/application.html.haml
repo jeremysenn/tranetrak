@@ -31,23 +31,111 @@
               %span.icon-bar
               %span.icon-bar
             %a.brand{:href => "/home#index"}
-              %i.icon-star
-              tranetrak.com
+              %p.text-error
+                %i.icon-star
+                tranetrak.com
             - unless current_user.blank?
               .nav-collapse.collapse
-                %ul.nav
-                  %li= link_to "Users", users_path if current_user.username == 'jeremysenn'
-                  %li= link_to "Trainers", trainers_path if current_user.username == 'jeremysenn'
-                  %li= link_to "Subscription", '#'
-                  %li= link_to "Settings", '#'
-                  %li= link_to "Help", '#'
-                .navbar-text.pull-right
-                  &nbsp;
-                  = link_to "Log out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "btn"
+                %ul.nav.custom
+                  %li{:class => params[:controller] == "users" ? "active" : ""}= link_to "Users", users_path if current_user.username == 'jeremysenn'
+                  %li{:class => params[:controller] == "trainers" ? "active" : ""}= link_to "Trainers", trainers_path if current_user.username == 'jeremysenn'
+                  %li.dropdown{:class => params[:controller] == "calendars" ? "active" : ""}
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %p.text-purple
+                          %i.icon-calendar
+                          = "Calendar"
+                          %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => calendars_path(:view => 'week')}
+                            Week view
+                        %li
+                          %a{:href => calendars_path}
+                            Month view
+                  %li.dropdown{:class => params[:controller] == "workouts" ? "active" : ""}
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %p.text-orange
+                          %i.icon-tasks
+                          = "Workouts"
+                          %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => '#'}
+                            New Workout
+                        %li
+                          %a{:href => '#'}
+                            All Workouts
+                    
+                  %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %p.text-error
+                          %i.icon-th-list
+                          = "Bodycomps"
+                          %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => new_bodycomp_path}
+                            New Bodycomp
+                        %li
+                          %a{:href => bodycomps_path}
+                            All Bodycomps
+                  %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %p.text-success
+                          %i.icon-user
+                          = "Clients"
+                          %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => new_client_path}
+                            New Client
+                        %li
+                          %a{:href => clients_path}
+                            All Clients
+                  %li{:class => params[:controller] == "images" ? "active" : ""}
+                    %a{:href => '#'}
+                      %strong
+                        - if false
+                          %p.text-warning
+                        %p
+                          %i.icon-camera
+                          = "Pictures"
+                  %li{:class => params[:controller] == "documents" ? "active" : ""}
+                    %a{:href => '#'}
+                      %strong
+                        %p.text-yellow
+                          %i.icon-file
+                          = "Documents"
+                  %li{:class => params[:controller] == "notifications" ? "active" : ""}
+                    %a{:href => '#'}
+                      %strong
+                        %p.text-info
+                          %i.icon-envelope
+                          = "Notifications"
+                  %li.divider-vertical
+                  %li.dropdown
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %i.icon-cog
+                        %b.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => user_path(current_user)}
+                          %strong= raw("#{current_user.username}")
+                          %br
+                          %small= "Edit settings"
+                      %li.divider
+                      %li= link_to "Subscription", '#'
+                      %li.divider
+                      %li= link_to "Help", '#'
+                      %li= link_to "Log out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out"
                 .navbar-text.pull-right
                   - unless current_user.username == 'jeremysenn'
-                    Welcome,
-                    = link_to raw("#{current_user.username}"), user_path(current_user)
+                    =# link_to raw("#{current_user.username}"), user_path(current_user)
                   - else
                     = link_to raw("#{current_user.username} <span class='red_text'>(admin)</span>"), user_path(current_user)
       = yield
@@ -55,3 +143,4 @@
       .container
         %p{:class => "muted credit", :style => "text-align:center"}
           = "tranetrak.com - Copyright #{Date.today.year}"
+  

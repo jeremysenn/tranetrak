@@ -1,0 +1,8 @@
+.container-narrow
+  - model_class = Bodycomp
+  .page-header
+    %h3.text-error
+      %i.icon-th-list
+      Edit Bodycomp for
+      = @bodycomp.client.full_name
+  = render :partial => 'form'

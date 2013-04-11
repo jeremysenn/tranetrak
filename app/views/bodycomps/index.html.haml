@@ -1,0 +1,29 @@
+.container-narrow
+  - model_class = Bodycomp
+  .page-header
+    %h3.text-error
+      %i.icon-th-list
+      %i.icon-th-list
+      Bodycomps
+
+  .span8
+    = paginate @bodycomps
+    %table
+      - @bodycomps.each_slice(2) do |bodycomps|
+        %tr
+          - bodycomps.each do |bodycomp|
+            %td
+              %p
+                %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View #{bodycomp.client.first_name}'s #{bodycomp.date.strftime('%m/%d/%Y')} Bodycomp"}
+                  %button.btn.btn-large
+                    %h4.text-error
+                      %i.icon-th-list
+                      = bodycomp.client.full_name
+              
+    .form-actions
+      %a{:href => url_for(:back), :class => 'btn'}
+        %i.icon-chevron-left
+        Back
+      %a{:href => new_bodycomp_path, :class => 'btn btn-primary'}
+        %i.icon-th-list
+        New

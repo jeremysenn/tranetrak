@@ -1,0 +1,172 @@
+.container-narrow
+  - if mobile_device?
+    .pagination-centered
+      .btn-group
+        %button.btn.btn-mini
+          %a{:href => calendars_path(:date => @date.prev_week)}
+            %i.icon-arrow-left
+            Last Week
+        %button.btn.btn-mini
+          %a{:href => calendars_path(:date => @date.next_week)}
+            Next Week
+            %i.icon-arrow-right
+      %br
+      .btn-group
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Mon" ? "active" : ""}
+          Mon
+          =# @date.strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Tue" ? "active" : ""}
+          Tue
+          =# @date.tomorrow.strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Wed" ? "active" : ""}
+          Wed
+          =# @date.advance(:days => 2).strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Thu" ? "active" : ""}
+          Thu
+          =# @date.advance(:days => 3).strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Fri" ? "active" : ""}
+          Fri
+          =# @date.advance(:days => 4).strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Sat" ? "active" : ""}
+          Sat
+          =# @date.advance(:days => 5).strftime("%a")
+        %button.btn.btn-mini{:class => @date.strftime("%a") == "Sun" ? "active" : ""}
+          Sun
+          =# @date.advance(:days => 6).strftime("%a")
+      = @date
+      %br
+      %br
+
+
+  - elsif params[:view] == 'week'
+    .container-narrow
+      .btn-group.pull-left
+        %button.btn{:class => params[:view].nil? ? "active" : ""}
+          %a{:href => calendars_path}
+            Month
+        %button.btn{:class => params[:view] == 'week' ? "active" : ""}
+          %a{:href => calendars_path(:view => 'week')}
+            Week
+      .pagination-centered
+        .btn-group
+          %button.btn
+            %a{:href => calendars_path(:date => @date.prev_week, :view => 'week')}
+              %i.icon-arrow-left
+              Last Week
+        .btn-group
+          %button.btn
+            %a{:href => calendars_path(:date => @date.next_week, :view => 'week')}
+              Next Week
+              %i.icon-arrow-right
+      %br
+      .tabbable{:style => "margin-bottom: 18px;"}
+        .btn-group
+          %ul.nav.nav-pills
+            %li{:class => Date.today.strftime("%A") == 'Monday' ? "active" : ""}
+              %a{:href => "#monday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = @date.beginning_of_week.strftime("%a %m/%d")
+            %li{:class => Date.today.strftime("%A") == 'Tuesday' ? "active" : ""}
+              %a{:href => "#tuesday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 1.days).strftime("%a %m/%d")
+            
+            %li{:class => Date.today.strftime("%A") == 'Wednesday' ? "active" : ""}
+              %a{:href => "#wednesday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 2.days).strftime("%a %m/%d")
+            %li{:class => Date.today.strftime("%A") == 'Thursday' ? "active" : ""}
+              %a{:href => "#thursday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 3.days).strftime("%a %m/%d")
+            %li{:class => Date.today.strftime("%A") == 'Friday' ? "active" : ""}
+              %a{:href => "#friday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 4.days).strftime("%a %m/%d")
+            %li{:class => Date.today.strftime("%A") == 'Saturday' ? "active" : ""}
+              %a{:href => "#saturday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 5.days).strftime("%a %m/%d")
+            %li{:class => Date.today.strftime("%A") == 'Sunday' ? "active" : ""}
+              %a{:href => "#sunday", :data => {:toggle => "tab"}}
+                %button.btn
+                  = (@date.beginning_of_week + 6.days).strftime("%a %m/%d")
+
+      .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
+        .tab-pane{:class => Date.today.strftime("%A") == 'Monday' ? "active" : "", :id => "monday"}
+          %p Monday stuff
+          = @date.strftime("%a %m/%d")
+        .tab-pane{:class => Date.today.strftime("%A") == 'Tuesday' ? "active" : "", :id => "tuesday"}
+          %p Tuesday stuff
+          = @date.strftime("%a %m/%d")
+        .tab-pane{:class => Date.today.strftime("%A") == 'Wednesday' ? "active" : "", :id => "wednesday"}
+          %p Wednesday stuff
+        .tab-pane{:class => Date.today.strftime("%A") == 'Thursday' ? "active" : "", :id => "thursday"}
+          %p Thursday stuff
+        .tab-pane{:class => Date.today.strftime("%A") == 'Friday' ? "active" : "", :id => "friday"}
+          %p Friday stuff
+        .tab-pane{:class => Date.today.strftime("%A") == 'Saturday' ? "active" : "", :id => "saturday"}
+          %p Saturday stuff
+        .tab-pane{:class => Date.today.strftime("%A") == 'Sunday' ? "active" : "", :id => "sunday"}
+          %p Sunday stuff
+
+  - else
+    #events
+
+      %h2{:id => "month"}
+        .btn-group
+          %button.btn
+            %a{:href => calendars_path(:date => @date.prev_month)}
+              %i.icon-arrow-left
+        = @date.strftime("%B %Y")
+        .btn-group
+          %button.btn
+            %a{:href => calendars_path(:date => @date.next_month)}
+              %i.icon-arrow-right
+      .btn-group.pull-left
+        %button.btn{:class => params[:view].nil? ? "active" : ""}
+          %a{:href => calendars_path}
+            Month
+        %button.btn{:class => params[:view] == 'week' ? "active" : ""}
+          %a{:href => calendars_path(:view => 'week')}
+            Week
+
+      = calendar @date do |date|
+        = date.day
+        - if @bodycomps_by_date[date]
+          %ul
+            - @bodycomps_by_date[date].each do |bodycomp|
+              %li= link_to bodycomp.client.full_name, bodycomp, :class => 'btn btn-mini btn-purple'
+
+    - if false
+      .pagination-centered
+        .btn-group
+          %button.btn
+            %a{:href => calendars_path(:date => @date.prev_week)}
+              %i.icon-arrow-left
+              Last Week
+          %button.btn
+            %a{:href => calendars_path(:date => @date.next_week)}
+              Next Week
+              %i.icon-arrow-right
+          %br
+          .btn-group
+            %button.btn
+              = @date.strftime("%a")
+            %button.btn
+              = @date.tomorrow.strftime("%a")
+            %button.btn
+              = @date.advance(:days => 2).strftime("%a")
+            %button.btn
+              = @date.advance(:days => 3).strftime("%a")
+            %button.btn
+              = @date.advance(:days => 4).strftime("%a")
+            %button.btn
+              = @date.advance(:days => 5).strftime("%a")
+            %button.btn
+              = @date.advance(:days => 7).strftime("%a")
+          = @date
+          %br
+          %br
+
+    

@@ -1,9 +1,9 @@
 class ClientsController < ApplicationController
   def index
     unless current_user.username == 'jeremysenn'
-      @clients = current_user.trainer.clients
+      @clients = current_user.trainer.clients.page(params[:page]).per(4)
     else
-      @clients = Client.all
+      @clients = Client.order(:first_name).page(params[:page]).per(4)
     end
   end
 

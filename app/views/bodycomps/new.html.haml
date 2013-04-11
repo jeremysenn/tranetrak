@@ -1,0 +1,10 @@
+.container-narrow
+  - model_class = Bodycomp
+  .page-header
+    %h3.text-error
+      %i.icon-th-list
+      New Bodycomp
+      - unless params[:client].blank?
+        for
+        = Client.find(params[:client]).full_name
+  = render :partial => 'form'

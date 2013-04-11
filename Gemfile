@@ -14,10 +14,15 @@ gem 'mysql2'#, '< 0.3'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'less-rails' #Need for twitter bootstrap
 gem 'therubyracer', :platform => 'ruby' #Need for twitter bootstrap
-gem 'cancan', '1.5'
+gem 'cancan', '1.5' #Authorization
 gem 'simple_form'
 gem "figaro", ">= 0.5.0" #setting environment variables
 gem "rolify" #Roles library
+gem 'localtunnel' #share localhost web servers to the rest of the world
+gem 'birthday' #show birthday from dob, anniversaries, etc.
+gem 'kaminari' #Pagination
+gem 'carrierwave' #File uploads
+gem "rmagick" #Image manipulation
 
 # Gems used only for assets and not required
 # in production environments by default.

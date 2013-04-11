@@ -48,3 +48,14 @@
 
 /* --BOLD COLORED TEXT-- */
 .red_text{color:#cc0000}
+
+.yellow_background {
+  background-color: #fff2cc;
+}
+
+table { margin:5px;  padding:0;  border:.5px solid #666;  font-weight:inherit; font-style:inherit;  font-size:100%;    vertical-align:baseline}
+table { border-collapse: collapse; border-spacing: 0; }
+table, td, th { vertical-align: middle; width: auto; border:.5px solid #666;}
+th {background-color:#f3f3f3;}
+table {border:.5px solid #666; border-spacing: 1em; width: 100%; border-collapse: collapse; line-height: 1em; margin-bottom: 18px; padding:10px}
+table td, th { vertical-align: middle; text-align:left; padding: 1px; }

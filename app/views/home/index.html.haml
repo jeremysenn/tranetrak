@@ -1,11 +1,18 @@
-- if false
+- if true
   %h1.text-error.pagination-centered
     %i.icon-star
     tranetrak.com
+  .container-narrow
+    .form-signin
+      .jumbotron
+        .lead
+        = link_to "New Workout", '#', :class => "btn  btn-block btn-small btn-warning"
+        = link_to "New Bodycomp", new_bodycomp_path, :class => "btn  btn-block btn-small btn-danger"
+        = link_to "New Client", new_client_path, :class => "btn btn-block btn-small btn-success"
 
 .container-fluid
-  .row-fluid.pagination-centered
-    - if false
+  - if false
+    .row-fluid.pagination-centered
       .span3
         .well.sidebar-nav
           .nav.nav-list
@@ -24,35 +31,118 @@
               %i.icon-th-list
             %p= link_to "Bodycomp 1", '#'
             %p= link_to "Bodycomp 2", '#'
-    .span12.hero-unit
-      %a{:href => '#', :class => "btn-large btn-success"}
-        = "Calendar"
-        %i.icon-calendar
-      &nbsp;
-      %a{:href => '#', :class => "btn-large btn-primary"}
-        = "Workout"
-        %i.icon-tasks
-      &nbsp;
-      %a{:href => '#', :class => "btn-large btn-warning"}
-        = "Bodycomp"
-        %i.icon-th-list
-      &nbsp;
-      %a{:href => clients_path, :class => "btn-large btn-info"}
-        = "Client"
-        %i.icon-user
-      &nbsp;
-      %a{:href => '#', :class => "btn-large btn-yellow"}
-        = "Notify"
-        %i.icon-envelope
-      &nbsp;
-      %a{:href => '#', :class => "btn-large btn-purple"}
-        = "Document"
-        %i.icon-file
-      &nbsp;
-      %a{:href => '#', :class => "btn-large btn-danger"}
-        = "Picture"
-        %i.icon-camera
-      &nbsp;
+    .row-fluid
+      .span3
+        .well.sidebar-nav
+          .nav.nav-list
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Calendar"
+                  %i.icon-calendar
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Workouts"
+                  %i.icon-tasks
+            %li
+              %a{:href => clients_path}
+                %h3
+                  = "Clients"
+                  %i.icon-user
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Bodycomps"
+                  %i.icon-th-list
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Notifications"
+                  %i.icon-envelope
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Documents"
+                  %i.icon-file
+            %li
+              %a{:href => '#'}
+                %h3
+                  = "Pictures"
+                  %i.icon-camera
+      .span9
+        .tabbable{:style => "margin-bottom: 18px;"}
+          %ul.nav.nav-tabs
+            %li.active
+              %a{:href => "#tab1", :data => {:toggle => "tab"}}
+                Section 1
+            <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+            <li><a href="#tab3" data-toggle="tab">Section 3</a></li>
+          <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+          <div class="tab-pane active" id="tab1">
+          <p>I'm in Section 1.</p>
+          </div>
+          <div class="tab-pane" id="tab2">
+          <p>Howdy, I'm in Section 2.</p>
+          </div>
+          <div class="tab-pane" id="tab3">
+          <p>What up girl, this is Section 3.</p>
+          </div>
+          </div>
+
+    - if false
+      .span9
+        .hero-unit
+          .tabbable
+            %ul.nav.nav-tabs
+              %li.active
+                %a{:href => "#tab1", :data-toggle => "tab"}
+                  Section 1
+              %li
+                %a{:href => "#tab2", :data-toggle => "tab"}
+                  Section 2
+              %li
+                %a{:href => "#tab3", :data-toggle => "tab"}
+                  Section 3
+            .tab-content
+              #tab1.tab-pane.active
+                %p I'm in Section 1.
+              #tab2.tab-pane
+                %p Howdy, I'm in Section 2.
+              #tab3.tab-pane
+                %p What up girl? I'm in Section 3.
+    - if false
+      .span12
+        &nbsp;
+        .btn-toolbar
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-success"}
+              = "Calendar"
+              %i.icon-calendar
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-primary"}
+              = "Workouts"
+              %i.icon-tasks
+          .btn-group
+            %a{:href => clients_path, :class => "btn-large btn-info"}
+              = "Clients"
+              %i.icon-user
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-warning"}
+              = "Bodycomps"
+              %i.icon-th-list
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-yellow"}
+              = "Notify"
+              %i.icon-envelope
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-purple"}
+              = "Documents"
+              %i.icon-file
+          .btn-group
+            %a{:href => '#', :class => "btn-large btn-danger"}
+              = "Pictures"
+              %i.icon-camera
   - if false
     .jumbotron
       .row

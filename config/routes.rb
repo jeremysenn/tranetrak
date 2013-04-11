@@ -19,6 +19,8 @@ Bcomp::Application.routes.draw do
 
   resources :home
 
+  resources :calendars
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

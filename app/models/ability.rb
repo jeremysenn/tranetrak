@@ -25,11 +25,18 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
+
+    if user.has_role? :admin
+  can :manage, :all
+else
+  can :read, :all
+end
+
     user ||= User.new # guest user (not logged in)
     #
-    # Super User
+    # Admin User
       ############
-    if user.username =='jeremysenn'
+    if user.has_role? :admin
       can :manage, :all
 #    elsif user.admin?
 #      # Databases
@@ -51,6 +58,23 @@ class Ability
       can :manage, User do |u|
         u.id == user.id
       end
+
+      # Clients
+      ############
+      if user.has_role? :trainer
+        can :manage, Client do |u|
+          u.id == user.id
+        end
+      end
+
+      # Bodycomps
+      ############
+      if user.has_role? :trainer
+        can :manage, Bodycomp do |b|
+          b.client.trainer == user.trainer
+        end
+      end
+
     end
 
   end

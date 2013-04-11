@@ -26,7 +26,7 @@
         <div class="control-group">
           <%= f.label :date, :class => 'control-label' %>
           <div class="controls">
-            <%= f.text_field :date, :id => "datepicker", :class => 'input-small', :readonly => true, :value => Date.today.strftime("%m/%d/%Y") %>
+            <%= f.text_field :date, :id => "datepicker", :class => 'input-small', :readonly => true %>
           </div>
         </div>
         <%= f.input :client_id, :collection => current_user.trainer.clients.collect {|c| [ c.first_name + " " + c.last_name, c.id ]}, :include_blank => false %>
@@ -136,7 +136,7 @@
 <% end %>
 
 <script>
-  $('#datepicker').datepicker();
+  $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
 </script>
 
 

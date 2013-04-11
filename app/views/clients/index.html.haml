@@ -1,35 +1,58 @@
-- model_class = Client
-%h3.text-info
-  Clients
-  %i.icon-user
-  %i.icon-user
-  %i.icon-user
-.span8
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th First Name
-        %th Last Name
-        %th Email
-        %th Phone
-        %th DOB
-        %th Role
-        %th Created at
-        %th Actions
-    %tbody
-      - @clients.each do |client|
+.container-narrow
+  - model_class = Client
+  .page-header
+    %h3.text-success
+      %i.icon-user
+      %i.icon-user
+      Clients
+
+  .span8
+    = paginate @clients
+    %table
+      - @clients.sort_by(&:first_name).each_slice(2) do |clients|
         %tr
-          %td= model_class.human_attribute_name(:first_name)
-          %td= model_class.human_attribute_name(:last_name)
-          %td= model_class.human_attribute_name(:email)
-          %td= model_class.human_attribute_name(:phone)
-          %td= model_class.human_attribute_name(:dob)
-          %td= user.roles.first.name.titleize unless user.roles.first.nil?
-          %td= model_class.human_attribute_name(:created_at)
-          %td
-            %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
-            =# render user
-          %td= link_to("Delete client", client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini')
-  = link_to t('.new', :default => t("helpers.links.new")), new_client_path, :class => 'btn btn-primary'
-  = link_to t('Back'), :back, :class => 'btn'
+          - clients.each do |client|
+            %td
+              %p
+                %a{:href => client_path(client), :rel => 'tooltip', :title => "View client #{client.full_name}"}
+                  %button.btn.btn-large
+                    .text-success
+                      %i.icon-user
+                      = client.full_name
+    - if false
+      &nbsp;
+      %table.table.table-condensed
+        %thead
+          %tr
+            %th Name
+            %th Email
+            %th Phone
+            %th DOB
+            %th Created
+            %th Actions
+        %tbody
+          - @clients.each do |client|
+            %tr
+              %td= link_to client.full_name, client_path(client)
+              %td= client.email
+              %td= client.phone
+              %td= client.dob.strftime("%m/%d/%Y")
+              %td= client.created_at.strftime("%m/%d/%Y")
+              %td
+                %a{:href => edit_client_path(client), :class => 'btn btn-mini'}
+                  = "Edit"
+                  %i.icon-edit
+                %a{:href => client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger'}
+                  = "Delete"
+                  %i.icon-remove
+
+    .form-actions
+      %a{:href => url_for(:back), :class => 'btn'}
+        %i.icon-chevron-left
+        Back
+      %a{:href => new_client_path, :class => 'btn', :rel => 'tooltip', :title => "Create a new client"}
+        .text-success
+          %i.icon-user
+          New
+    
   

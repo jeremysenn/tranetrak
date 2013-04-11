@@ -1,6 +1,7 @@
-- model_class = Client
-.page-header
-  %h3.text-info
-    New Client
-    %i.icon-user
-= render :partial => 'form'
+.container-narrow
+  - model_class = Client
+  .page-header
+    %h3.text-success
+      %i.icon-user
+      New Client
+  = render :partial => 'form'
