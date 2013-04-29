@@ -6,19 +6,33 @@
       %i.icon-user
       Clients
 
-  .span8
-    = paginate @clients
-    %table
-      - @clients.sort_by(&:first_name).each_slice(2) do |clients|
-        %tr
-          - clients.each do |client|
-            %td
-              %p
-                %a{:href => client_path(client), :rel => 'tooltip', :title => "View client #{client.full_name}"}
-                  %button.btn.btn-large
-                    .text-success
-                      %i.icon-user
-                      = client.full_name
+  = paginate @clients
+  - @clients.sort_by(&:first_name).each_slice(3) do |clients|
+    %ul.thumbnails
+      - clients.each do |client|
+        %li.span2
+          - unless client.image.blank?
+            %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
+              .pagination-centered
+                %h4= client.full_name
+              = image_tag(client.image_url(:thumb).to_s)
+          - else
+            %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
+              .pagination-centered
+                %h4= client.full_name
+              = image_tag('/no_avatar.gif')
+    - if false
+      %table
+        - @clients.sort_by(&:first_name).each_slice(2) do |clients|
+          %tr
+            - clients.each do |client|
+              %td
+                %p
+                  %a{:href => client_path(client), :rel => 'tooltip', :title => "View client #{client.full_name}"}
+                    %button.btn.btn-large
+                      .text-success
+                        %i.icon-user
+                        = client.full_name
     - if false
       &nbsp;
       %table.table.table-condensed
@@ -46,13 +60,13 @@
                   = "Delete"
                   %i.icon-remove
 
-    .form-actions
-      %a{:href => url_for(:back), :class => 'btn'}
-        %i.icon-chevron-left
-        Back
-      %a{:href => new_client_path, :class => 'btn', :rel => 'tooltip', :title => "Create a new client"}
-        .text-success
-          %i.icon-user
-          New
+  .form-actions
+    %a{:href => url_for(:back), :class => 'btn'}
+      %i.icon-chevron-left
+      Back
+    %a{:href => new_client_path, :class => 'btn', :rel => 'tooltip', :title => "Create a new client"}
+      .text-success
+        %i.icon-user
+        New
     
   

@@ -4,6 +4,8 @@ class Trainer < ActiveRecord::Base
   belongs_to :user
   has_many :clients
   has_many :bodycomps, :through => :clients
+  has_many :workouts
+  has_many :workout_sessions
 
   def full_name
     if !first_name.blank? || !last_name.blank?

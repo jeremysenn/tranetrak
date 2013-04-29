@@ -6,9 +6,15 @@
     .form-signin
       .jumbotron
         .lead
-        = link_to "New Workout", '#', :class => "btn  btn-block btn-small btn-warning"
-        = link_to "New Bodycomp", new_bodycomp_path, :class => "btn  btn-block btn-small btn-danger"
-        = link_to "New Client", new_client_path, :class => "btn btn-block btn-small btn-success"
+        %a{:href => '#', :class => "btn  btn-block btn-small btn-warning"}
+          %i.icon-tasks
+          New Workout
+        %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-danger"}
+          %i.icon-th-list
+          New Bodycomp
+        %a{:href => new_client_path, :class => "btn btn-block btn-small btn-success"}
+          %i.icon-user
+          New Client
 
 .container-fluid
   - if false

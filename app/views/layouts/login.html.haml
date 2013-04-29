@@ -40,14 +40,16 @@
                 %li= link_to "WHAT IS TRANETRAK?", '#'
                 %li= link_to "HOW IT WORKS", '#'
                 %li= link_to "ABOUT US", '#'
-              .navbar-form.pull-right
-                = form_tag sessions_path do
-                  = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
-                  = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
-                  = button_tag(:type => 'submit', :class => 'btn') do
-                    Log in <i class="icon-lock"></i>
-                  %a{:href => signup_path, :class => "btn btn-warning"}
-                    Sign up
-                    %i.icon-lock
+              - unless current_page? signup_path
+                .navbar-form.pull-right
+                  = form_tag sessions_path do
+                    = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
+                    = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
+                    = button_tag(:type => 'submit', :class => 'btn') do
+                      Log in <i class="icon-lock"></i>
+                    - if false
+                      %a{:href => signup_path, :class => "btn btn-warning"}
+                        Sign up
+                        %i.icon-lock
 
       = yield

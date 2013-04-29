@@ -1,4 +1,4 @@
-= simple_form_for @bodycomp, :html => { :class => 'form-horizontal' } do |f|
+= simple_nested_form_for @bodycomp, :html => { :multipart => true, :class => 'form-horizontal' } do |f|
   - @bodycomp.errors.each do |attr, msg|
     .alert.alert-error
       %button{:type => "button", :class => "close", :data => {:dismiss => "alert"}}
@@ -20,6 +20,10 @@
           %a{:href => "#circumferences", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's circumference measurements."}
             %button.btn
               Girth
+        %li
+          %a{:href => "#pics", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's pictures."}
+            %button.btn
+              %i.icon-camera
     .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
       .tab-pane.active{:id => "basic"}
         .control-group
@@ -45,25 +49,28 @@
 
         = f.input :notes, :placeholder => 'Notes and things go here.', :input_html => {:rows => 6}
       .tab-pane{:id => "skinfolds"}
-        = f.input :pec, :label => "Chest", :input_html => { :min => 1, :value => number_with_precision(f.object.pec, precision: 2), :class => 'input-small' }
+        = f.input :skinfold_sites,  collection: ["Three", "Seven"], as: :radio_buttons, :checked => "Seven"
 
-        = f.input :tri, :label => "Triceps", :input_html => { :min => 1, :value => number_with_precision(f.object.tri, precision: 2), :class => 'input-small' }
+        .all.male
+          = f.input :pec, :label => "Chest", :input_html => {:min => 1, :value => number_with_precision(f.object.pec, precision: 2), :class => 'input-small' }
+        .all.female
+          = f.input :tri, :label => "Triceps", :input_html => { :min => 1, :value => number_with_precision(f.object.tri, precision: 2), :class => 'input-small' }
+        .all
+          = f.input :subscap, :label => "Subscapular", :input_html => {:min => 1, :value => number_with_precision(f.object.subscap, precision: 2), :class => 'input-small' }
+        .all.female
+          = f.input :suprailiac, :label => "Suprailiac", :input_html => {:min => 1, :value => number_with_precision(f.object.suprailiac, precision: 2), :class => 'input-small' }
+        .all
+          = f.input :midaxil, :label => "Midaxillary", :input_html => {:min => 1, :value => number_with_precision(f.object.midaxil, precision: 2), :class => 'input-small' }
+        .all.male
+          = f.input :umbilical, :label => "Abdominal", :input_html => {:min => 1, :value => number_with_precision(f.object.umbilical, precision: 2), :class => 'input-small' }
+        .all.male.female
+          = f.input :quad, :label => "Thigh", required: false, :input_html => { :min => 1, :value => number_with_precision(f.object.quad, precision: 2), :class => 'input-small' }
+        .all
+          = f.input :calf, :label => "Calf", :input_html => {:min => 1, :value => number_with_precision(f.object.calf, precision: 2), :class => 'input-small' }
 
-        = f.input :subscap, :label => "Subscapular", :input_html => {:min => 1, :value => number_with_precision(f.object.subscap, precision: 2), :class => 'input-small' }
+        =# f.input :bicep, :label => "Biceps", :input_html => {:min => 1, :value => number_with_precision(f.object.bicep, precision: 2), :class => 'input-small' }
 
-        = f.input :suprailiac, :label => "Suprailiac", :input_html => {:min => 1, :value => number_with_precision(f.object.suprailiac, precision: 2), :class => 'input-small' }
-
-        = f.input :midaxil, :label => "Midaxillary", :input_html => {:min => 1, :value => number_with_precision(f.object.midaxil, precision: 2), :class => 'input-small' }
-
-        = f.input :umbilical, :label => "Abdominal", :input_html => {:min => 1, :value => number_with_precision(f.object.umbilical, precision: 2), :class => 'input-small' }
-
-        = f.input :quad, :label => "Thigh", :input_html => {:min => 1, :value => number_with_precision(f.object.quad, precision: 2), :class => 'input-small' }
-
-        = f.input :calf, :label => "Calf", :input_html => {:min => 1, :value => number_with_precision(f.object.calf, precision: 2), :class => 'input-small' }
-
-        = f.input :bicep, :label => "Biceps", :input_html => {:min => 1, :value => number_with_precision(f.object.bicep, precision: 2), :class => 'input-small' }
-
-        = f.input :low_back, :label => "Low back", :input_html => {:min => 1, :value => number_with_precision(f.object.low_back, precision: 2), :class => 'input-small' }
+        =# f.input :low_back, :label => "Low back", :input_html => {:min => 1, :value => number_with_precision(f.object.low_back, precision: 2), :class => 'input-small' }
       .tab-pane{:id => "circumferences"}
         = f.input :waist, :label => 'Waist', :input_html => {:min => 1, :value => number_with_precision(f.object.waist, precision: 2), :class => 'input-small' }
 
@@ -80,6 +87,15 @@
         = f.input :thigh, :label => 'Thigh', :input_html => {:min => 1, :value => number_with_precision(f.object.thigh, precision: 2), :class => 'input-small' }
 
         = f.input :gastroc, :label => 'Calf', :input_html => {:min => 1, :value => number_with_precision(f.object.gastroc, precision: 2), :class => 'input-small' }
+      .tab-pane{:id => "pics"}
+        = f.simple_fields_for :pictures do |picture_form|
+          .well.well-large
+            - unless picture_form.object.new_record?
+              = image_tag(picture_form.object.image_url(:thumb).to_s)
+            = picture_form.file_field :image if picture_form.object.new_record?
+            = picture_form.link_to_remove "Remove this picture", :class => 'btn btn-mini btn-danger'
+          
+        %p= f.link_to_add "Add a picture", :pictures, :class =>  "btn btn-mini btn-warning"
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     =# link_to t('.cancel', :default => t("helpers.links.cancel")), :back, :class => 'btn'
@@ -87,3 +103,25 @@
 
 %script
   $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+
+:javascript
+  $('#bodycomp_skinfold_sites_three').click(function(){
+    sex = $('#bodycomp_sex').val();
+    if (sex == 'Female') {
+      $('.all').hide();
+      $('.female').show();
+    }
+    if (sex == 'Male') {
+      $('.all').hide();
+      $('.male').show();
+    }
+  });
+
+  $('#bodycomp_skinfold_sites_seven').click(function(){
+    $('.all').show();
+  });
+
+  $('#bodycomp_sex').change(function() {
+    $('.all').show();
+    $('#bodycomp_skinfold_sites_seven').prop('checked', true);
+  });

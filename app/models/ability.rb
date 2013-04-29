@@ -25,15 +25,8 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-
-    if user.has_role? :admin
-  can :manage, :all
-else
-  can :read, :all
-end
-
     user ||= User.new # guest user (not logged in)
-    #
+
     # Admin User
       ############
     if user.has_role? :admin
@@ -53,11 +46,14 @@ end
 #      end
 #      can :create, User
     else
+#      can :read, :all
+
       # Users
       ############
       can :manage, User do |u|
         u.id == user.id
       end
+      cannot :index, User
 
       # Clients
       ############

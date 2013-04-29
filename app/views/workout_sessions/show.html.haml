@@ -1,0 +1,29 @@
+- model_class = WorkoutSession
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:workout_id) + ':'
+  %br
+  = @workout_session.workout_id
+%p
+  %strong= model_class.human_attribute_name(:trainer_id) + ':'
+  %br
+  = @workout_session.trainer_id
+%p
+  %strong= model_class.human_attribute_name(:client_id) + ':'
+  %br
+  = @workout_session.client_id
+%p
+  %strong= model_class.human_attribute_name(:date) + ':'
+  %br
+  = @workout_session.date
+%p
+  %strong= model_class.human_attribute_name(:reminder_sent) + ':'
+  %br
+  = @workout_session.reminder_sent
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), workout_sessions_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_workout_session_path(@workout_session), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), workout_session_path(@workout_session), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

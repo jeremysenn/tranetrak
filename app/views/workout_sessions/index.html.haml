@@ -1,0 +1,30 @@
+.container-narrow
+  - model_class = WorkoutSession
+  .page-header
+    %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:id)
+        %th= model_class.human_attribute_name(:workout_id)
+        %th= model_class.human_attribute_name(:trainer_id)
+        %th= model_class.human_attribute_name(:client_id)
+        %th= model_class.human_attribute_name(:date)
+        %th= model_class.human_attribute_name(:reminder_sent)
+        %th= model_class.human_attribute_name(:created_at)
+        %th=t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @workout_sessions.each do |workout_session|
+        %tr
+          %td= link_to workout_session.id, workout_session_path(workout_session)
+          %td= workout_session.workout_id
+          %td= workout_session.trainer_id
+          %td= workout_session.client_id
+          %td= workout_session.date
+          %td= workout_session.reminder_sent
+          %td=l workout_session.created_at
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_workout_session_path(workout_session), :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), workout_session_path(workout_session), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+  = link_to t('.new', :default => t("helpers.links.new")), new_workout_session_path, :class => 'btn btn-primary'

@@ -1,0 +1,13 @@
+one:
+  workout_id: 1
+  trainer_id: 1
+  client_id: 1
+  date: 2013-04-24 17:01:05
+  reminder_sent: false
+
+two:
+  workout_id: 1
+  trainer_id: 1
+  client_id: 1
+  date: 2013-04-24 17:01:05
+  reminder_sent: false

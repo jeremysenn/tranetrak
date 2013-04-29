@@ -39,17 +39,12 @@
   <div class="control-group">
     <div class="controls">
       <div class="btn">
-        <%= link_to_function 'Upload Profile Picture', "$('#upload').show(); $('#url').hide();", :rel => 'tooltip', :title => "Upload client's profile picture" %>
+        <%= link_to_function 'Upload Profile Picture', "$('#upload').show(); $('#profile_pic').hide(); $('#url').hide();", :rel => 'tooltip', :title => "Upload client's profile picture" %>
       </div>
       |
       <div class="btn">
-        <%= link_to_function 'Profile Picture URL', "$('#upload').hide(); $('#url').show();", :rel => 'tooltip', :title => "Specify the URL of client's profile picture" %>
+        <%= link_to_function 'Profile Picture URL', "$('#upload').hide(); $('#profile_pic').hide(); $('#url').show();", :rel => 'tooltip', :title => "Specify the URL of client's profile picture" %>
       </div>
-      <%- unless @client.image.blank? %>
-        <p>
-          <%= image_tag @client.image_url(:thumb).to_s %>
-        </p>
-      <% end %>
         <div id="upload" style="display:none">
           <%= f.file_field :image, :input_html => {:value => @client.image_url.to_s} %>
         </div>
@@ -57,6 +52,15 @@
           <%= f.label :remote_image_url, "Image URL:" %>
           <%= f.text_field :remote_image_url %>
         </div>
+      <div id="profile_pic">
+        <%- unless @client.image.blank? %>
+          <p>
+            <br/>
+            <%= image_tag @client.image_url(:thumb).to_s %>
+          </p>
+
+        <% end %>
+      </div>
     </div>
   </div>
 

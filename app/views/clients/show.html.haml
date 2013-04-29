@@ -72,7 +72,7 @@
                 %button.btn.btn-small
                   .text-orange
                     %i.icon-tasks
-                    New
+                    New Workout
           .tab-pane{:id => "bodycomps"}
             %p
               - @client.bodycomps.reverse.each do |bodycomp|
@@ -86,9 +86,22 @@
                 %button.btn.btn-small
                   .text-error
                     %i.icon-th-list
-                    New
+                    New Bodycomp
           .tab-pane{:id => "pictures"}
-            %p Pictures
+            - @client.bodycomps.each do |bodycomp|
+              - bodycomp.pictures.each_slice(3) do |pics|
+                %ul.thumbnails
+                  - pics.each do |pic|
+                    %li.span4
+                      = link_to image_tag(pic.image_url(:thumb).to_s), "#pic" + pic.id.to_s, :class => "thumbnail", "data-toggle" => "modal", :href => "#pic" + pic.id.to_s, :type => "button", :title => "Click to view large image", :rel => 'tooltip'
+                    %div{:id => "pic" + pic.id.to_s, :class => "modal", :style => "display:none;"}
+                      .modal-header
+                        = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+                        = bodycomp.date.strftime("%b %e %Y")
+                      .modal-body
+                        = image_tag(pic.image_url.to_s)
+                      .modal-footer
+                        = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
           .tab-pane{:id => "documents"}
             %p Documents
           .tab-pane{:id => "notifications"}

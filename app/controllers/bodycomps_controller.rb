@@ -3,9 +3,9 @@ class BodycompsController < ApplicationController
   # GET /bodycomps.json
   def index
     unless current_user.username == 'jeremysenn'
-      @bodycomps = current_user.trainer.bodycomps.page(params[:page]).per(4)
+      @bodycomps = current_user.trainer.bodycomps.page(params[:page]).per(8)
     else
-      @bodycomps = Bodycomp.all.page(params[:page]).per(4)
+      @bodycomps = Bodycomp.all.page(params[:page]).per(8)
     end
 
     respond_to do |format|
@@ -29,6 +29,7 @@ class BodycompsController < ApplicationController
   # GET /bodycomps/new.json
   def new
     @bodycomp = Bodycomp.new
+    @bodycomp.pictures.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +40,7 @@ class BodycompsController < ApplicationController
   # GET /bodycomps/1/edit
   def edit
     @bodycomp = Bodycomp.find(params[:id])
+#    @bodycomp.pictures.build if @bodycomp.pictures.blank?
   end
 
   # POST /bodycomps
@@ -83,5 +85,20 @@ class BodycompsController < ApplicationController
       format.html { redirect_to bodycomps_url }
       format.json { head :ok }
     end
+  end
+
+  def bodycomp_graphs
+    @bodycomp = Bodycomp.find(params[:id])
+    @bodycomps = @bodycomp.client.bodycomps
+  end
+
+  def skinfold_graphs
+    @bodycomp = Bodycomp.find(params[:id])
+    @bodycomps = @bodycomp.client.bodycomps
+  end
+
+  def girth_graphs
+    @bodycomp = Bodycomp.find(params[:id])
+    @bodycomps = @bodycomp.client.bodycomps
   end
 end

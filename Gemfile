@@ -9,6 +9,7 @@ gem 'rails', '3.2.6'
 #gem 'sqlite3'
 gem "nifty-generators", :group => :development
 gem 'haml'
+gem "haml-rails" #Will set default view format to haml
 gem 'unicorn', '1.1.5', :require => false
 gem 'mysql2'#, '< 0.3'
 gem "bcrypt-ruby", :require => "bcrypt"
@@ -23,6 +24,7 @@ gem 'birthday' #show birthday from dob, anniversaries, etc.
 gem 'kaminari' #Pagination
 gem 'carrierwave' #File uploads
 gem "rmagick" #Image manipulation
+gem 'nested_form' #Nested forms for uploading multiple files at a time.
 
 # Gems used only for assets and not required
 # in production environments by default.

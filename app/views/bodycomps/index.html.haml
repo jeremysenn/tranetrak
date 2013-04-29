@@ -6,10 +6,10 @@
       %i.icon-th-list
       Bodycomps
 
-  .span8
+  .span
     = paginate @bodycomps
     %table
-      - @bodycomps.each_slice(2) do |bodycomps|
+      - @bodycomps.each_slice(4) do |bodycomps|
         %tr
           - bodycomps.each do |bodycomp|
             %td
@@ -18,7 +18,7 @@
                   %button.btn.btn-large
                     %h4.text-error
                       %i.icon-th-list
-                      = bodycomp.client.full_name
+                      = bodycomp.client.full_name.truncate(9)
               
     .form-actions
       %a{:href => url_for(:back), :class => 'btn'}

@@ -62,26 +62,26 @@
                           %b.caret
                       %ul.dropdown-menu
                         %li
-                          %a{:href => '#'}
+                          %a{:href => new_workout_path}
                             New Workout
                         %li
-                          %a{:href => '#'}
+                          %a{:href => workouts_path}
                             All Workouts
-                    
-                  %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
-                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
-                        %p.text-error
-                          %i.icon-th-list
-                          = "Bodycomps"
-                          %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => new_bodycomp_path}
-                            New Bodycomp
-                        %li
-                          %a{:href => bodycomps_path}
-                            All Bodycomps
+                  - if false
+                    %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+                      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                        %strong
+                          %p.text-error
+                            %i.icon-th-list
+                            = "Bodycomps"
+                            %b.caret
+                        %ul.dropdown-menu
+                          %li
+                            %a{:href => new_bodycomp_path}
+                              New Bodycomp
+                          %li
+                            %a{:href => bodycomps_path}
+                              All Bodycomps
                   %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
                     %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                       %strong
@@ -96,14 +96,15 @@
                         %li
                           %a{:href => clients_path}
                             All Clients
-                  %li{:class => params[:controller] == "images" ? "active" : ""}
-                    %a{:href => '#'}
-                      %strong
-                        - if false
-                          %p.text-warning
-                        %p
-                          %i.icon-camera
-                          = "Pictures"
+                  - if false
+                    %li{:class => params[:controller] == "images" ? "active" : ""}
+                      %a{:href => '#'}
+                        %strong
+                          - if false
+                            %p.text-warning
+                          %p
+                            %i.icon-camera
+                            = "Pictures"
                   %li{:class => params[:controller] == "documents" ? "active" : ""}
                     %a{:href => '#'}
                       %strong

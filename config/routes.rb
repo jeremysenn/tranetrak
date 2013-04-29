@@ -1,5 +1,15 @@
 Bcomp::Application.routes.draw do
-  resources :bodycomps
+  resources :workout_sessions
+
+  resources :workouts
+
+  resources :bodycomps do
+    member do
+      get 'bodycomp_graphs'
+      get 'skinfold_graphs'
+      get 'girth_graphs'
+    end
+  end
 
   resources :trainers
 

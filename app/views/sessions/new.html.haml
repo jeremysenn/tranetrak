@@ -1,16 +1,15 @@
 .container-narrow
-  - unless mobile_device?
-    .jumbotron
-      %h2
-        %i.icon-star.text-error
-        Wicked easy to track what’s going on with your personal training clients
-      %p.lead
-        Get a handle on your personal training business. tranetrak.com does all the work of organizing your client data and appointments.
-        Track everything that is important to you as a trainer, and help your clients achieve their goals.
-      %a{:href => signup_path, :class => "btn btn-large btn-warning"}
-        Get started now
-        %i.icon-play
-  - else
+  .jumbotron
+    %h2
+      %i.icon-star.text-error
+      Wicked easy to track what’s going on with your personal training clients
+    %p.lead
+      Get a handle on your personal training business. tranetrak.com does all the work of organizing your client data and appointments.
+      Track everything that is important to you as a trainer, and help your clients achieve their goals.
+    %a{:href => signup_path, :class => "btn btn-large btn-warning"}
+      Get started now
+      %i.icon-play
+  - if false
     = form_tag sessions_path do
       = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
       = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
