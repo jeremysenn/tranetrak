@@ -10,4 +10,5 @@
     = link_to t('.cancel', :default => t("helpers.links.cancel")), workout_sessions_path, :class => 'btn'
 
 :javascript
-  $('.typeahead').typeahead(["Workout 1", "Workout 2"])
+  var workout_data = #{ @workouts };
+  $('.typeahead').typeahead({source: workout_data})

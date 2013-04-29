@@ -9,6 +9,8 @@ class WorkoutSessionsController < ApplicationController
 
   def new
     @workout_session = WorkoutSession.new
+    @workouts = current_user.trainer.workouts.order(:name).collect{|w| w.name}.uniq if current_user.is_trainer?
+    @workouts = current_user.client.workouts.order(:name).collect{|w| w.name}.uniq if current_user.is_client?
   end
 
   def create
