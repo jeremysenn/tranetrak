@@ -40,12 +40,13 @@
           %ul.nav.nav-tabs
         .btn-group
           %ul.nav.nav-pills
+            - if false
+              %li.active
+                %a{:href => "#workouts", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Workouts"}
+                  %button.btn
+                    %strong.text-orange
+                      %i.icon-tasks
             %li.active
-              %a{:href => "#workouts", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Workouts"}
-                %button.btn
-                  %strong.text-orange
-                    %i.icon-tasks
-            %li
               %a{:href => "#bodycomps", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Bodycomps"}
                 %button.btn
                   %strong.text-error
@@ -66,14 +67,15 @@
                   %strong.text-info
                     %i.icon-envelope
         .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
-          .tab-pane.active{:id => "workouts"}
-            %p
-              %a{:href => '#', :rel => 'tooltip', :title => "Create a new Workout for #{@client.first_name}"}
-                %button.btn.btn-small
-                  .text-orange
-                    %i.icon-tasks
-                    New Workout
-          .tab-pane{:id => "bodycomps"}
+          - if false
+            .tab-pane.active{:id => "workouts"}
+              %p
+                %a{:href => '#', :rel => 'tooltip', :title => "Create a new Workout for #{@client.first_name}"}
+                  %button.btn.btn-small
+                    .text-orange
+                      %i.icon-tasks
+                      New Workout
+          .tab-pane.active{:id => "bodycomps"}
             %p
               - @client.bodycomps.reverse.each do |bodycomp|
                 %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View details of #{@client.first_name}'s #{bodycomp.date.strftime("%m/%d/%Y")} Bodycomp"}

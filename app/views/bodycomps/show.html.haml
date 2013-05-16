@@ -1,5 +1,5 @@
 - model_class = Bodycomp
-.container-narrow
+.container
   .row-fluid
     .span4
       .well.sidebar-nav
@@ -8,7 +8,7 @@
             %h4.text-success
               %i.icon-user
               = @bodycomp.client.full_name
-        %h4.text-error
+        %h4.text-orange
           %i.icon-th-list
           Bodycomp
         %p
@@ -294,10 +294,11 @@
                 %th Date
                 %th Result
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.bodyfat_percent.round(1).to_s + "%"
+                  - unless bodycomp.bodyfat_percent.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.bodyfat_percent.round(1).to_s + "%"
             %dt
               %strong= "Body Weight"
             %dd
@@ -305,10 +306,11 @@
                 %th Date
                 %th Result
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.weight.to_s + " " + @bodycomp.weight_units
+                  - unless bodycomp.weight.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.weight.to_s + " " + @bodycomp.weight_units
             %dt
               %strong= "Lean Mass"
             %dd
@@ -316,10 +318,11 @@
                 %th Date
                 %th= "Result"
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.lean_mass.round(1).to_s + " " + @bodycomp.weight_units
+                  - unless bodycomp.lean_mass.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.lean_mass.round(1).to_s + " " + @bodycomp.weight_units
             %dt
               %strong= "Fat Mass"
             %dd
@@ -327,10 +330,11 @@
                 %th Date
                 %th= "Result"
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.fat_mass.round(1).to_s + " " + @bodycomp.weight_units
+                  - unless bodycomp.fat_mass.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.fat_mass.round(1).to_s + " " + @bodycomp.weight_units
             %dt
               %strong= "Basal Metabolic Rate"
             %dd
@@ -338,10 +342,11 @@
                 %th Date
                 %th Result
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.bmr.round(1).to_s + " " + "Calories"
+                  - unless bodycomp.bmr.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.bmr.round(1).to_s + " " + "Calories"
             %dt
               %strong= "Body Mass Index"
             %dd
@@ -349,10 +354,11 @@
                 %th Date
                 %th Result
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                    %td{:style => 'width: 50%;'}
-                      = bodycomp.bmi
+                  - unless bodycomp.bmi.blank?
+                    %tr
+                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                      %td{:style => 'width: 50%;'}
+                        = bodycomp.bmi
             - unless @bodycomp.waist.blank? or @bodycomp.hip.blank?
               %dt
                 %strong= "Waist-to-hip Ratio"
@@ -361,10 +367,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
-                      %td{:style => 'width: 50%;'}
-                        = bodycomp.waist_hip_ratio
+                    - unless bodycomp.waist_hip_ratio.blank?
+                      %tr
+                        %td{:style => 'width: 50%;'}= bodycomp.date.strftime("%b %e %Y")
+                        %td{:style => 'width: 50%;'}
+                          = bodycomp.waist_hip_ratio
           .tab-pane{:id => "skinfolds"}
             = link_to "Graphs", skinfold_graphs_bodycomp_path, :class =>  "btn btn-mini btn-warning", :type => "button"
             - unless @bodycomp.pec.blank?
@@ -375,10 +382,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.pec.to_s + "mm"
+                    - unless bodycomp.pec.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.pec.to_s + "mm"
             - unless @bodycomp.tri.blank?
               %dt
                 %strong= "Triceps"
@@ -387,10 +395,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.tri.to_s + "mm"
+                    - unless bodycomp.tri.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.tri.to_s + "mm"
             - unless @bodycomp.subscap.blank?
               %dt
                 %strong= "Subscapular"
@@ -399,10 +408,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.subscap.to_s + "mm"
+                    - unless bodycomp.subscap.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.subscap.to_s + "mm"
             - unless @bodycomp.suprailiac.blank?
               %dt
                 %strong= "Suprailiac"
@@ -411,10 +421,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.suprailiac.to_s + "mm"
+                    - unless bodycomp.suprailiac.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.suprailiac.to_s + "mm"
             - unless @bodycomp.midaxil.blank?
               %dt
                 %strong= "Midaxillary"
@@ -423,10 +434,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.midaxil.to_s + "mm"
+                    - unless bodycomp.midaxil.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.midaxil.to_s + "mm"
             - unless @bodycomp.umbilical.blank?
               %dt
                 %strong= "Abdominal"
@@ -435,10 +447,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.umbilical.to_s + "mm"
+                    - unless bodycomp.umbilical.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.umbilical.to_s + "mm"
             %dt
               %strong= "Thigh"
             %dd
@@ -446,10 +459,11 @@
                 %th Date
                 %th Result
                 - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                  %tr
-                    %td= bodycomp.date.strftime("%b %e %Y")
-                    %td
-                      = bodycomp.quad.to_s + "mm"
+                  - unless bodycomp.quad.blank?
+                    %tr
+                      %td= bodycomp.date.strftime("%b %e %Y")
+                      %td
+                        = bodycomp.quad.to_s + "mm"
             - unless @bodycomp.calf.blank?
               %dt
                 %strong= "Calf"
@@ -458,10 +472,11 @@
                   %th Date
                   %th Result
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.calf.to_s + "mm"
+                    - unless bodycomp.calf.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.calf.to_s + "mm"
             - if false
               - unless @bodycomp.bicep.blank?
                 %dt
@@ -497,10 +512,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.waist
+                    - unless bodycomp.waist.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.waist
             - unless @bodycomp.hip.blank?
               %dt
                 %strong= "Hip"
@@ -509,10 +525,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.hip
+                    - unless bodycomp.hip.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.hip
             - unless @bodycomp.neck.blank?
               %dt
                 %strong= "Neck"
@@ -521,10 +538,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.neck
+                    - unless bodycomp.neck.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.neck
             - unless @bodycomp.shoulder.blank?
               %dt
                 %strong= "Shoulder"
@@ -533,10 +551,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.shoulder
+                    - unless bodycomp.shoulder.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.shoulder
             - unless @bodycomp.chest.blank?
               %dt
                 %strong= "Chest"
@@ -545,10 +564,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.chest
+                    - unless bodycomp.chest.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.chest
             - unless @bodycomp.arm.blank?
               %dt
                 %strong= "Arm"
@@ -557,10 +577,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.arm
+                    - unless bodycomp.arm.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.arm
             - unless @bodycomp.thigh.blank?
               %dt
                 %strong= "Thigh"
@@ -569,10 +590,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.thigh
+                    - unless bodycomp.thigh.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.thigh
             - unless @bodycomp.gastroc.blank?
               %dt
                 %strong= "Calf"
@@ -581,10 +603,11 @@
                   %th Date
                   %th= "Measure (" +  @bodycomp.circumference_units + ")"
                   - @bodycomp.client.bodycomps.order(:date).reverse.each do |bodycomp|
-                    %tr
-                      %td= bodycomp.date.strftime("%b %e %Y")
-                      %td
-                        = bodycomp.gastroc
+                    - unless bodycomp.gastroc.blank?
+                      %tr
+                        %td= bodycomp.date.strftime("%b %e %Y")
+                        %td
+                          = bodycomp.gastroc
           .tab-pane{:id => "pictures"}
             %ul.thumbnails
               - @bodycomp.pictures.each do |pic|

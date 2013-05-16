@@ -27,6 +27,22 @@ jQuery ->
           d = new Date(date)
           (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
 
+  if $('#bodycomp_comparison').length
+    Morris.Line
+      element: 'bodycomp_comparison'
+      data: $('#bodycomp_comparison').data('bodycomps')
+      xkey: 'date'
+      ykeys: ['weight', 'leanmass', 'fatmass']
+      labels: ['Weight', 'Lean Mass', 'Fat Mass']
+      dateFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      xLabelFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+
   if $('#bodyweight').length
     Morris.Line
       element: 'bodyweight'

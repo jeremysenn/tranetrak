@@ -30,6 +30,13 @@ class BodycompsController < ApplicationController
   def new
     @bodycomp = Bodycomp.new
     @bodycomp.pictures.build
+    unless params[:client].blank?
+      @client = current_user.trainer.clients.find(params[:client])
+      unless @client.blank?
+        @bodycomp.client_id = @client.id
+        @bodycomp.age = @client.dob_age
+      end
+    end
 
     respond_to do |format|
       format.html # new.html.erb

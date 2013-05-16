@@ -1,4 +1,4 @@
-.container-narrow
+.container
   - if mobile_device?
     .pagination-centered
       .btn-group
@@ -136,7 +136,7 @@
         - if @bodycomps_by_date[date]
           %ul
             - @bodycomps_by_date[date].each do |bodycomp|
-              %li= link_to bodycomp.client.full_name, bodycomp, :class => 'btn btn-mini btn-purple'
+              %li= link_to '<i class="icon-th-list"></i>'.html_safe + bodycomp.client.full_name, bodycomp
 
     - if false
       .pagination-centered

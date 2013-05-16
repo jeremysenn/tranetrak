@@ -53,35 +53,35 @@
                         %li
                           %a{:href => calendars_path}
                             Month view
-                  %li.dropdown{:class => params[:controller] == "workouts" ? "active" : ""}
-                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
-                        %p.text-orange
-                          %i.icon-tasks
-                          = "Workouts"
-                          %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => new_workout_path}
-                            New Workout
-                        %li
-                          %a{:href => workouts_path}
-                            All Workouts
                   - if false
-                    %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+                    %li.dropdown{:class => params[:controller] == "workouts" ? "active" : ""}
                       %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                         %strong
-                          %p.text-error
-                            %i.icon-th-list
-                            = "Bodycomps"
+                          %p.text-orange
+                            %i.icon-tasks
+                            = "Workouts"
                             %b.caret
                         %ul.dropdown-menu
                           %li
-                            %a{:href => new_bodycomp_path}
-                              New Bodycomp
+                            %a{:href => new_workout_path}
+                              New Workout
                           %li
-                            %a{:href => bodycomps_path}
-                              All Bodycomps
+                            %a{:href => workouts_path}
+                              All Workouts
+                  %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                      %strong
+                        %p.text-orange
+                          %i.icon-th-list
+                          = "Bodycomps"
+                          %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{:href => new_bodycomp_path}
+                            New Bodycomp
+                        %li
+                          %a{:href => bodycomps_path}
+                            All Bodycomps
                   %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
                     %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                       %strong

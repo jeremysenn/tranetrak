@@ -30,33 +30,58 @@
           = f.label :date, :class => 'control-label'
           .controls
             = f.text_field :date, :id => "datepicker", :class => 'input-small', :readonly => true, :default => Date.today
-        - unless params[:client].blank?
-          = f.hidden_field :client_id, :value => params[:client]
-        - else
-          = f.input :client_id, :collection => current_user.trainer.clients.collect {|c| [ c.first_name + " " + c.last_name, c.id ]}, :include_blank => false
 
-        = f.input :sex, :collection => { "Female" => "Female", "Male" => "Male"}, :include_blank => false
+        = f.input :client_id, :collection => current_user.trainer.clients.collect {|c| [ c.first_name + " " + c.last_name, c.id ]}, :include_blank => false
 
-        = f.input :age, :collection => years_for_select, :include_blank => false
+        = f.input :sex, :collection => { "Female" => "Female", "Male" => "Male"}, :input_html => { :class => 'input-small' }, :include_blank => false
+
+        = f.input :age, :collection => years_for_select, :input_html => { :class => 'input-small' }, :include_blank => false
 
         = f.input :weight_units, :label => 'Weight Units', :input_html => { :class => 'input-small' }, :collection => { "Pounds" => "pounds", "Kilograms" => "kilograms"}, :include_blank => false
+
+        = f.input :weight, :input_html => { :class => 'input-small' }
 
         = f.input :circumference_units, :label => 'Measurement Units', :input_html => { :class => 'input-small' }, :collection => { "Inches" => "inches", "Centimeters" => "Centimeters"}, :include_blank => false
 
         = f.input :height, :input_html => { :class => 'input-small' }
-
-        = f.input :weight, :input_html => { :class => 'input-small' }
 
         = f.input :notes, :placeholder => 'Notes and things go here.', :input_html => {:rows => 6}
       .tab-pane{:id => "skinfolds"}
         = f.input :skinfold_sites,  collection: ["Three", "Seven"], as: :radio_buttons, :checked => "Seven"
 
         .all.male
-          = f.input :pec, :label => "Chest", :input_html => {:min => 1, :value => number_with_precision(f.object.pec, precision: 2), :class => 'input-small' }
+          = f.input :pec, :label => 'Chest', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#pec_pic', "data-toggle" => "modal", :href => "#pec_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.pec, precision: 2), :class => 'input-small' }
+          %div{:id => "pec_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Chest Skinfold Measure"
+            .modal-body
+              = image_tag('chest-m.jpg')
+              = image_tag('chest-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.female
-          = f.input :tri, :label => "Triceps", :input_html => { :min => 1, :value => number_with_precision(f.object.tri, precision: 2), :class => 'input-small' }
+          = f.input :tri, :label => "Triceps", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#tri_pic', "data-toggle" => "modal", :href => "#tri_pic"}", :input_html => { :min => 1, :value => number_with_precision(f.object.tri, precision: 2), :class => 'input-small' }
+          %div{:id => "tri_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Triceps Skinfold Measure"
+            .modal-body
+              = image_tag('triceps-m.jpg')
+              = image_tag('triceps-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all
-          = f.input :subscap, :label => "Subscapular", :input_html => {:min => 1, :value => number_with_precision(f.object.subscap, precision: 2), :class => 'input-small' }
+          = f.input :subscap, :label => "Subscapular", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#subscap_pic', "data-toggle" => "modal", :href => "#subscap_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.subscap, precision: 2), :class => 'input-small' }
+          %div{:id => "subscap_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Subscapular Skinfold Measure"
+            .modal-body
+              = image_tag('subscapular-m.jpg')
+              = image_tag('subscapular-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.female
           = f.input :suprailiac, :label => "Suprailiac", :input_html => {:min => 1, :value => number_with_precision(f.object.suprailiac, precision: 2), :class => 'input-small' }
         .all
@@ -65,16 +90,32 @@
           = f.input :umbilical, :label => "Abdominal", :input_html => {:min => 1, :value => number_with_precision(f.object.umbilical, precision: 2), :class => 'input-small' }
         .all.male.female
           = f.input :quad, :label => "Thigh", required: false, :input_html => { :min => 1, :value => number_with_precision(f.object.quad, precision: 2), :class => 'input-small' }
-        .all
-          = f.input :calf, :label => "Calf", :input_html => {:min => 1, :value => number_with_precision(f.object.calf, precision: 2), :class => 'input-small' }
+
+        =# f.input :calf, :label => "Calf", :input_html => {:min => 1, :value => number_with_precision(f.object.calf, precision: 2), :class => 'input-small' }
 
         =# f.input :bicep, :label => "Biceps", :input_html => {:min => 1, :value => number_with_precision(f.object.bicep, precision: 2), :class => 'input-small' }
 
         =# f.input :low_back, :label => "Low back", :input_html => {:min => 1, :value => number_with_precision(f.object.low_back, precision: 2), :class => 'input-small' }
       .tab-pane{:id => "circumferences"}
-        = f.input :waist, :label => 'Waist', :input_html => {:min => 1, :value => number_with_precision(f.object.waist, precision: 2), :class => 'input-small' }
+        = f.input :waist, :label => 'Waist', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#waist_pic', "data-toggle" => "modal", :href => "#waist_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.waist, precision: 2), :class => 'input-small' }
+        %div{:id => "waist_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Waist Girth Measure"
+          .modal-body
+            = image_tag('waist-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :hip, :label => 'Hip', :input_html => {:min => 1, :value => number_with_precision(f.object.hip, precision: 2), :class => 'input-small' }
+        = f.input :hip, :label => 'Hip', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#hip_pic', "data-toggle" => "modal", :href => "#hip_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.hip, precision: 2), :class => 'input-small' }
+        %div{:id => "hip_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Hip Girth Measure"
+          .modal-body
+            = image_tag('hip-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
         = f.input :neck, :label => 'Neck', :input_html => {:min => 1, :value => number_with_precision(f.object.neck, precision: 2), :class => 'input-small' }
 

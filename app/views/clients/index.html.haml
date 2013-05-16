@@ -1,25 +1,24 @@
-.container-narrow
+.container
   - model_class = Client
   .page-header
     %h3.text-success
       %i.icon-user
-      %i.icon-user
       Clients
 
   = paginate @clients
-  - @clients.sort_by(&:first_name).each_slice(3) do |clients|
+  - @clients.sort_by(&:first_name).each_slice(4) do |clients|
     %ul.thumbnails
       - clients.each do |client|
         %li.span2
           - unless client.image.blank?
             %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
               .pagination-centered
-                %h4= client.full_name
+                %h4= truncate(client.full_name, :length => 10)
               = image_tag(client.image_url(:thumb).to_s)
           - else
             %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
               .pagination-centered
-                %h4= client.full_name
+                %h4= truncate(client.full_name, :length => 10)
               = image_tag('/no_avatar.gif')
     - if false
       %table

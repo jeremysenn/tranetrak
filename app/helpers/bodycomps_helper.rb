@@ -7,6 +7,17 @@ module BodycompsHelper
     ]
   end
 
+  def bodycomp_comparison_data(bodycomps)
+    bodycomps.map do |bodycomp|
+      {
+        date: bodycomp.date,
+        weight: bodycomp.weight,
+        leanmass: bodycomp.lean_mass.round(1),
+        fatmass: bodycomp.fat_mass.round(1)
+      }
+    end
+  end
+
   def bodyfat_chart_data(bodycomps)
     bodycomps.map do |bodycomp|
       {

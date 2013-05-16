@@ -1,4 +1,4 @@
-.container-narrow
+.container
   .page-header
     %h3.text-error
       %i.icon-th-list
@@ -8,6 +8,11 @@
     %h3 Current Body Composition
   .modal-body
     = content_tag :div, "", id: "bodycomp-donut", data: {bodycomp: bodycomp_donut_data(@bodycomp)}
+
+  .modal-header
+    %h3 Body Composition Breakdown
+  .modal-body
+    = content_tag :div, "", id: "bodycomp_comparison", data: {bodycomps: bodycomp_comparison_data(@bodycomps)}
 
   .modal-header
     %h3 Percent Body Fat

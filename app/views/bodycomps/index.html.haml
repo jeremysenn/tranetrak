@@ -1,8 +1,7 @@
-.container-narrow
+.container
   - model_class = Bodycomp
   .page-header
-    %h3.text-error
-      %i.icon-th-list
+    %h3.text-orange
       %i.icon-th-list
       Bodycomps
 
@@ -16,9 +15,9 @@
               %p
                 %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View #{bodycomp.client.first_name}'s #{bodycomp.date.strftime('%m/%d/%Y')} Bodycomp"}
                   %button.btn.btn-large
-                    %h4.text-error
+                    %h4.text-orange
                       %i.icon-th-list
-                      = bodycomp.client.full_name.truncate(9)
+                      = bodycomp.client.full_name.truncate(15)
               
     .form-actions
       %a{:href => url_for(:back), :class => 'btn'}
