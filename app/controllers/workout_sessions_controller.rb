@@ -15,6 +15,7 @@ class WorkoutSessionsController < ApplicationController
 
   def create
     @workout_session = WorkoutSession.new(params[:workout_session])
+    @workout_session.workout = Workout.find_or_create_by_name(params[:workout_session][:workout_name])
     if @workout_session.save
       redirect_to @workout_session, :notice => "Successfully created workout session."
     else

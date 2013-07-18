@@ -1,14 +1,29 @@
-.container-narrow
+.container
   .jumbotron
-    %h2
-      %i.icon-star.text-error
-      Wicked easy to track what’s going on with your personal training clients
-    %p.lead
-      Get a handle on your personal training business. tranetrak.com does all the work of organizing your client data and appointments.
-      Track everything that is important to you as a trainer, and help your clients achieve their goals.
-    %a{:href => signup_path, :class => "btn btn-large btn-warning"}
-      Get started now
-      %i.icon-play
+    .row-fluid
+      .span12
+        = image_tag('train_icon_medium.png')
+    .row-fluid
+      .span6
+        %h2
+          - if false
+            %i.icon-star.text-error
+          Personal Trainers
+        %p.lead
+          Get a handle on your personal training business. Organize your client data and workouts, in the cloud.
+          Track everything that is important to you as a Trainer, and help your Clients achieve their goals.
+        %a{:href => signup_path(:type => 'trainer'), :class => "btn btn-large btn-success"}
+          Personal Trainers
+          %i.icon-play
+      .span6
+        %h2
+          Personal Training Clients
+        %p.lead
+          View all the workouts and body compositions your trainer does for you. Be notified via email and/or texts of assessments, upcoming workouts,
+          and news from your Trainer.
+        %a{:href => signup_path(:type => 'client'), :class => "btn btn-large btn-warning"}
+          Personal Training Clients
+          %i.icon-play
   - if false
     = form_tag sessions_path do
       = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
@@ -26,50 +41,52 @@
   .row-fluid.marketing
     .span6
       %h4
-        %a{:href => '#'}
-          = "Track Client Workouts"
+        %a{:href => '#', :class => 'text-error'}
+          = "Track Workouts"
           %i.icon-tasks
-      %p Weight, sets, reps, rest, etc. Track everything that goes into a client's workout.
+      %p Weight, sets, reps, rest, etc. Track everything that goes into a workout.
 
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Body Composition Assessments"
           %i.icon-th-list
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Graphs & Pictures"
-          %i.icon-camera
+          %i.icon-bar-chart
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Calendar Organized"
           %i.icon-calendar
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
     .span6
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Email & Text Notifications"
           %i.icon-envelope
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Client Portal"
           %i.icon-user
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
       %h4
-        %a{:href => '#'}
-          = "Mobile Ready"
-          %i.icon-thumbs-up
+        %a{:href => '#', :class => 'text-error'}
+          = "Take it Anywhere"
+          %i.icon-desktop
+          %i.icon-tablet
+          %i.icon-mobile-phone
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
 
       %h4
-        %a{:href => '#'}
+        %a{:href => '#', :class => 'text-error'}
           = "Exercise Videos"
           %i.icon-facetime-video
       %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.

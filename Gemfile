@@ -25,6 +25,7 @@ gem 'kaminari' #Pagination
 gem 'carrierwave' #File uploads
 gem "rmagick" #Image manipulation
 gem 'nested_form' #Nested forms for uploading multiple files at a time.
+gem 'twitter-bootstrap-calendar'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,18 @@
+= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :username
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirmation
+  - if params[:type] == 'trainer'
+    = f.input :is_trainer, :as => 'hidden', :input_html => {:value => 1}
+  - elsif params[:type] == 'client'
+    = f.input :is_client,  :as => 'hidden', :input_html => {:value => 1}
+  - else
+    = f.input :is_trainer, :as => 'hidden'
+    = f.input :is_client,  :as => 'hidden'
+  
+  .form-actions
+    = f.button :submit, "Sign up", :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

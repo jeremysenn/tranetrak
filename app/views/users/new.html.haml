@@ -1,0 +1,9 @@
+- model_class = User
+.container-narrow
+  .page-header
+    %h2
+      - unless params[:type].blank?
+        = params[:type].capitalize + " Sign Up"
+      - else
+        Sign Up
+  = render :partial => "form"

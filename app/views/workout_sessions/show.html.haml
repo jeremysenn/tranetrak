@@ -5,7 +5,7 @@
 %p
   %strong= model_class.human_attribute_name(:workout_id) + ':'
   %br
-  = @workout_session.workout_id
+  = @workout_session.workout.name
 %p
   %strong= model_class.human_attribute_name(:trainer_id) + ':'
   %br

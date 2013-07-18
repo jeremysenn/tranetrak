@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 #events .calendar {
   border-collapse: collapse;
   width: 100%;
@@ -50,3 +51,8 @@
   list-style-type: none;
 }
 
+/*
+@media only screen and (max-width: 400px) {
+  body { font-size:90%;}
+ }
+*/

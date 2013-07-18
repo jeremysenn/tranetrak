@@ -11,19 +11,23 @@
         %li.active
           %a{:href => "#basic", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's basic information."}
             %button.btn
-              Info
+              %i.icon-file
+              Basic Info
         %li
           %a{:href => "#skinfolds", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's skinfold measurements."}
             %button.btn
-              Skinfold
+              %i.icon-male
+              Skinfold Measurements
         %li
           %a{:href => "#circumferences", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's circumference measurements."}
             %button.btn
-              Girth
+              %i.icon-rotate-right
+              Girth Measurements
         %li
           %a{:href => "#pics", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's pictures."}
             %button.btn
               %i.icon-camera
+              Pictures
     .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
       .tab-pane.active{:id => "basic"}
         .control-group
@@ -56,8 +60,9 @@
               = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
               = "Chest Skinfold Measure"
             .modal-body
-              = image_tag('chest-m.jpg')
-              = image_tag('chest-f.jpg')
+              .pagination-centered
+                = image_tag('chest-m.jpg')
+                = image_tag('chest-f.jpg')
             .modal-footer
               = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.female
@@ -67,8 +72,9 @@
               = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
               = "Triceps Skinfold Measure"
             .modal-body
-              = image_tag('triceps-m.jpg')
-              = image_tag('triceps-f.jpg')
+              .pagination-centered
+                = image_tag('triceps-m.jpg')
+                = image_tag('triceps-f.jpg')
             .modal-footer
               = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all
@@ -78,18 +84,59 @@
               = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
               = "Subscapular Skinfold Measure"
             .modal-body
-              = image_tag('subscapular-m.jpg')
-              = image_tag('subscapular-f.jpg')
+              .pagination-centered
+                = image_tag('subscapular-m.jpg')
+                = image_tag('subscapular-f.jpg')
             .modal-footer
               = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.female
-          = f.input :suprailiac, :label => "Suprailiac", :input_html => {:min => 1, :value => number_with_precision(f.object.suprailiac, precision: 2), :class => 'input-small' }
+          = f.input :suprailiac, :label => "Suprailiac", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#suprailiac_pic', "data-toggle" => "modal", :href => "#suprailiac_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.suprailiac, precision: 2), :class => 'input-small' }
+          %div{:id => "suprailiac_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Suprailiac Skinfold Measure"
+            .modal-body
+              .pagination-centered
+                = image_tag('suprailiac-m.jpg')
+                = image_tag('suprailiac-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all
-          = f.input :midaxil, :label => "Midaxillary", :input_html => {:min => 1, :value => number_with_precision(f.object.midaxil, precision: 2), :class => 'input-small' }
+          = f.input :midaxil, :label => "Midaxillary", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#midaxil_pic', "data-toggle" => "modal", :href => "#midaxil_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.midaxil, precision: 2), :class => 'input-small' }
+          %div{:id => "midaxil_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Midaxillary Skinfold Measure"
+            .modal-body
+              .pagination-centered
+                = image_tag('midaxillary-m.jpg')
+                = image_tag('midaxillary-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.male
-          = f.input :umbilical, :label => "Abdominal", :input_html => {:min => 1, :value => number_with_precision(f.object.umbilical, precision: 2), :class => 'input-small' }
+          = f.input :umbilical, :label => "Abdominal", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#umbilical_pic', "data-toggle" => "modal", :href => "#umbilical_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.umbilical, precision: 2), :class => 'input-small' }
+          %div{:id => "umbilical_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Abdominal Skinfold Measure"
+            .modal-body
+              .pagination-centered
+                = image_tag('abdominal-m.jpg')
+                = image_tag('abdominal-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
         .all.male.female
-          = f.input :quad, :label => "Thigh", required: false, :input_html => { :min => 1, :value => number_with_precision(f.object.quad, precision: 2), :class => 'input-small' }
+          = f.input :quad, :label => "Thigh", hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#quad_pic', "data-toggle" => "modal", :href => "#quad_pic"}", required: false, :input_html => { :min => 1, :value => number_with_precision(f.object.quad, precision: 2), :class => 'input-small' }
+          %div{:id => "quad_pic", :class => "modal", :style => "display:none;"}
+            .modal-header
+              = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+              = "Thigh Skinfold Measure"
+            .modal-body
+              .pagination-centered
+                = image_tag('thigh-m.jpg')
+                = image_tag('thigh-f.jpg')
+            .modal-footer
+              = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
         =# f.input :calf, :label => "Calf", :input_html => {:min => 1, :value => number_with_precision(f.object.calf, precision: 2), :class => 'input-small' }
 
@@ -103,7 +150,8 @@
             = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
             = "Waist Girth Measure"
           .modal-body
-            = image_tag('waist-girth.jpg')
+            .pagination-centered
+              = image_tag('waist-girth.jpg')
           .modal-footer
             = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
@@ -113,21 +161,77 @@
             = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
             = "Hip Girth Measure"
           .modal-body
-            = image_tag('hip-girth.jpg')
+            .pagination-centered
+              = image_tag('hip-girth.jpg')
           .modal-footer
             = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :neck, :label => 'Neck', :input_html => {:min => 1, :value => number_with_precision(f.object.neck, precision: 2), :class => 'input-small' }
+        = f.input :neck, :label => 'Neck', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#neck_pic', "data-toggle" => "modal", :href => "#neck_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.neck, precision: 2), :class => 'input-small' }
+        %div{:id => "neck_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Neck Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('neck-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :shoulder, :label => 'Shoulder', :input_html => {:min => 1, :value => number_with_precision(f.object.shoulder, precision: 2), :class => 'input-small' }
+        = f.input :shoulder, :label => 'Shoulder', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#shoulder_pic', "data-toggle" => "modal", :href => "#shoulder_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.shoulder, precision: 2), :class => 'input-small' }
+        %div{:id => "shoulder_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Shoulder Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('shoulder-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :chest, :label => 'Chest', :input_html => {:min => 1, :value => number_with_precision(f.object.chest, precision: 2), :class => 'input-small' }
+        = f.input :chest, :label => 'Chest', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#chest_pic', "data-toggle" => "modal", :href => "#chest_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.chest, precision: 2), :class => 'input-small' }
+        %div{:id => "chest_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Chest Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('chest-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :arm, :label => 'Arm', :input_html => {:min => 1, :value => number_with_precision(f.object.arm, precision: 2), :class => 'input-small' }
+        = f.input :arm, :label => 'Arm', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#arm_pic', "data-toggle" => "modal", :href => "#arm_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.arm, precision: 2), :class => 'input-small' }
+        %div{:id => "arm_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Arm Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('arm-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :thigh, :label => 'Thigh', :input_html => {:min => 1, :value => number_with_precision(f.object.thigh, precision: 2), :class => 'input-small' }
+        = f.input :thigh, :label => 'Thigh', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#thigh_pic', "data-toggle" => "modal", :href => "#thigh_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.thigh, precision: 2), :class => 'input-small' }
+        %div{:id => "thigh_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Thigh Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('thigh-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
-        = f.input :gastroc, :label => 'Calf', :input_html => {:min => 1, :value => number_with_precision(f.object.gastroc, precision: 2), :class => 'input-small' }
+        = f.input :gastroc, :label => 'Calf', hint: "#{link_to '<i class="icon-question-sign"></i>'.html_safe, '#gastroc_pic', "data-toggle" => "modal", :href => "#gastroc_pic"}", :input_html => {:min => 1, :value => number_with_precision(f.object.gastroc, precision: 2), :class => 'input-small' }
+        %div{:id => "gastroc_pic", :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            = "Calf Girth Measure"
+          .modal-body
+            .pagination-centered
+              = image_tag('calf-girth.jpg')
+          .modal-footer
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+
       .tab-pane{:id => "pics"}
         = f.simple_fields_for :pictures do |picture_form|
           .well.well-large

@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  
 
   ### START BODYCOMP TAB ###
 
@@ -10,6 +11,28 @@ jQuery ->
     Morris.Donut
       element: 'bodycomp-donut'
       data: $('#bodycomp-donut').data('bodycomp')
+
+  if $('#bodycomp-percent-donut').length
+    bfpercent_donut=Morris.Donut
+      element: 'bodycomp-percent-donut'
+      data: $('#bodycomp-percent-donut').data('bodycomp')
+    bfpercent_donut.select(0)
+
+  if $('#bodycomp_comparison').length
+    Morris.Line
+      element: 'bodycomp_comparison'
+      data: $('#bodycomp_comparison').data('bodycomps')
+      xkey: 'date'
+      ykeys: ['weight', 'leanmass', 'fatmass']
+      labels: ['Weight', 'Lean Mass', 'Fat Mass']
+      dateFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      xLabelFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
 
   if $('#percent-bodyfat').length
     Morris.Line
@@ -27,13 +50,13 @@ jQuery ->
           d = new Date(date)
           (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
 
-  if $('#bodycomp_comparison').length
+  if $('#percent-bodyfat-and-bmi').length
     Morris.Line
-      element: 'bodycomp_comparison'
-      data: $('#bodycomp_comparison').data('bodycomps')
+      element: 'percent-bodyfat-and-bmi'
+      data: $('#percent-bodyfat-and-bmi').data('bodycomps')
       xkey: 'date'
-      ykeys: ['weight', 'leanmass', 'fatmass']
-      labels: ['Weight', 'Lean Mass', 'Fat Mass']
+      ykeys: ['bodyfat','bmi']
+      labels: ['Body Fat Percent', 'BMI']
       dateFormat:
         (date) ->
           d = new Date(date)
@@ -97,7 +120,7 @@ jQuery ->
       data: $('#metabolic_rate').data('bodycomps')
       xkey: 'date'
       ykeys: ['metabolic_rate']
-      labels: ['Basal Metabolic Rate']
+      labels: ['Basal Metabolic Rate (calories)']
       dateFormat:
         (date) ->
           d = new Date(date)
@@ -142,6 +165,40 @@ jQuery ->
   ### END BODYCOMP TAB ###
 
   ### START SKINFOLD TAB ###
+
+  if $('#all_skinfolds').length
+    Morris.Line
+      element: 'all_skinfolds'
+      data: $('#all_skinfolds').data('bodycomps')
+      xkey: 'date'
+      ykeys: ['pec','tri','subscap','suprailiac','midaxil','umbilical','quad']
+      labels: ['Chest', 'Triceps', 'Subscapular', 'Suprailiac', 'Midaxillary', 'Abdominal', 'Thigh']
+      dateFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      xLabelFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      hideHover: 'auto'
+
+  if $('#all_girths').length
+    Morris.Line
+      element: 'all_girths'
+      data: $('#all_girths').data('bodycomps')
+      xkey: 'date'
+      ykeys: ['waist','hip','neck','shoulder','chest','arm','thigh','gastroc']
+      labels: ['Waist', 'Hip', 'Neck', 'Shoulder', 'Chest', 'Arm', 'Thigh', 'Calf']
+      dateFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      xLabelFormat:
+        (date) ->
+          d = new Date(date)
+          (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+      hideHover: 'auto'
 
   if $('#chest_skinfold').length
     Morris.Line
@@ -404,3 +461,16 @@ jQuery ->
           (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
 
   ### END GIRTH TAB ###
+
+  ### KEEP CURRENT TAB ACTIVE AFTER PAGE RELOAD ###
+  #$("a[data-toggle=\"tab\"]").on "shown", (e) ->
+  #  #save the latest tab using a cookie:
+  #  $.cookie "last_tab", $(e.target).attr("href")
+
+  #Activate latest tab, if it exists:
+  #lastTab = $.cookie("last_tab")
+  #if lastTab
+  #  $("ul.nav-tabs").children().removeClass "active"
+  #  $("a[href=" + lastTab + "]").parents("li:first").addClass "active"
+  #  $("div.tab-content").children().removeClass "active"
+  #  $(lastTab).addClass "active"

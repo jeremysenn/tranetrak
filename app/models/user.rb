@@ -9,11 +9,14 @@ class User < ActiveRecord::Base
   attr_accessor :password
   before_save :prepare_password
 
-  validates_presence_of :username
-  validates_uniqueness_of :username, :email, :allow_blank => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+  validates :username, :presence => true
+  validates :email, :presence => true
+  validates_uniqueness_of :username, :email #, :allow_blank => true
   validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
-  validates_presence_of :password, :on => :create
+  validates :password, :presence => true, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
 
@@ -29,6 +32,14 @@ class User < ActiveRecord::Base
 
   def welcome_email
     UserMailer.welcome(self).deliver
+  end
+
+  def full_name
+    if !first_name.blank? || !last_name.blank?
+      "#{first_name} #{last_name}".strip
+    else
+      id.to_s
+    end
   end
 
   private

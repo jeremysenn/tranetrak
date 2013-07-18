@@ -32,8 +32,10 @@
               %span.icon-bar
               %span.icon-bar
             %a.brand{:href => "/login"}
-              %p.text-error
+              - if false
                 %i.icon-star
+              %p.text-error
+                = image_tag('train_icon_small.png')
                 tranetrak.com
             .nav-collapse.collapse
               %ul.nav
@@ -45,10 +47,10 @@
                   = form_tag sessions_path do
                     = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
                     = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
-                    = button_tag(:type => 'submit', :class => 'btn') do
+                    = button_tag(:type => 'submit', :class => 'btn btn-danger') do
                       Log in <i class="icon-lock"></i>
                     - if false
-                      %a{:href => signup_path, :class => "btn btn-warning"}
+                      %a{:href => signup_path, :class => "btn btn-alert"}
                         Sign up
                         %i.icon-lock
 

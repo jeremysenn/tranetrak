@@ -1,10 +1,10 @@
 = simple_form_for @workout_session, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :include_blank => false, :input_html => {:class => 'span3 typeahead'}
-  = f.input :workout_id
-  = f.input :trainer_id
-  = f.input :client_id
+  = f.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :input_html => {:class => 'span3 typeahead'}
+  =# f.association :workout, :as => :string, :input_html => {:class => 'span3 typeahead'}
+  = f.input :trainer_id, :as => :hidden, :value => current_user.trainer.id if current_user.is_trainer?
+  = f.association :client, :collection => current_user.trainer.clients if current_user.is_trainer?
   = f.input :date
-  = f.input :reminder_sent
+  =# f.input :reminder_sent
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), workout_sessions_path, :class => 'btn'

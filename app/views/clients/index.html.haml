@@ -1,25 +1,26 @@
 .container
   - model_class = Client
   .page-header
-    %h3.text-success
+    %h4.text-success
       %i.icon-user
       Clients
 
   = paginate @clients
-  - @clients.sort_by(&:first_name).each_slice(4) do |clients|
-    %ul.thumbnails
-      - clients.each do |client|
-        %li.span2
-          - unless client.image.blank?
-            %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
-              .pagination-centered
-                %h4= truncate(client.full_name, :length => 10)
-              = image_tag(client.image_url(:thumb).to_s)
-          - else
-            %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
-              .pagination-centered
-                %h4= truncate(client.full_name, :length => 10)
-              = image_tag('/no_avatar.gif')
+  - if false
+    - @clients.sort_by(&:first_name).each_slice(4) do |clients|
+      %ul.thumbnails
+        - clients.each do |client|
+          %li.span2
+            - unless client.image.blank?
+              %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
+                .pagination-centered
+                  %h4= truncate(client.full_name, :length => 10)
+                = image_tag(client.image_url(:thumb).to_s)
+            - else
+              %a{:href => client_path(client), :title => "View client #{client.full_name}", :class => "thumbnail"}
+                .pagination-centered
+                  %h4= truncate(client.full_name, :length => 10)
+                = image_tag('/no_avatar.gif')
     - if false
       %table
         - @clients.sort_by(&:first_name).each_slice(2) do |clients|
@@ -32,32 +33,33 @@
                       .text-success
                         %i.icon-user
                         = client.full_name
-    - if false
-      &nbsp;
-      %table.table.table-condensed
-        %thead
+  - if true
+    %table.table.table-striped.table-condensed{"data-provides" => "rowlink"}
+      %thead
+        %tr
+          %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
+          %th Picture
+          %th Name
+          %th Email
+          %th Phone
+          %th Age
+          %th Created
+      %tbody
+        - @clients.each do |client|
           %tr
-            %th Name
-            %th Email
-            %th Phone
-            %th DOB
-            %th Created
-            %th Actions
-        %tbody
-          - @clients.each do |client|
-            %tr
-              %td= link_to client.full_name, client_path(client)
-              %td= client.email
-              %td= client.phone
-              %td= client.dob.strftime("%m/%d/%Y")
-              %td= client.created_at.strftime("%m/%d/%Y")
-              %td
-                %a{:href => edit_client_path(client), :class => 'btn btn-mini'}
-                  = "Edit"
-                  %i.icon-edit
-                %a{:href => client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger'}
-                  = "Delete"
-                  %i.icon-remove
+            %td{:style => 'display:none;'}
+              = link_to t('.show', :default => t("helpers.links.show")), client_path(client)
+            %td
+              %ul.thumbnails
+                - unless client.image.blank?
+                  %li= link_to image_tag(client.image_url(:small_thumb).to_s), "#", :class => 'thumbnail', :type => "button"
+                - else
+                  %li= link_to image_tag('small_no_avatar.gif'), "#", :class => 'thumbnail', :type => "button"
+            %td= client.full_name
+            %td= client.email
+            %td= client.phone
+            %td= client.dob_age
+            %td= client.created_at.strftime("%m/%d/%Y")
 
   .form-actions
     %a{:href => url_for(:back), :class => 'btn'}

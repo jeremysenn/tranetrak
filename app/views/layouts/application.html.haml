@@ -9,6 +9,7 @@
     <![endif]-->
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag "application"
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.css"
     = javascript_include_tag "application"
     = csrf_meta_tag
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,71 +32,76 @@
               %span.icon-bar
               %span.icon-bar
             %a.brand{:href => "/home#index"}
-              %p.text-error
-                %i.icon-star
-                tranetrak.com
+              .text-error
+                = image_tag('train_icon_small.png')
+                = "SuperUser" if current_user.username == 'jeremysenn'
+                = "#{current_user.trainer.full_name} Training" if current_user.is_trainer?
+                = "#{current_user.client.trainer.full_name} Training" if current_user.is_client? and not current_user.client.trainer.blank?
             - unless current_user.blank?
               .nav-collapse.collapse
                 %ul.nav.custom
-                  %li{:class => params[:controller] == "users" ? "active" : ""}= link_to "Users", users_path if current_user.username == 'jeremysenn'
-                  %li{:class => params[:controller] == "trainers" ? "active" : ""}= link_to "Trainers", trainers_path if current_user.username == 'jeremysenn'
-                  %li.dropdown{:class => params[:controller] == "calendars" ? "active" : ""}
-                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
-                        %p.text-purple
-                          %i.icon-calendar
-                          = "Calendar"
-                          %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => calendars_path(:view => 'week')}
-                            Week view
-                        %li
-                          %a{:href => calendars_path}
-                            Month view
+                  - if false
+                    %li.dropdown{:class => params[:controller] == "calendars" ? "active" : ""}
+                      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                        %strong
+                          %p.text-purple
+                            %i.icon-calendar
+                            = "Calendar"
+                            %b.caret
+                        %ul.dropdown-menu
+                          %li
+                            %a{:href => calendars_path(:view => 'week')}
+                              Week view
+                          %li
+                            %a{:href => calendars_path}
+                              Month view
                   - if false
                     %li.dropdown{:class => params[:controller] == "workouts" ? "active" : ""}
                       %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                         %strong
-                          %p.text-orange
+                          %p.text-error
                             %i.icon-tasks
                             = "Workouts"
                             %b.caret
                         %ul.dropdown-menu
                           %li
-                            %a{:href => new_workout_path}
+                            %a{:href => new_workout_session_path}
                               New Workout
                           %li
                             %a{:href => workouts_path}
                               All Workouts
-                  %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
-                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
+                  - unless current_user.is_client?
+                    %li.dropdown{:class => params[:controller] == "home" ? "active" : ""}
+                      %a{:href => root_path}
+                        %p.text-info
+                          %i.icon-dashboard
+                          = "Dashboard"
+                    %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+                      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                         %p.text-orange
                           %i.icon-th-list
                           = "Bodycomps"
                           %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => new_bodycomp_path}
-                            New Bodycomp
-                        %li
-                          %a{:href => bodycomps_path}
-                            All Bodycomps
-                  %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
-                    %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
+                        %ul.dropdown-menu
+                          %li
+                            %a{:href => new_bodycomp_path}
+                              New Bodycomp
+                          %li
+                            %a{:href => bodycomps_path}
+                              All Bodycomps
+                    %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
+                      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                         %p.text-success
                           %i.icon-user
                           = "Clients"
                           %b.caret
-                      %ul.dropdown-menu
-                        %li
-                          %a{:href => new_client_path}
-                            New Client
-                        %li
-                          %a{:href => clients_path}
-                            All Clients
+                        %ul.dropdown-menu
+                          %li
+                            %a{:href => new_client_path}
+                              New Client
+                          %li
+                            %a{:href => clients_path}
+                              All Clients
                   - if false
                     %li{:class => params[:controller] == "images" ? "active" : ""}
                       %a{:href => '#'}
@@ -105,40 +111,43 @@
                           %p
                             %i.icon-camera
                             = "Pictures"
-                  %li{:class => params[:controller] == "documents" ? "active" : ""}
-                    %a{:href => '#'}
-                      %strong
-                        %p.text-yellow
-                          %i.icon-file
-                          = "Documents"
-                  %li{:class => params[:controller] == "notifications" ? "active" : ""}
-                    %a{:href => '#'}
-                      %strong
-                        %p.text-info
-                          %i.icon-envelope
-                          = "Notifications"
+                    %li{:class => params[:controller] == "documents" ? "active" : ""}
+                      %a{:href => '#'}
+                        %strong
+                          %p.text-yellow
+                            %i.icon-file
+                            = "Documents"
+                    %li{:class => params[:controller] == "notifications" ? "active" : ""}
+                      %a{:href => '#'}
+                        %strong
+                          %p.text-info
+                            %i.icon-envelope
+                            = "Notifications"
+                %ul.nav.pull-right
                   %li.divider-vertical
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-                      %strong
-                        %i.icon-cog
-                        %b.caret
+                      %i.icon-cog
+                      = current_user.full_name
+                      %b.caret
                     %ul.dropdown-menu
                       %li
                         %a{:href => user_path(current_user)}
                           %strong= raw("#{current_user.username}")
                           %br
-                          %small= "Edit settings"
+                          %small
+                            %i.icon-edit
+                            = "Edit settings"
                       %li.divider
+                      - if current_user.username == 'jeremysenn'
+                        %li= link_to "Users", users_path
+                        %li= link_to "Trainers", trainers_path
+                        %li= link_to "Clients", clients_path
+                        %li.divider
                       %li= link_to "Subscription", '#'
                       %li.divider
-                      %li= link_to "Help", '#'
-                      %li= link_to "Log out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out"
-                .navbar-text.pull-right
-                  - unless current_user.username == 'jeremysenn'
-                    =# link_to raw("#{current_user.username}"), user_path(current_user)
-                  - else
-                    = link_to raw("#{current_user.username} <span class='red_text'>(admin)</span>"), user_path(current_user)
+                      %li= link_to '<i class="icon-question-sign"></i> Help'.html_safe, '#'
+                      %li= link_to '<i class="icon-off"></i> Log out'.html_safe, logout_path, :method=>'delete', :confirm => "Are you sure you want to log out?", :title => "Log out"
       = yield
     #footer
       .container

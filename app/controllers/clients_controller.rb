@@ -1,9 +1,11 @@
 class ClientsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     unless current_user.username == 'jeremysenn'
-      @clients = current_user.trainer.clients.page(params[:page]).per(8)
+      @clients = current_user.trainer.clients.order(:first_name).page(params[:page]).per(20)
     else
-      @clients = Client.order(:first_name).page(params[:page]).per(8)
+      @clients = Client.order(:first_name).page(params[:page]).per(20)
     end
   end
 

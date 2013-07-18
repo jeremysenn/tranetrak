@@ -1,0 +1,40 @@
+.row-fluid
+  .span5
+    .modal-header
+      %h5 Current Body Composition
+    .modal-body
+      = content_tag :div, "", id: "bodycomp-percent-donut", data: {bodycomp: bodycomp_percent_donut_data(@bodycomp)}
+  .span5
+    .modal-header
+      %h5 Current Lean Mass vs. Fat Mass
+    .modal-body
+      = content_tag :div, "", id: "bodycomp-donut", data: {bodycomp: bodycomp_donut_data(@bodycomp)}
+.row-fluid
+  .span5
+    .modal-header
+      %h5 Body Fat Percent & BMI Over Time
+    .modal-body
+      = content_tag :div, "", id: "percent-bodyfat-and-bmi", data: {bodycomps: bodyfat_and_bmi_chart_data(@bodycomps)}
+  .span5
+    .modal-header
+      %h5 Body Weight, Lean Mass, & Fat Mass Over Time
+    .modal-body
+      = content_tag :div, "", id: "bodycomp_comparison", data: {bodycomps: bodycomp_comparison_data(@bodycomps)}
+.row-fluid
+  .span5
+    .modal-header
+      %h5 Skinfold Measurements Over Time
+    .modal-body
+      = content_tag :div, "", id: "all_skinfolds", data: {bodycomps: all_skinfolds_chart_data(@bodycomps)}
+  .span5
+    .modal-header
+      %h5 Girth Measurements Over Time
+    .modal-body
+      = content_tag :div, "", id: "all_girths", data: {bodycomps: all_girths_chart_data(@bodycomps)}
+.row-fluid
+  .span5
+    .modal-header
+      %h5 Basal Metabolic Rate Over Time
+    .modal-body
+      = content_tag :div, "", id: "metabolic_rate", data: {bodycomps: metabolic_rate_chart_data(@bodycomps)}
+

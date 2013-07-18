@@ -9,4 +9,15 @@ class UserMailer < ActionMailer::Base
   def welcome(user)
     mail(:to => user.email, :subject => "Welcome to tranetrak.com!")
   end
+
+  def new_bodycomp_completed(bodycomp)
+    @bodycomp = bodycomp
+    @client = bodycomp.client
+    @user = bodycomp.client.trainer.user
+    #mail to: @client.email,
+    mail to: 'senn.jeremy@gmail.com',
+      #cc:    @user.email,
+      from:  @user.email,
+    subject: "#{@client.full_name} - New Body Composition Assessment Completed"
+  end
 end

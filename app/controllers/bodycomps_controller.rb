@@ -1,11 +1,13 @@
 class BodycompsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /bodycomps
   # GET /bodycomps.json
   def index
     unless current_user.username == 'jeremysenn'
-      @bodycomps = current_user.trainer.bodycomps.page(params[:page]).per(8)
+      @bodycomps = current_user.trainer.bodycomps.order(:date).page(params[:page]).per(20)
     else
-      @bodycomps = Bodycomp.all.page(params[:page]).per(8)
+      @bodycomps = Bodycomp.order(:date).page(params[:page]).per(20)
     end
 
     respond_to do |format|
@@ -18,6 +20,7 @@ class BodycompsController < ApplicationController
   # GET /bodycomps/1.json
   def show
     @bodycomp = Bodycomp.find(params[:id])
+    @bodycomps = @bodycomp.client.bodycomps
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,6 +60,7 @@ class BodycompsController < ApplicationController
 
     respond_to do |format|
       if @bodycomp.save
+        @bodycomp.bodycomp_summary_email
         format.html { redirect_to @bodycomp, notice: 'Bodycomp was successfully created.' }
         format.json { render json: @bodycomp, status: :created, location: @bodycomp }
       else

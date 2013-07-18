@@ -1,21 +1,23 @@
 - if true
-  %h1.text-error.pagination-centered
-    %i.icon-star
-    tranetrak.com
+  - if false
+    %h1.text-error.pagination-centered
+      %i.icon-star
+      = "#{current_user.full_name} Training"
   .container-narrow
     .form-signin
       .jumbotron
         .lead
         - if false
-          %a{:href => '#', :class => "btn  btn-block btn-small btn-warning"}
+          %a{:href => new_workout_session_path, :class => "btn  btn-block btn-small btn-danger"}
             %i.icon-tasks
             New Workout
-        %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-warning"}
-          %i.icon-th-list
-          New Bodycomp
-        %a{:href => new_client_path, :class => "btn btn-block btn-small btn-success"}
-          %i.icon-user
-          New Client
+        - unless current_user.is_client?
+          %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-warning"}
+            %i.icon-th-list
+            New Bodycomp
+          %a{:href => new_client_path, :class => "btn btn-block btn-small btn-success"}
+            %i.icon-user
+            New Client
 
 .container-fluid
   - if false

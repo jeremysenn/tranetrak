@@ -144,6 +144,10 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.8.3)
       ansi
+    twitter-bootstrap-calendar (0.0.4)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass
     twitter-bootstrap-rails (2.2.0)
       actionpack (>= 3.1)
       execjs
@@ -182,6 +186,7 @@ DEPENDENCIES
   simple_form
   therubyracer
   turn (~> 0.8.3)
+  twitter-bootstrap-calendar
   twitter-bootstrap-rails
   uglifier
   unicorn (= 1.1.5)

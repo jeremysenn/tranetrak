@@ -57,18 +57,20 @@ class Ability
 
       # Clients
       ############
-      if user.has_role? :trainer
-        can :manage, Client do |u|
-          u.id == user.id
+      if user.is_trainer?
+        can :manage, Client do |c|
+          c.trainer == user.trainer
         end
+        can :create, Client
       end
 
       # Bodycomps
       ############
-      if user.has_role? :trainer
+      if user.is_trainer?
         can :manage, Bodycomp do |b|
           b.client.trainer == user.trainer
         end
+        can :create, Bodycomp
       end
 
     end

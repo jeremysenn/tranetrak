@@ -14,6 +14,10 @@ class Bodycomp < ActiveRecord::Base
 
   accepts_nested_attributes_for :pictures, :allow_destroy => true, :reject_if => lambda { |a| a[:image].blank? }
 
+  def bodycomp_summary_email
+    UserMailer.new_bodycomp_completed(self).deliver
+  end
+
   def male?
     sex == 'Male'
   end

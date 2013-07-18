@@ -1,12 +1,21 @@
 - model_class = Client
-.container-narrow
+.container
   .row-fluid
-    .span4
-      .well.sidebar-nav
-        - unless @client.image.blank?
-          = image_tag(@client.image_url(:thumb).to_s)
-        - else
-          = image_tag('/no_avatar.gif')
+    .span2
+      .sidebar-nav{:style => "border-right: 2px solid #B7410E; margin-right: 5px; padding-right: 19px;"}
+        %ul.thumbnails
+          - unless @client.image.blank?
+            %li= link_to image_tag(@client.image_url(:thumb).to_s), "#pic", :class => 'thumbnail', "data-toggle" => "modal", :type => "button", :title => "Click to view large image", :rel => 'tooltip'
+            %div{:id => "pic", :class => "modal", :style => "display:none;"}
+              .modal-header
+                = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+                = @client.full_name
+              .modal-body
+                = image_tag(@client.image_url.to_s)
+              .modal-footer
+                = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+          - else
+            %li= link_to image_tag('no_avatar.gif'), '#', :class => 'thumbnail', :type => "button"
         %h4.text-success
           %i.icon-user
           = @client.full_name
@@ -34,7 +43,7 @@
         %p
           %strong= "Age"
           = @client.dob_age
-    .span8
+    .span10
       .tabbable{:style => "margin-bottom: 18px;"}
         - if false
           %ul.nav.nav-tabs
@@ -44,49 +53,82 @@
               %li.active
                 %a{:href => "#workouts", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Workouts"}
                   %button.btn
-                    %strong.text-orange
+                    .text-error
                       %i.icon-tasks
-            %li.active
+            %li
               %a{:href => "#bodycomps", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Bodycomps"}
                 %button.btn
-                  %strong.text-error
+                  .text-orange
                     %i.icon-th-list
+                    Bodycomps
             %li
               %a{:href => "#pictures", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Pictures"}
                 %button.btn
-                  %strong
-                    %i.icon-camera
-            %li
-              %a{:href => "#documents", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Documents"}
-                %button.btn
-                  %strong.text-yellow
-                    %i.icon-file
-            %li
-              %a{:href => "#notifications", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Notifications"}
-                %button.btn
-                  %strong.text-info
-                    %i.icon-envelope
-        .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
+                  %i.icon-camera
+                  Pictures
+            - if false
+              %li
+                %a{:href => "#documents", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Documents"}
+                  %button.btn
+                    %strong.text-yellow
+                      %i.icon-file
+              %li
+                %a{:href => "#notifications", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Notifications"}
+                  %button.btn
+                    %strong.text-info
+                      %i.icon-envelope
+        %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
+        .tab-content
           - if false
             .tab-pane.active{:id => "workouts"}
               %p
                 %a{:href => '#', :rel => 'tooltip', :title => "Create a new Workout for #{@client.first_name}"}
                   %button.btn.btn-small
-                    .text-orange
+                    .text-error
                       %i.icon-tasks
                       New Workout
           .tab-pane.active{:id => "bodycomps"}
-            %p
-              - @client.bodycomps.reverse.each do |bodycomp|
-                %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View details of #{@client.first_name}'s #{bodycomp.date.strftime("%m/%d/%Y")} Bodycomp"}
-                  %button.btn
-                    .text-error
-                      %i.icon-th-list
-                      = bodycomp.date.strftime("%m/%d/%Y")
+            - unless @client.bodycomps.blank?
+              %p
+                %table.table.table-striped{"data-provides" => "rowlink"}
+                  %thead
+                    %tr
+                      %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
+                      %th Date
+                      %th Weight
+                      %th % Fat
+                      %th Lean Mass
+                      %th Fat Mass
+                      %th BMI
+                      %th BMR
+                      %th WHR
+                  %tbody
+                    - @client.bodycomps.reverse.each do |bodycomp|
+                      %tr
+                        %td{:style => 'display:none;'}
+                          = link_to t('.show', :default => t("helpers.links.show")), bodycomp_path(bodycomp)
+                        %td= bodycomp.date.strftime("%m/%d/%Y")
+                        %td= bodycomp.weight
+                        %td= bodycomp.bodyfat_percent.round(1)
+                        %td= bodycomp.lean_mass.round(1)
+                        %td= bodycomp.fat_mass.round(1)
+                        %td= bodycomp.bmi.round(2)
+                        %td= bodycomp.bmr.round
+                        %td
+                          - unless bodycomp.waist.blank? or bodycomp.hip.blank?
+                            = bodycomp.quad
+                          - else
+                            N/A
+                - if false
+                  %a{:href => bodycomp_path(bodycomp), :rel => 'tooltip', :title => "View details of #{@client.first_name}'s #{bodycomp.date.strftime("%m/%d/%Y")} Bodycomp"}
+                    %button.btn
+                      .text-orange
+                        %i.icon-th-list
+                        = bodycomp.date.strftime("%m/%d/%Y")
             %p
               %a{:href => new_bodycomp_path(:client => @client), :rel => 'tooltip', :title => "Create a new Bodycomp for #{@client.first_name}"}
                 %button.btn.btn-small
-                  .text-error
+                  .text-orange
                     %i.icon-th-list
                     New Bodycomp
           .tab-pane{:id => "pictures"}
@@ -94,7 +136,7 @@
               - bodycomp.pictures.each_slice(3) do |pics|
                 %ul.thumbnails
                   - pics.each do |pic|
-                    %li.span4
+                    %li.span3
                       = link_to image_tag(pic.image_url(:thumb).to_s), "#pic" + pic.id.to_s, :class => "thumbnail", "data-toggle" => "modal", :href => "#pic" + pic.id.to_s, :type => "button", :title => "Click to view large image", :rel => 'tooltip'
                     %div{:id => "pic" + pic.id.to_s, :class => "modal", :style => "display:none;"}
                       .modal-header
@@ -104,10 +146,11 @@
                         = image_tag(pic.image_url.to_s)
                       .modal-footer
                         = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
-          .tab-pane{:id => "documents"}
-            %p Documents
-          .tab-pane{:id => "notifications"}
-            %p Notifications
+          - if false
+            .tab-pane{:id => "documents"}
+              %p Documents
+            .tab-pane{:id => "notifications"}
+              %p Notifications
 
   .form-actions
     %a{:href => clients_path, :class => 'btn'}

@@ -1,0 +1,91 @@
+%table.table.table-striped.table-condensed{"data-provides" => "rowlink"}
+  %caption
+    %h5 General Overview
+  %thead
+    %tr
+      %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
+      %th Date
+      %th Weight
+      %th % Fat
+      %th Lean Mass
+      %th Fat Mass
+      %th BMI
+      %th BMR
+      %th WHR
+  %tbody
+    - @bodycomps.reverse.each do |bodycomp|
+      %tr{:class => bodycomp.date == @bodycomp.date ? "warning" : ""}
+        %td{:style => 'display:none;'}
+          = link_to t('.show', :default => t("helpers.links.show")), bodycomp_path(bodycomp)
+        %td= bodycomp.date.strftime("%b %e %Y")
+        %td= bodycomp.weight
+        %td= bodycomp.bodyfat_percent.round(1)
+        %td= bodycomp.lean_mass.round(1)
+        %td= bodycomp.fat_mass.round(1)
+        %td= bodycomp.bmi.round(2)
+        %td= bodycomp.bmr.round
+        %td
+          - unless bodycomp.waist.blank? or bodycomp.hip.blank?
+            = bodycomp.quad
+          - else
+            N/A
+
+%table.table.table-striped.table-condensed{"data-provides" => "rowlink"}
+  %caption
+    %h5 Skinfold Measures (millimeters)
+  %thead
+    %tr
+      %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
+      %th Date
+      %th Chest
+      %th Triceps
+      %th Subscapular
+      %th Suprailiac
+      %th Midaxillary
+      %th Abdominal
+      %th Thigh
+  %tbody
+    - @bodycomps.reverse.each do |bodycomp|
+      %tr{:class => bodycomp.date == @bodycomp.date ? "warning" : ""}
+        %td{:style => 'display:none;'}
+          = link_to t('.show', :default => t("helpers.links.show")), bodycomp_path(bodycomp)
+        %td= bodycomp.date.strftime("%b %e %Y")
+        %td= bodycomp.pec
+        %td= bodycomp.tri
+        %td= bodycomp.subscap
+        %td= bodycomp.suprailiac
+        %td= bodycomp.midaxil
+        %td= bodycomp.umbilical
+        %td= bodycomp.quad
+
+%table.table.table-striped.table-condensed{"data-provides" => "rowlink"}
+  %caption
+    %h5= "Girth Measures (#{@bodycomp.circumference_units})"
+  %thead
+    %tr
+      %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
+      %th Date
+      %th Waist
+      %th Hip
+      %th Neck
+      %th Shoulder
+      %th Chest
+      %th Arm
+      %th Thigh
+      %th Calf
+  %tbody
+    - @bodycomps.reverse.each do |bodycomp|
+      %tr{:class => bodycomp.date == @bodycomp.date ? "warning" : ""}
+        %td{:style => 'display:none;'}
+          = link_to t('.show', :default => t("helpers.links.show")), bodycomp_path(bodycomp)
+        %td= bodycomp.date.strftime("%b %e %Y")
+        %td= bodycomp.waist
+        %td= bodycomp.hip
+        %td= bodycomp.neck
+        %td= bodycomp.shoulder
+        %td= bodycomp.chest
+        %td= bodycomp.arm
+        %td= bodycomp.thigh
+        %td= bodycomp.gastroc
+        
+        
