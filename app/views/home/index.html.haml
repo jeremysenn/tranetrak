@@ -18,6 +18,9 @@
           %a{:href => new_client_path, :class => "btn btn-block btn-small btn-success"}
             %i.icon-user
             New Client
+        - else
+          %a{:href => client_path(current_user.client), :class => "btn  btn-block btn-small btn-warning"}
+            My Information
 
 .container-fluid
   - if false

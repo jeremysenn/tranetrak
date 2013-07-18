@@ -55,7 +55,7 @@
                   %button.btn
                     .text-error
                       %i.icon-tasks
-            %li
+            %li.active
               %a{:href => "#bodycomps", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "View #{@client.first_name}'s Bodycomps"}
                 %button.btn
                   .text-orange
@@ -125,12 +125,13 @@
                       .text-orange
                         %i.icon-th-list
                         = bodycomp.date.strftime("%m/%d/%Y")
-            %p
-              %a{:href => new_bodycomp_path(:client => @client), :rel => 'tooltip', :title => "Create a new Bodycomp for #{@client.first_name}"}
-                %button.btn.btn-small
-                  .text-orange
-                    %i.icon-th-list
-                    New Bodycomp
+            - unless current_user.is_client?
+              %p
+                %a{:href => new_bodycomp_path(:client => @client), :rel => 'tooltip', :title => "Create a new Bodycomp for #{@client.first_name}"}
+                  %button.btn.btn-small
+                    .text-orange
+                      %i.icon-th-list
+                      New Bodycomp
           .tab-pane{:id => "pictures"}
             - @client.bodycomps.each do |bodycomp|
               - bodycomp.pictures.each_slice(3) do |pics|
@@ -152,16 +153,17 @@
             .tab-pane{:id => "notifications"}
               %p Notifications
 
-  .form-actions
-    %a{:href => clients_path, :class => 'btn'}
-      %i.icon-chevron-left
-      Back
-    %a{:href => edit_client_path(@client), :class => 'btn'}
-      = "Edit"
-      %i.icon-edit
-    %a{:href => client_path(@client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
-      = "Delete"
-      %i.icon-remove
+  - unless current_user.is_client?
+    .form-actions
+      %a{:href => clients_path, :class => 'btn'}
+        %i.icon-chevron-left
+        Back
+      %a{:href => edit_client_path(@client), :class => 'btn'}
+        = "Edit"
+        %i.icon-edit
+      %a{:href => client_path(@client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
+        = "Delete"
+        %i.icon-remove
   - if false
     %dl.dl-horizontal
       %dt

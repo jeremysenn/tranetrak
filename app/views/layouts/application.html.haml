@@ -31,12 +31,17 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            %a.brand{:href => "/home#index"}
-              .text-error
-                = image_tag('train_icon_small.png')
-                = "SuperUser" if current_user.username == 'jeremysenn'
-                = "#{current_user.trainer.full_name} Training" if current_user.is_trainer?
-                = "#{current_user.client.trainer.full_name} Training" if current_user.is_client? and not current_user.client.trainer.blank?
+            - unless current_user.is_client?
+              %a.brand{:href => "/home#index"}
+                .text-error
+                  = image_tag('train_icon_small.png')
+                  = "SuperUser" if current_user.username == 'jeremysenn'
+                  = "#{current_user.trainer.full_name} Training" if current_user.is_trainer?
+            - else
+              %a.brand{:href => client_path(current_user.client)}
+                .text-error
+                  = image_tag('train_icon_small.png')
+                  = "#{current_user.client.trainer.full_name} Training" if current_user.is_client? and not current_user.client.trainer.blank?
             - unless current_user.blank?
               .nav-collapse.collapse
                 %ul.nav.custom
@@ -144,8 +149,9 @@
                         %li= link_to "Trainers", trainers_path
                         %li= link_to "Clients", clients_path
                         %li.divider
-                      %li= link_to "Subscription", '#'
-                      %li.divider
+                      - unless current_user.is_client?
+                        %li= link_to "Subscription", '#'
+                        %li.divider
                       %li= link_to '<i class="icon-question-sign"></i> Help'.html_safe, '#'
                       %li= link_to '<i class="icon-off"></i> Log out'.html_safe, logout_path, :method=>'delete', :confirm => "Are you sure you want to log out?", :title => "Log out"
       = yield

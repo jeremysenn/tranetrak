@@ -63,6 +63,11 @@ class Ability
         end
         can :create, Client
       end
+      if user.is_client?
+        can :read, Client do |c|
+          c.user == user
+        end
+      end
 
       # Bodycomps
       ############
@@ -71,6 +76,11 @@ class Ability
           b.client.trainer == user.trainer
         end
         can :create, Bodycomp
+      end
+      if user.is_client?
+        can :read, Bodycomp do |b|
+          b.client == user.client
+        end
       end
 
     end
