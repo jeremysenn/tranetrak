@@ -14,9 +14,9 @@ class UserMailer < ActionMailer::Base
     @bodycomp = bodycomp
     @client = bodycomp.client
     @user = bodycomp.client.trainer.user
-    #mail to: @client.email,
-    mail to: 'senn.jeremy@gmail.com',
-      #cc:    @user.email,
+    mail to: @client.email,
+#    mail to: 'senn.jeremy@gmail.com',
+      cc:    @user.email,
       from:  @user.email,
     subject: "#{@client.full_name} - New Body Composition Assessment Completed"
   end
