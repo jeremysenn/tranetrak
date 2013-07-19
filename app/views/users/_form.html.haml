@@ -1,18 +1,31 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :first_name
-  = f.input :last_name
-  = f.input :username
-  = f.input :email
-  = f.input :password
-  = f.input :password_confirmation
-  - if params[:type] == 'trainer'
-    = f.input :is_trainer, :as => 'hidden', :input_html => {:value => 1}
-  - elsif params[:type] == 'client'
-    = f.input :is_client,  :as => 'hidden', :input_html => {:value => 1}
-  - else
-    = f.input :is_trainer, :as => 'hidden'
-    = f.input :is_client,  :as => 'hidden'
-  
-  .form-actions
-    = f.button :submit, "Sign up", :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+= simple_nested_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  .row-fluid
+    - if params[:type] == 'trainer' or @user.is_trainer?
+      .span6
+        = f.simple_fields_for :trainer do |trainer_form|
+          = trainer_form.input :company_name
+          = trainer_form.simple_fields_for :pictures do |picture_form|
+            - unless picture_form.object.new_record?
+              = image_tag(picture_form.object.image_url(:thumb).to_s)
+            = picture_form.file_field :image if picture_form.object.new_record?
+            = picture_form.link_to_remove "Remove this picture", :class => 'btn btn-mini btn-danger'
+          %p=# f.link_to_add "Add a picture", :pictures, :class =>  "btn btn-mini btn-warning"
+    .span6
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :username
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
+      - if params[:type] == 'trainer'
+        = f.input :is_trainer, :as => 'hidden', :input_html => {:value => 1}
+      - elsif params[:type] == 'client'
+        = f.input :is_client,  :as => 'hidden', :input_html => {:value => 1}
+      - else
+        = f.input :is_trainer, :as => 'hidden'
+        = f.input :is_client,  :as => 'hidden'
+  .row-fluid
+    .span12
+      .form-actions
+        = f.button :submit, "Save", :class => 'btn-primary'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

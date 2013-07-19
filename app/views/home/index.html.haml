@@ -12,6 +12,7 @@
             %i.icon-tasks
             New Workout
         - unless current_user.is_client?
+          %p= image_tag(current_user.trainer.pictures.first.image_url) if current_user.is_trainer? and not current_user.trainer.pictures.empty?
           %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-warning"}
             %i.icon-th-list
             New Bodycomp
@@ -19,6 +20,8 @@
             %i.icon-user
             New Client
         - else
+          %h2= "#{current_user.client.trainer.company_name}" if current_user.is_client? and not current_user.client.trainer.blank?
+          %p= image_tag(current_user.client.trainer.pictures.first.image_url) unless current_user.client.trainer.pictures.empty?
           %a{:href => client_path(current_user.client), :class => "btn  btn-block btn-small btn-warning"}
             My Information
 

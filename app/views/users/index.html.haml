@@ -5,28 +5,24 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:username)
-      %th= model_class.human_attribute_name(:email)
-      %th= model_class.human_attribute_name(:password_hash)
-      %th= model_class.human_attribute_name(:password_salt)
-      %th= model_class.human_attribute_name(:is_trainer)
-      %th= model_class.human_attribute_name(:is_client)
       %th= model_class.human_attribute_name(:first_name)
       %th= model_class.human_attribute_name(:last_name)
+      %th= model_class.human_attribute_name(:username)
+      %th= model_class.human_attribute_name(:email)
+      %th= model_class.human_attribute_name(:is_trainer)
+      %th= model_class.human_attribute_name(:is_client)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.id, user_path(user)
-        %td= user.username
-        %td= user.email
-        %td= user.password_hash
-        %td= user.password_salt
-        %td= user.is_trainer
-        %td= user.is_client
         %td= user.first_name
         %td= user.last_name
+        %td= user.username
+        %td= user.email
+        %td= user.is_trainer
+        %td= user.is_client
         %td=l user.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(user), :class => 'btn btn-mini'

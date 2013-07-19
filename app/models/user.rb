@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   rolify
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :email, :password, :password_confirmation, :is_trainer, :is_client, :first_name, :last_name
-  has_one :trainer
-  has_one :client
+  attr_accessible :username, :email, :password, :password_confirmation, :is_trainer, :is_client, :first_name, :last_name, :trainer_attributes
+  has_one :trainer,  :dependent => :destroy
+  has_one :client,  :dependent => :destroy
   has_many :bodycomps, :through => :client
+
+  accepts_nested_attributes_for :trainer
 
   attr_accessor :password
   before_save :prepare_password
