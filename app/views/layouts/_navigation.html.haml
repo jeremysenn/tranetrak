@@ -1,0 +1,127 @@
+%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+  %span.icon-bar
+  %span.icon-bar
+  %span.icon-bar
+- unless current_user.is_client?
+  %a.brand{:href => "/home#index"}
+    .text-error
+      = image_tag('train_icon_small.png')
+      = "SuperUser" if current_user.username == 'jeremysenn'
+      =# "#{current_user.trainer.full_name} Training" if current_user.is_trainer?
+      = "#{current_user.trainer.company_name}" if current_user.is_trainer?
+- else
+  %a.brand{:href => "/home#index"}
+    .text-error
+      - if not current_user.client.trainer.pictures.empty?
+        = image_tag(current_user.client.trainer.pictures.first.image_url(:logo_icon))
+      - else
+        = image_tag('train_icon_small.png')
+      =# "#{current_user.client.trainer.full_name} Training" if current_user.is_client? and not current_user.client.trainer.blank?
+      = "#{current_user.client.trainer.company_name}" if current_user.is_client? and not current_user.client.trainer.blank?
+- unless current_user.blank?
+  .nav-collapse.collapse
+    %ul.nav.custom
+      - if false
+        %li.dropdown{:class => params[:controller] == "calendars" ? "active" : ""}
+          %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+            %strong
+              %p.text-purple
+                %i.icon-calendar
+                = "Calendar"
+                %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => calendars_path(:view => 'week')}
+                  Week view
+              %li
+                %a{:href => calendars_path}
+                  Month view
+      - unless current_user.is_client?
+        %li.dropdown{:class => params[:controller] == "home" ? "active" : ""}
+          %a{:href => root_path}
+            %p.text-info
+              %i.icon-dashboard
+        %li.dropdown{:class => (params[:controller] == "workouts" or params[:controller] == "workout_sessions") ? "active" : ""}
+          %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+            %strong
+              %p.text-error
+                %i.icon-tasks
+                %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => new_workout_session_path}
+                  New Workout Session
+              %li
+                %a{:href => workout_sessions_path}
+                  All Workout Sessions
+        %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
+          %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+            %p.text-orange
+              %i.icon-th-list
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => new_bodycomp_path}
+                  New Bodycomp
+              %li
+                %a{:href => bodycomps_path}
+                  All Bodycomps
+        %li.dropdown{:class => params[:controller] == "clients" ? "active" : ""}
+          %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+            %p.text-success
+              %i.icon-user
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => new_client_path}
+                  New Client
+              %li
+                %a{:href => clients_path}
+                  All Clients
+      - if false
+        %li{:class => params[:controller] == "images" ? "active" : ""}
+          %a{:href => '#'}
+            %strong
+              - if false
+                %p.text-warning
+              %p
+                %i.icon-camera
+                = "Pictures"
+        %li{:class => params[:controller] == "documents" ? "active" : ""}
+          %a{:href => '#'}
+            %strong
+              %p.text-yellow
+                %i.icon-file
+                = "Documents"
+        %li{:class => params[:controller] == "notifications" ? "active" : ""}
+          %a{:href => '#'}
+            %strong
+              %p.text-info
+                %i.icon-envelope
+                = "Notifications"
+    %ul.nav.pull-right
+      %li.divider-vertical
+      %li.dropdown
+        %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+          %i.icon-cog
+          = current_user.full_name
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => edit_user_path(current_user)}
+              %strong= raw("#{current_user.username}")
+              %br
+              %small
+                %i.icon-edit
+                = "Edit settings"
+          %li.divider
+          - if current_user.username == 'jeremysenn'
+            %li= link_to "Users", users_path
+            %li= link_to "Trainers", trainers_path
+            %li= link_to "Clients", clients_path
+            %li.divider
+          - unless current_user.is_client?
+            %li= link_to "Subscription", '#'
+            %li.divider
+          %li= link_to '<i class="icon-question-sign"></i> Help'.html_safe, '#'
+          %li= link_to '<i class="icon-off"></i> Log out'.html_safe, logout_path, :method=>'delete', :confirm => "Are you sure you want to log out?", :title => "Log out"

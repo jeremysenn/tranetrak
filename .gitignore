@@ -16,3 +16,6 @@
 
 # Ignore CarrierWave file uploads 
 /public/uploads
+
+### LOCAL ENVIRONMENT VARIABLES ###
+/config/application.yml

@@ -39,9 +39,30 @@
                 tranetrak.com
             .nav-collapse.collapse
               %ul.nav
-                %li= link_to "WHAT IS TRANETRAK?", '#'
-                %li= link_to "HOW IT WORKS", '#'
-                %li= link_to "ABOUT US", '#'
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                    %i.icon-question-sign
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => nil}
+                        WHAT IS TRANETRAK?
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                    %i.icon-play-circle
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => nil}
+                        HOW IT WORKS
+                %li.dropdown
+                  %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+                    %i.icon-comment
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => nil}
+                        ABOUT US
               - unless current_page? signup_path
                 .navbar-form.pull-right
                   = form_tag sessions_path do

@@ -32,7 +32,7 @@ class BodycompsController < ApplicationController
   # GET /bodycomps/new.json
   def new
     @bodycomp = Bodycomp.new
-    @bodycomp.pictures.build
+#    @bodycomp.pictures.build
     unless params[:client].blank?
       @client = current_user.trainer.clients.find(params[:client])
       unless @client.blank?

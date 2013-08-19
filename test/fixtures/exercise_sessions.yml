@@ -1,0 +1,15 @@
+one:
+  exercise_id: 1
+  workout_session_id: 1
+  rest: MyString
+  sets: MyString
+  trainer_id: 1
+  client_id: MyString
+
+two:
+  exercise_id: 1
+  workout_session_id: 1
+  rest: MyString
+  sets: MyString
+  trainer_id: 1
+  client_id: MyString

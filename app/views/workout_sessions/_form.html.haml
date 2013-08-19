@@ -1,14 +1,32 @@
-= simple_form_for @workout_session, :html => { :class => 'form-horizontal' } do |f|
+= simple_nested_form_for @workout_session, :html => { :class => 'form-horizontal' } do |f|
   = f.input :workout_name, :as => :string, :required => true, :label => "Workout Name", :input_html => {:class => 'span3 typeahead'}
-  =# f.association :workout, :as => :string, :input_html => {:class => 'span3 typeahead'}
-  = f.input :trainer_id, :as => :hidden, :value => current_user.trainer.id if current_user.is_trainer?
-  = f.association :client, :collection => current_user.trainer.clients if current_user.is_trainer?
-  = f.input :date
+  #datetimepicker1{:class => 'input-append date'}
+    = f.input :date, :wrapper => :append, :class => "inline" do
+      = f.input_field :date, :as => :string, :readonly => true, :class => 'input-medium'
+      = content_tag :span, "<i class='icon-calendar' data-time-icon='icon-time' data-date-icon='icon-calendar'></i>".html_safe, :class => "add-on abbn"
+  - if current_user.is_trainer?
+    = f.hidden_field :trainer_id, :value => current_user.trainer.id
+    = f.association :client, :collection => current_user.trainer.clients, :input_html => {:class => 'span2'}
+  - elsif current_user.is_client?
+    = f.hidden_field :client_id, :value => current_user.client.id
+  = f.simple_fields_for :excercise_sessions do |exercise_session_form|
+    .well
+      = render :partial => 'exercise_sessions_form', :locals => { :f => exercise_session_form}
+      = exercise_session_form.link_to_remove "Remove this Exercise", :class => 'btn btn-mini btn-danger'
+
+  %p=# f.link_to_add "Add an Exercise", :exercise_sessions, :class =>  "btn btn-mini btn-warning"
+      
   =# f.input :reminder_sent
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), workout_sessions_path, :class => 'btn'
 
 :javascript
-  var workout_data = #{ @workouts };
+  var workout_data = #{ @workouts }
   $('.typeahead').typeahead({source: workout_data})
+  $('#datetimepicker1').datetimepicker({
+      language: 'en',
+      pick12HourFormat: true,
+      pickSeconds: false,
+      format: "yyyy-MM-dd hh:mm"
+    });

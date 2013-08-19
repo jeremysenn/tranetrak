@@ -11,4 +11,5 @@
 //= require raphael
 //= require morris
 //= require twitter-bootstrap-calendar
+//= require jquery_nested_form
 //= require_tree .

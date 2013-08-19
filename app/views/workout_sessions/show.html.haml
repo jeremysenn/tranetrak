@@ -1,27 +1,33 @@
 - model_class = WorkoutSession
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human
+  %h3.text-error
+    %i.icon-tasks
+    = "Workout Session"
 
 %p
   %strong= model_class.human_attribute_name(:workout_id) + ':'
   %br
-  = @workout_session.workout.name
-%p
-  %strong= model_class.human_attribute_name(:trainer_id) + ':'
-  %br
-  = @workout_session.trainer_id
-%p
-  %strong= model_class.human_attribute_name(:client_id) + ':'
-  %br
-  = @workout_session.client_id
+  = link_to @workout_session.workout.name, workout_path(@workout_session.workout)
+
+- unless @workout_session.trainer.blank?
+  %p
+    %strong= model_class.human_attribute_name(:trainer_id) + ':'
+    %br
+    = link_to @workout_session.trainer.full_name, trainer_path(@workout_session.trainer)
+
+- unless @workout_session.client.blank?
+  %p
+    %strong= model_class.human_attribute_name(:client_id) + ':'
+    %br
+    = link_to @workout_session.client.full_name, client_path(@workout_session.client)
 %p
   %strong= model_class.human_attribute_name(:date) + ':'
   %br
-  = @workout_session.date
+  = @workout_session.date.strftime("%A %m/%d/%Y at %I:%M%p")
 %p
   %strong= model_class.human_attribute_name(:reminder_sent) + ':'
   %br
-  = @workout_session.reminder_sent
+  = @workout_session.reminder_sent? ? 'Yes' : 'No'
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), workout_sessions_path, :class => 'btn'

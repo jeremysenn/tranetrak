@@ -1,0 +1,33 @@
+- model_class = ExerciseSession
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:exercise_id) + ':'
+  %br
+  = @exercise_session.exercise_id
+%p
+  %strong= model_class.human_attribute_name(:workout_session_id) + ':'
+  %br
+  = @exercise_session.workout_session_id
+%p
+  %strong= model_class.human_attribute_name(:rest) + ':'
+  %br
+  = @exercise_session.rest
+%p
+  %strong= model_class.human_attribute_name(:sets) + ':'
+  %br
+  = @exercise_session.sets
+%p
+  %strong= model_class.human_attribute_name(:trainer_id) + ':'
+  %br
+  = @exercise_session.trainer_id
+%p
+  %strong= model_class.human_attribute_name(:client_id) + ':'
+  %br
+  = @exercise_session.client_id
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), exercise_sessions_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_exercise_session_path(@exercise_session), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), exercise_session_path(@exercise_session), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

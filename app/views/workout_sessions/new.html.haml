@@ -1,4 +1,6 @@
 - model_class = WorkoutSession
 .page-header
-  %h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
+  %h3.text-error
+    %i.icon-tasks
+    = "New Workout Session"
 = render :partial => "form"

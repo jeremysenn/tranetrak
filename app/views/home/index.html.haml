@@ -3,16 +3,19 @@
     %h1.text-error.pagination-centered
       %i.icon-star
       = "#{current_user.full_name} Training"
+  .pagination-centered
+    - if current_user.is_trainer?
+      %p= image_tag(current_user.trainer.pictures.first.image_url(:thumb)) if current_user.is_trainer? and not current_user.trainer.pictures.empty?
+    - elsif current_user.is_client?
+      %p= image_tag(current_user.client.trainer.pictures.first(:thumb).image_url) unless current_user.client.trainer.pictures.empty?
   .container-narrow
     .form-signin
       .jumbotron
         .lead
-        - if false
+        - unless current_user.is_client?
           %a{:href => new_workout_session_path, :class => "btn  btn-block btn-small btn-danger"}
             %i.icon-tasks
             New Workout
-        - unless current_user.is_client?
-          %p= image_tag(current_user.trainer.pictures.first.image_url) if current_user.is_trainer? and not current_user.trainer.pictures.empty?
           %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-warning"}
             %i.icon-th-list
             New Bodycomp
@@ -21,7 +24,6 @@
             New Client
         - else
           %h2= "#{current_user.client.trainer.company_name}" if current_user.is_client? and not current_user.client.trainer.blank?
-          %p= image_tag(current_user.client.trainer.pictures.first.image_url) unless current_user.client.trainer.pictures.empty?
           %a{:href => client_path(current_user.client), :class => "btn  btn-block btn-small btn-warning"}
             My Information
 
