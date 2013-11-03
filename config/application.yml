@@ -20,6 +20,6 @@ ROLES: [admin, silver, gold, platinum]
 STRIPE_API_KEY: 0Y1G8y8Vksy4bDDfU9tOWLs36RkAmVWk
 STRIPE_PUBLIC_KEY: pk_qJqhDzZQofNRGu7LCxhjVnWdWwMAz
 
-### LIVE ###
+### LIVE ##
 #STRIPE_API_KEY: d0LXOTNZzj2gMrwCpAMlTVxCUXmI7xzA
 #STRIPE_PUBLIC_KEY: pk_EYQxNXAcAfVG9bzuOgi5g84pbJhLc
