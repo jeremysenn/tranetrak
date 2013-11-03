@@ -76,12 +76,28 @@ class Ability
           b.client.trainer == user.trainer
         end
         can :create, Bodycomp do |bc|
-          user.subscription.plan.stripe_plan_id == 10
+          user.subscription.plan.stripe_plan_id == 10 or user.subscription.plan.stripe_plan_id == 12
         end
       end
       if user.is_client?
         can :read, Bodycomp do |b|
           b.client == user.client
+        end
+      end
+
+      # Workout_sessions
+      ############
+      if user.is_trainer?
+        can :manage, WorkoutSession do |ws|
+          ws.trainer == user.trainer
+        end
+        can :create, WorkoutSession do |ws|
+          user.subscription.plan.stripe_plan_id == 11 or user.subscription.plan.stripe_plan_id == 12
+        end
+      end
+      if user.is_client?
+        can :read, WorkoutSession do |ws|
+          ws.client == user.client
         end
       end
 

@@ -1,4 +1,6 @@
 class WorkoutSessionsController < ApplicationController
+  load_and_authorize_resource
+
   def index
 #    @workout_sessions = WorkoutSession.all
     @workout_sessions = current_user.trainer.workout_sessions if current_user.is_trainer?
