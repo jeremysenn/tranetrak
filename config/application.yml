@@ -13,5 +13,13 @@ ADMIN_NAME: Jeremy Senn
 ADMIN_EMAIL: senn.jeremy@gmail.com
 ADMIN_PASSWORD: kolakola
 ROLES: [admin, silver, gold, platinum]
-STRIPE_API_KEY: sk_test_9ZjqALm1nKssVrrvSHGld68N
-STRIPE_PUBLIC_KEY: pk_test_8ET4hoWRiVOGY0gRJOqk8P6y
+#STRIPE_API_KEY: sk_test_9ZjqALm1nKssVrrvSHGld68N
+#STRIPE_PUBLIC_KEY: pk_test_8ET4hoWRiVOGY0gRJOqk8P6y
+
+### TEST ###
+STRIPE_API_KEY: 0Y1G8y8Vksy4bDDfU9tOWLs36RkAmVWk
+STRIPE_PUBLIC_KEY: pk_qJqhDzZQofNRGu7LCxhjVnWdWwMAz
+
+### LIVE ###
+#STRIPE_API_KEY: d0LXOTNZzj2gMrwCpAMlTVxCUXmI7xzA
+#STRIPE_PUBLIC_KEY: pk_EYQxNXAcAfVG9bzuOgi5g84pbJhLc

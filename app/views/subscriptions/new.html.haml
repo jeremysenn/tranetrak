@@ -1,0 +1,58 @@
+- model_class = Subscription
+.page-header
+  %h1= t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+      :default => "New #{model_class.model_name.human}")
+= form_for @subscription, :html => { :class => 'form-horizontal card_form' } do |f|
+  #stripe_error.alert.alert-error{style: "display:none"}
+  - @subscription.errors.each do |attr, msg|
+    .alert
+      %button.close{"data-dismiss" => "alert", type: "button"} ×
+      = "#{attr} #{msg}" if @subscription.errors[attr].first == msg
+  = f.hidden_field :user_id, :value => current_user.id
+  = f.hidden_field :stripe_card_token
+  - if false
+    .control-group
+      = f.label :plan_id, :class => 'control-label'
+      .controls
+        = f.number_field :plan_id, :class => 'number_field'
+  - if false
+    .control-group
+      = f.label :company_id, :class => 'control-label'
+      .controls
+        = f.number_field :company_id, :class => 'number_field'
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field', :value => current_user.email
+  = f.hidden_field :plan_id
+  - if false
+    .control-group
+      = f.label :stripe_customer_token, :class => 'control-label'
+      .controls
+        = f.text_field :stripe_customer_token, :class => 'text_field'
+  - if @subscription.stripe_card_token.present?
+    Credit card has been provided.
+  - else
+    .control-group
+      = label_tag :card_name, "Name on card", :class => 'control-label'
+      .controls
+        = text_field_tag :card_name, nil, :name => nil, :class => 'text_field'
+    .control-group
+      = label_tag :card_number, "Credit card number", :class => 'control-label'
+      .controls
+        = text_field_tag :card_number, nil, :name => nil, :class => 'text_field'
+    .control-group
+      = label_tag :card_code, "Security code on card (CVV)", :class => 'control-label'
+      .controls
+        = text_field_tag :card_code, nil, :name => nil, :class => "text_field span1"
+    .control-group
+      = label_tag :card_month, "Card expiration", :class => 'control-label'
+      .controls
+        = select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
+        = select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
+  #stripe_error.text-error
+    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")),
+      :back, :class => 'btn'                                       

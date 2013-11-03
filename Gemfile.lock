@@ -120,6 +120,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.2)
     rolify (3.2.0)
     sass (3.2.5)
@@ -134,6 +136,9 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    stripe (1.7.9)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     therubyracer (0.11.3)
       libv8 (~> 3.11.8.12)
       ref
@@ -184,6 +189,7 @@ DEPENDENCIES
   rolify
   sass-rails
   simple_form
+  stripe
   therubyracer
   turn (~> 0.8.3)
   twitter-bootstrap-calendar

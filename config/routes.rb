@@ -1,4 +1,9 @@
 Bcomp::Application.routes.draw do
+
+  resources :plans
+
+  resources :subscriptions
+
   resources :exercise_sessions
 
   resources :exercises

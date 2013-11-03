@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805144640) do
+ActiveRecord::Schema.define(:version => 20131103154347) do
 
   create_table "bodycomps", :force => true do |t|
     t.date     "date"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(:version => 20130805144640) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.float    "price"
+    t.text     "description"
+    t.integer  "stripe_plan_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -98,6 +107,15 @@ ActiveRecord::Schema.define(:version => 20130805144640) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "stripe_customer_token"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "trainers", :force => true do |t|
     t.string   "first_name"

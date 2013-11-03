@@ -1,0 +1,14 @@
+- unless current_user.is_superuser?
+  .container-narrow
+    .row.plans
+      - Plan.all.each do |plan|
+        .span2.well
+          .plan
+            %h2= plan.name
+          %ul.unstyled
+            %li= plan.description
+          %h3
+            = number_to_currency(plan.price) + "\/month"
+          = link_to 'Subscribe', new_subscription_path(:plan_id => plan.id), :class => 'btn btn-primary' if current_user.subscription.blank?
+- else
+  = render :partial => 'superuser_index'

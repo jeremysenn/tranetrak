@@ -121,7 +121,10 @@
             %li= link_to "Clients", clients_path
             %li.divider
           - unless current_user.is_client?
-            %li= link_to "Subscription", '#'
+            - unless current_user.subscription.blank?
+              %li= link_to "Subscription", current_user.subscription
+            - else
+              %li= link_to "Subscription", plans_path
             %li.divider
           %li= link_to '<i class="icon-question-sign"></i> Help'.html_safe, '#'
           %li= link_to '<i class="icon-off"></i> Log out'.html_safe, logout_path, :method=>'delete', :confirm => "Are you sure you want to log out?", :title => "Log out"

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_one :trainer,  :dependent => :destroy
   has_one :client,  :dependent => :destroy
   has_many :bodycomps, :through => :client
+  has_one :subscription
 
   accepts_nested_attributes_for :trainer
 
@@ -41,6 +42,14 @@ class User < ActiveRecord::Base
       "#{first_name} #{last_name}".strip
     else
       id.to_s
+    end
+  end
+
+  def is_superuser?
+    if username == 'jeremysenn'
+      return true
+    else
+      return false
     end
   end
 

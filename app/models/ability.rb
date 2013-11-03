@@ -75,13 +75,27 @@ class Ability
         can :manage, Bodycomp do |b|
           b.client.trainer == user.trainer
         end
-        can :create, Bodycomp
+        can :create, Bodycomp do |bc|
+          user.subscription.plan.stripe_plan_id == 10
+        end
       end
       if user.is_client?
         can :read, Bodycomp do |b|
           b.client == user.client
         end
       end
+
+      # Subscriptions
+      ############
+      can :manage, Subscription do |s|
+        s.user_id == user.id
+      end
+      cannot :index, Subscription
+      can :create, Subscription
+
+      # Plans
+      ############
+      can :index, Plan
 
     end
 
