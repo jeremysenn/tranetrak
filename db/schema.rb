@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131103154347) do
+ActiveRecord::Schema.define(:version => 20131103230043) do
 
   create_table "bodycomps", :force => true do |t|
     t.date     "date"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20131103154347) do
     t.string   "stripe_customer_token"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.string   "last_4_digits"
   end
 
   create_table "trainers", :force => true do |t|

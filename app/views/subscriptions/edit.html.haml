@@ -1,3 +1,98 @@
-- title "Edit Subscription"
-
-= render 'form'
+- model_class = Subscription
+.page-header
+  %h1= t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+      :default => "Edit #{model_class.model_name.human}")                                      
+#stripe_error.alert.alert-error{style: "display:none"}
+- @subscription.errors.each do |attr, msg|
+  .alert
+    %button.close{"data-dismiss" => "alert", type: "button"} ×
+    = "#{attr} #{msg}" if @subscription.errors[attr].first == msg
+- if false
+  .control-group
+    = f.label :plan_id, :class => 'control-label'
+    .controls
+      = f.number_field :plan_id, :class => 'number_field'
+- if false
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field', :value => current_user.email
+- if false
+  .control-group
+    = f.label :stripe_customer_token, :class => 'control-label'
+    .controls
+      = f.text_field :stripe_customer_token, :class => 'text_field'
+- if @subscription.stripe_card_token.present?
+  Credit card has been provided.
+- else
+  - if false
+    .control-group
+      = label_tag :card_name, "Name on card", :class => 'control-label'
+      .controls
+        = text_field_tag :card_name, nil, :name => nil, :class => 'text_field'
+    .control-group
+      = label_tag :card_number, "Credit card number", :class => 'control-label'
+      .controls
+        = text_field_tag :card_number, nil, :name => nil, :class => 'text_field'
+    .control-group
+      = label_tag :card_code, "Security code on card (CVV)", :class => 'control-label'
+      .controls
+        = text_field_tag :card_code, nil, :name => nil, :class => "text_field span1"
+    .control-group
+      = label_tag :card_month, "Card expiration", :class => 'control-label'
+      .controls
+        = select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
+        = select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
+  #stripe_error.text-error
+    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+%h3 Subscription Plan
+%p
+  = @current_user.subscription.plan.name.titleize
+  \-
+  \#{@current_user.subscription.plan.description}#{link_to "Change plan", "#plan-options", :class =>  "btn btn-mini btn-warning", "data-toggle" => "modal", :href => "#plan-options", :type => "button"}
+#plan-options.modal{style: "display: none;"}
+  = form_for @subscription, :html => {:method => :put, :class => 'form-horizontal' } do |f|
+    .modal-header
+      = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+      %h3 Change Plan
+    .modal-body
+      = f.select :plan_id, Plan.all.collect {|p| [ p.description + " " + number_to_currency(p.price).to_s, p.id ]}, :class => "input-large"
+    = f.hidden_field :user_id, :value => current_user.id
+    .modal-footer
+      = f.submit "Change Plan", :class => "btn btn-primary"
+      = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+%h3 Credit Card
+%p
+  Using card ending with
+  \#{"#{@subscription.last_4_digits}"}#{link_to "Change card", "#card-data", :class =>  "btn btn-mini btn-success", "data-toggle" => "modal", :type => "button"}
+#card-data.modal{style: "display: none;"}
+  = form_for @subscription, :html => {:method => :put, :class => 'form-horizontal card_form' } do |f|
+    .modal-header
+      = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+      %h3 Change Credit Card
+    .modal-body
+      .field
+        = label_tag :card_name, "Name on card"
+        = text_field_tag :card_name, nil, :name => nil, :class => 'text_field'
+      .field
+        = label_tag :card_number, "Credit Card Number"
+        = text_field_tag :card_number, nil, name: nil
+      .field
+        = label_tag :card_code, "Card Security Code (CVV)"
+        = text_field_tag :card_code, nil, name: nil, :class => "span1"
+      .field
+        = label_tag :card_month, "Card Expiration"
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}
+        = f.hidden_field :user_id, :value => current_user.id
+        = f.hidden_field :email, :value => current_user.email
+        = f.hidden_field :stripe_card_token
+    .modal-footer
+      = f.submit "Change Credit Card", :class => "btn btn-primary"
+      = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+%h3 Cancel my subscription
+%p
+  Unhappy?
+  \#{link_to "Cancel subscription", subscription_path(@subscription), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger'}
+.form-actions
+  = link_to "Done", subscription_path(@subscription), :class => 'btn'

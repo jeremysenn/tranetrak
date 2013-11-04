@@ -25,18 +25,31 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
-    plan = Plan.find(params[:plan_id])
     @subscription = Subscription.find(params[:id])
-    @subscription.plan = plan
+#    plan = Plan.find(params[:plan_id])
+#    @subscription.plan = plan
   end
 
   def update
     @subscription = Subscription.find(params[:id])
+    new_plan = Plan.find(params[:subscription][:plan_id]) unless params[:subscription][:plan_id].nil?
+    stripe_card_token = params[:subscription][:stripe_card_token]
     if @subscription.update_attributes(params[:subscription])
-      redirect_to '/', :notice  => "Successfully updated subscription."
+      @subscription.update_plan(new_plan) unless new_plan.nil?
+      @subscription.update_card unless stripe_card_token.nil?
+      redirect_to edit_subscription_path(@subscription), :notice  => "Successfully updated subscription."
     else
+      flash.alert = 'Unable to update card.'
       render :action => 'edit'
     end
+
+
+#    @subscription = Subscription.find(params[:id])
+#    if @subscription.update_attributes(params[:subscription])
+#      redirect_to '/', :notice  => "Successfully updated subscription."
+#    else
+#      render :action => 'edit'
+#    end
   end
 
   def destroy
