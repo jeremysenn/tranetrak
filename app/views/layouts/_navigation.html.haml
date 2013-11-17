@@ -15,7 +15,8 @@
       - if not current_user.client.trainer.pictures.empty?
         = image_tag(current_user.client.trainer.pictures.first.image_url(:logo_icon))
       - else
-        = image_tag('train_icon_small.png')
+        %fa.fa-cut
+        =# image_tag('train_icon_small.png')
       =# "#{current_user.client.trainer.full_name} Training" if current_user.is_client? and not current_user.client.trainer.blank?
       = "#{current_user.client.trainer.company_name}" if current_user.is_client? and not current_user.client.trainer.blank?
 - unless current_user.blank?
