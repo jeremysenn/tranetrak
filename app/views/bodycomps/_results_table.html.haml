@@ -26,7 +26,7 @@
         %td= bodycomp.bmr.round
         %td
           - unless bodycomp.waist.blank? or bodycomp.hip.blank?
-            = bodycomp.quad
+            = bodycomp.waist_hip_ratio
           - else
             N/A
 
