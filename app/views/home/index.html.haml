@@ -13,9 +13,10 @@
       .jumbotron
         .lead
         - unless current_user.is_client?
-          %a{:href => new_workout_session_path, :class => "btn  btn-block btn-small btn-danger"}
-            %i.icon-tasks
-            New Workout
+          - if false
+            %a{:href => new_workout_session_path, :class => "btn  btn-block btn-small btn-danger"}
+              %i.icon-tasks
+              New Workout
           %a{:href => new_bodycomp_path, :class => "btn  btn-block btn-small btn-warning"}
             %i.icon-th-list
             New Bodycomp

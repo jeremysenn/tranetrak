@@ -49,12 +49,13 @@
           %ul.nav.nav-tabs
         .btn-group
           %ul.nav.nav-pills
+            - if false
+              %li.active
+                %a{:href => "#workouts", :data => {:toggle => "tab"}, :title => "View #{@client.first_name}'s Workouts"}
+                  %button.btn
+                    .text-error
+                      %i.icon-tasks
             %li.active
-              %a{:href => "#workouts", :data => {:toggle => "tab"}, :title => "View #{@client.first_name}'s Workouts"}
-                %button.btn
-                  .text-error
-                    %i.icon-tasks
-            %li
               %a{:href => "#bodycomps", :data => {:toggle => "tab"}, :title => "View #{@client.first_name}'s Bodycomps"}
                 %button.btn
                   .text-orange
@@ -76,18 +77,19 @@
                       %i.icon-envelope
         %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
         .tab-content
-          .tab-pane.active{:id => "workouts"}
-            .row-fluid
-              .span6
-                - @client.workout_sessions.each do |workout_session|
-                  %p= link_to workout_session.workout_name, workout_session_path(workout_session)
-            %p
-              %a{:href => new_workout_session_path(:client => @client), :title => "Create a new Workout for #{@client.first_name}"}
-                %button.btn.btn-small
-                  .text-error
-                    %i.icon-tasks
-                    New Workout
-          .tab-pane{:id => "bodycomps"}
+          - if false
+            .tab-pane.active{:id => "workouts"}
+              .row-fluid
+                .span6
+                  - @client.workout_sessions.each do |workout_session|
+                    %p= link_to workout_session.workout_name, workout_session_path(workout_session)
+              %p
+                %a{:href => new_workout_session_path(:client => @client), :title => "Create a new Workout for #{@client.first_name}"}
+                  %button.btn.btn-small
+                    .text-error
+                      %i.icon-tasks
+                      New Workout
+          .tab-pane.active{:id => "bodycomps"}
             - unless @client.bodycomps.blank?
               %p
                 %table.table.table-striped{"data-provides" => "rowlink"}
