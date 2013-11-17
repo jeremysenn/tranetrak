@@ -30,6 +30,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   process :resize_to_fit => [800, 800]
+  process :rotate
   #
   # def scale(width, height)
   #   # do something
@@ -63,5 +64,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  def rotate
+    manipulate! do |image|
+      image.auto_orient
+    end
+  end
 
 end
