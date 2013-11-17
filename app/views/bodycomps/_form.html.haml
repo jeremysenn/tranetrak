@@ -233,7 +233,7 @@
             = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
 
       .tab-pane{:id => "pics"}
-        = f.simple_fields_for :pictures, :wrapper => false do |picture_form|
+        = f.simple_fields_for :pictures do |picture_form|
           .well.well-large
             - unless picture_form.object.new_record?
               = image_tag(picture_form.object.image_url(:thumb).to_s)
