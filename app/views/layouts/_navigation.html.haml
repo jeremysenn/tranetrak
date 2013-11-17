@@ -41,23 +41,25 @@
           %a{:href => root_path}
             %p.text-info
               %i.icon-dashboard
-        %li.dropdown{:class => (params[:controller] == "workouts" or params[:controller] == "workout_sessions") ? "active" : ""}
-          %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-            %strong
-              %p.text-error
-                %i.icon-tasks
-                %b.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => new_workout_session_path}
-                  New Workout Session
-              %li
-                %a{:href => workout_sessions_path}
-                  All Workout Sessions
+        - if false
+          %li.dropdown{:class => (params[:controller] == "workouts" or params[:controller] == "workout_sessions") ? "active" : ""}
+            %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+              %strong
+                %p.text-error
+                  %i.icon-tasks
+                  %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => new_workout_session_path}
+                    New Workout Session
+                %li
+                  %a{:href => workout_sessions_path}
+                    All Workout Sessions
         %li.dropdown{:class => params[:controller] == "bodycomps" ? "active" : ""}
           %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
             %p.text-orange
               %i.icon-th-list
+              Body Composition
               %b.caret
             %ul.dropdown-menu
               %li
@@ -70,6 +72,7 @@
           %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
             %p.text-success
               %i.icon-user
+              Client
               %b.caret
             %ul.dropdown-menu
               %li
