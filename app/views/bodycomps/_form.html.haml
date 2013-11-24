@@ -237,6 +237,8 @@
           .well.well-large
             - unless picture_form.object.new_record?
               = image_tag(picture_form.object.image_url(:thumb).to_s)
+            = picture_form.hidden_field :imageable_id, :value => @bodycomp.id
+            = picture_form.hidden_field :imageable_type, :value => "Bodycomp"
             = picture_form.file_field :image if picture_form.object.new_record?
             = picture_form.link_to_remove "Remove this picture", :class => 'btn btn-mini btn-danger'
           

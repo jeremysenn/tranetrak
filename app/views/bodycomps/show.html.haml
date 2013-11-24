@@ -85,7 +85,7 @@
                       = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
                       = @bodycomp.date.strftime("%b %e %Y")
                     .modal-body
-                      = image_tag(pic.image_url.to_s)
+                      = image_tag(pic.image_url(:large).to_s)
                     .modal-footer
                       = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
   - unless current_user.is_client?

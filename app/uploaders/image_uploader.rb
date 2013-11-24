@@ -29,8 +29,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_fit => [800, 800]
-  process :rotate
+  version :large do
+    process :resize_to_fit => [800, 800]
+    process :rotate
+    process :caption
+  end
   #
   # def scale(width, height)
   #   # do something
@@ -41,16 +44,42 @@ class ImageUploader < CarrierWave::Uploader::Base
 #    process :scale => [50, 50]
     process :resize_to_fill => [200,200]
 #    process :resize_to_fit => [150, 220]
+    process :rotate
   end
 
   version :small_thumb do
     process :resize_to_fill => [50, 50]
 #    process :resize_to_fit => [150, 220]
+    process :rotate
   end
 
   version :logo_icon do
     process :resize_to_fill => [30, 30]
 #    process :resize_to_fit => [150, 220]
+    process :rotate
+  end
+
+  def caption
+    if model.class.name == "Picture" and model.imageable_type == "Bodycomp"
+      # top right caption
+      manipulate! do |source|
+    #        img = Picture.last #picture that was just created
+        txt = Magick::Draw.new
+        txt.pointsize = 20
+        txt.font_family = "Impact"
+        txt.gravity = Magick::NorthEastGravity
+        txt.stroke = "#000000"
+        txt.fill = "#F3F315"
+        txt.font_weight = Magick::BoldWeight
+        caption = "Date: #{model.imageable.date.strftime("%m-%d-%Y")} \\r
+                  Body Fat: #{model.imageable.bodyfat_percent.round(1)}% \\r
+                  Lean: #{model.imageable.lean_mass.round} lb \\r
+                  Fat: #{model.imageable.fat_mass.round} lb"
+    #        source = source.resize_to_fill(400, 400).border(10, 10, "black")
+        source = source.resize_to_fill(640, 480)
+        source.annotate(txt, 0, 0, 0, 20, caption)
+      end
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
