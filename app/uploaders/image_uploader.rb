@@ -76,7 +76,7 @@ class ImageUploader < CarrierWave::Uploader::Base
                   Lean: #{model.imageable.lean_mass.round} lb \\r
                   Fat: #{model.imageable.fat_mass.round} lb"
     #        source = source.resize_to_fill(400, 400).border(10, 10, "black")
-        source = source.resize_to_fill(640, 480)
+        source = source.resize_to_fill(800, 800)
         source.annotate(txt, 0, 0, 0, 20, caption)
       end
     end
