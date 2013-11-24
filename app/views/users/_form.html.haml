@@ -1,6 +1,7 @@
 = simple_nested_form_for @user, :html => { :class => 'form-horizontal' } do |f|
   .row-fluid
-    - if params[:type] == 'trainer' or @user.is_trainer?
+    -# if params[:type] == 'trainer' or @user.is_trainer?
+    - if @user.is_trainer?
       .span6
         = f.simple_fields_for :trainer do |trainer_form|
           = trainer_form.input :company_name
