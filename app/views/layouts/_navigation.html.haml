@@ -5,7 +5,8 @@
 - unless current_user.is_client?
   %a.brand{:href => "/home#index"}
     .text-error
-      = image_tag('train_icon_small.png')
+      %i.icon-star
+      =# image_tag('train_icon_small.png')
       = "SuperUser" if current_user.username == 'jeremysenn'
       =# "#{current_user.trainer.full_name} Training" if current_user.is_trainer?
       = "#{current_user.trainer.company_name}" if current_user.is_trainer?
