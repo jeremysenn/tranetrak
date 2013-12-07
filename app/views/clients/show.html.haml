@@ -44,11 +44,11 @@
         %p
           %strong= model_class.human_attribute_name(:dob)
           %br
-          = @client.dob.strftime("%m/%d/%Y")
+          = @client.dob.strftime("%m/%d/%Y") unless @client.dob.blank?
         %p
           %strong= "Age"
           %br
-          = @client.dob_age
+          = @client.dob_age unless @client.dob.blank?
     .span10
       .tabbable{:style => "margin-bottom: 18px;"}
         .btn-group
