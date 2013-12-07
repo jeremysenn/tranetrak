@@ -5,9 +5,15 @@
       = "#{current_user.full_name} Training"
   .pagination-centered
     - if current_user.is_trainer?
-      %p= image_tag(current_user.trainer.pictures.first.image_url(:thumb)) if current_user.is_trainer? and not current_user.trainer.pictures.empty?
+      - if current_user.is_trainer? and not current_user.trainer.pictures.empty?
+        %p= image_tag(current_user.trainer.pictures.first.image_url(:thumb))
+      - else
+        %p= image_tag('tape_measure2-100.png')
     - elsif current_user.is_client?
-      %p= image_tag(current_user.client.trainer.pictures.first.image_url(:thumb)) unless current_user.client.trainer.pictures.empty?
+      - unless current_user.client.trainer.pictures.empty?
+        %p= image_tag(current_user.client.trainer.pictures.first.image_url(:thumb))
+      - else
+        %p= image_tag('tape_measure2-100.png')
   .container-narrow
     .form-signin
       .jumbotron
