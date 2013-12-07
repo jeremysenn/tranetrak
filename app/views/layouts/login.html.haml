@@ -71,7 +71,7 @@
                   = form_tag sessions_path do
                     = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
                     = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
-                    = button_tag(:type => 'submit', :class => 'btn btn-danger') do
+                    = button_tag(:type => 'submit', :class => 'btn ') do
                       Log in <i class="icon-lock"></i>
                     - if false
                       %a{:href => signup_path, :class => "btn btn-alert"}
