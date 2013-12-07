@@ -1,11 +1,21 @@
 class ClientsController < ApplicationController
-  load_and_authorize_resource
+#  load_and_authorize_resource
 
+  # GET /clients
+  # GET /clients.json
   def index
-    unless current_user.username == 'jeremysenn'
-      @clients = current_user.trainer.clients.order(:first_name).page(params[:page]).per(20)
-    else
-      @clients = Client.order(:first_name).page(params[:page]).per(20)
+    respond_to do |format|
+      format.html {
+        unless current_user.username == 'jeremysenn'
+          @clients = current_user.trainer.clients.order(:first_name).page(params[:page]).per(20)
+        else
+          @clients = Client.order(:first_name).page(params[:page]).per(20)
+        end
+      }
+      format.json {
+        @clients = Client.order(:first_name)
+        render json: @clients
+        }
     end
   end
 
