@@ -1,7 +1,7 @@
 - model_class = Client
 .container
   .row-fluid
-    .span3
+    .span2
       .sidebar-nav{:style => "border-right: 2px solid #B7410E; margin-right: 5px; padding-right: 19px;"}
         %ul.thumbnails
           - unless @client.image.blank?
@@ -43,7 +43,7 @@
         %p
           %strong= "Age"
           = @client.dob_age
-    .span9
+    .span10
       .tabbable{:style => "margin-bottom: 18px;"}
         - if false
           %ul.nav.nav-tabs
