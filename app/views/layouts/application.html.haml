@@ -31,7 +31,10 @@
         %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
           <button type="button" class="close" data-dismiss="alert">×</button>
           = content_tag :div, msg, :id => "flash_#{name}"
-
+      - if current_user.is_trainer? and current_user.subscription.blank?
+        .alert.alert-error
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          = "Please create your Subscription Plan through the drop-down on the upper right"
       - if show_title?
         %h1= yield(:title)
       .navbar.navbar-fixed-top

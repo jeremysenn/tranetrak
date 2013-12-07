@@ -73,10 +73,14 @@ class Ability
       ############
       if user.is_trainer?
         can :manage, Bodycomp do |b|
-          b.client.trainer == user.trainer
+          unless b.client.blank?
+            b.client.trainer == user.trainer
+          end
         end
         can :create, Bodycomp do |bc|
-          user.subscription.plan.stripe_plan_id == 10 or user.subscription.plan.stripe_plan_id == 12
+          unless user.subscription.blank?
+            user.subscription.plan.stripe_plan_id == 10 or user.subscription.plan.stripe_plan_id == 12 or user.subscription.plan.stripe_plan_id == 13
+          end
         end
       end
       if user.is_client?
