@@ -2,6 +2,7 @@
   .jumbotron
     .row-fluid
       .span12
+        = image_tag('tape_measure2-75.png')
         - if false
           %i.fa.fa-cut.fa-5x
           =# image_tag('train_icon_medium.png')
@@ -12,15 +13,15 @@
             %i.icon-star.text-error
           Personal Trainers
         %p.lead
-          Create and track client Body Composition Assessments.
+          Create & Track Client Body Composition Assessments.
         %a{:href => signup_path(:type => 'trainer'), :class => "btn btn-large btn-success"}
           Trainers
           %i.icon-play
       .span6
         %h2
-          Personal Training Clients
+          PT Clients
         %p.lead
-          View all your Body Compositions Assessments.
+          View your Body Compositions Assessments & Pictures.
         %a{:href => signup_path(:type => 'client'), :class => "btn btn-large btn-warning"}
           Clients
           %i.icon-play

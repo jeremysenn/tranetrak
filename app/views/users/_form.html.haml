@@ -29,4 +29,4 @@
     .span12
       .form-actions
         = f.button :submit, "Save", :class => 'btn-primary'
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), :back, :class => 'btn'

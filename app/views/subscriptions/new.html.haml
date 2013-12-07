@@ -1,7 +1,9 @@
 - model_class = Subscription
 .page-header
-  %h1= t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-      :default => "New #{model_class.model_name.human}")
+  %h2
+    %i.fa.fa-credit-card
+    = t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+      :default => "New #{model_class.model_name.human} - cancel anytime")
 = form_for @subscription, :html => { :class => 'form-horizontal card_form' } do |f|
   #stripe_error.alert.alert-error{style: "display:none"}
   - @subscription.errors.each do |attr, msg|

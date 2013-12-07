@@ -7,27 +7,27 @@
 
   .tabbable{:style => "margin-bottom: 18px;"}
     .btn-group
-      %ul.nav.nav-pills
+      %ul.nav.nav-tabs
         %li.active
-          %a{:href => "#basic", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's basic information."}
+          %a{:href => "#basic", :data => {:toggle => "tab"}, :title => "Enter client's basic information."}
             %button.btn
               %i.icon-file
-              Basic Info
+              Info
         %li
-          %a{:href => "#skinfolds", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's skinfold measurements."}
+          %a{:href => "#skinfolds", :data => {:toggle => "tab"}, :title => "Enter client's skinfold measurements."}
             %button.btn
               %i.icon-male
-              Skinfold Measurements
+              Skinfolds
         %li
-          %a{:href => "#circumferences", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's circumference measurements."}
+          %a{:href => "#circumferences", :data => {:toggle => "tab"}, :title => "Enter client's circumference measurements."}
             %button.btn
               %i.icon-rotate-right
-              Girth Measurements
+              Girths
         %li
-          %a{:href => "#pics", :data => {:toggle => "tab"}, :rel => 'tooltip', :title => "Enter client's pictures."}
+          %a{:href => "#pics", :data => {:toggle => "tab"}, :title => "Enter client's pictures."}
             %button.btn
               %i.icon-camera
-              Pictures
+              Pics
     .tab-content{:style => "padding-bottom: 9px; border-bottom: 1px solid #ddd;"}
       .tab-pane.active{:id => "basic"}
         .control-group

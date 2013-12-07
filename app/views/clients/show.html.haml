@@ -21,34 +21,38 @@
           = @client.full_name
         %p
           %strong= "Username"
+          %br
           - unless @client.user.blank?
             = @client.user.username
           - else
             = "Not yet signed up"
         %p
           %strong= "Trainer"
+          %br
           - unless @client.trainer.blank?
             = @client.trainer.full_name
           - else
             = "None"
         %p
           %strong= model_class.human_attribute_name(:email)
-          = @client.email
+          %br
+          = mail_to @client.email
         %p
           %strong= model_class.human_attribute_name(:phone)
+          %br
           = @client.phone
         %p
           %strong= model_class.human_attribute_name(:dob)
+          %br
           = @client.dob.strftime("%m/%d/%Y")
         %p
           %strong= "Age"
+          %br
           = @client.dob_age
     .span10
       .tabbable{:style => "margin-bottom: 18px;"}
-        - if false
-          %ul.nav.nav-tabs
         .btn-group
-          %ul.nav.nav-pills
+          %ul.nav.nav-tabs
             - if false
               %li.active
                 %a{:href => "#workouts", :data => {:toggle => "tab"}, :title => "View #{@client.first_name}'s Workouts"}
@@ -100,9 +104,9 @@
                       %th{:style => 'display:none;'}=t '.actions', :default => t("helpers.actions")
                       %th Date
                       %th Weight
-                      %th % Fat
-                      %th Lean Mass
-                      %th Fat Mass
+                      %th %
+                      %th Lean
+                      %th Fat
                       %th BMI
                       %th BMR
                       %th WHR
@@ -187,7 +191,7 @@
         %dd= "None"
       %dt
         %strong= model_class.human_attribute_name(:email)
-      %dd= @client.email
+      %dd= mail_to @client.email
       %dt
         %strong= model_class.human_attribute_name(:phone)
       %dd= @client.phone

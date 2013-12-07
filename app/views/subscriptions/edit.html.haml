@@ -1,6 +1,8 @@
 - model_class = Subscription
 .page-header
-  %h1= t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+  %h2
+    %i.fa.fa-credit-card
+    = t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
       :default => "Edit #{model_class.model_name.human}")                                      
 #stripe_error.alert.alert-error{style: "display:none"}
 - @subscription.errors.each do |attr, msg|
@@ -56,8 +58,8 @@
       = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
       %h3 Change Plan
     .modal-body
-      =# f.select :plan_id, Plan.all.collect {|p| [ p.description + " " + number_to_currency(p.price).to_s, p.id ]}, :class => "input-large"
-      %p= f.select :plan_id, Plan.all.last(1).collect {|p| [ p.description + " " + number_to_currency(p.price).to_s, p.id ]}, :class => "input-large"
+      =# f.select :plan_id, Plan.all.collect {|p| [ p.name + " " + number_to_currency(p.price).to_s, p.id ]}, :class => "input-large"
+      %p= f.select :plan_id, Plan.all.last(1).collect {|p| [ p.name + " " + number_to_currency(p.price).to_s, p.id ]}, :class => "input-large"
     = f.hidden_field :user_id, :value => current_user.id
     .modal-footer
       = f.submit "Change Plan", :class => "btn btn-primary"
