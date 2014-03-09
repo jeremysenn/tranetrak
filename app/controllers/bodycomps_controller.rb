@@ -77,6 +77,7 @@ class BodycompsController < ApplicationController
 
     respond_to do |format|
       if @bodycomp.update_attributes(params[:bodycomp])
+        @bodycomp.bodycomp_summary_email
         format.html { redirect_to @bodycomp, notice: 'Bodycomp was successfully updated.' }
         format.json { head :ok }
       else
