@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "notifications@tranetrak.com"
+#  default :from => "notifications@tranetrak.com"
   
   def email_user_plan_updated(subscription)
     @subscription = subscription
@@ -18,6 +18,6 @@ class UserMailer < ActionMailer::Base
 #    mail to: 'senn.jeremy@gmail.com',
       cc:    @user.email,
       from:  @user.email,
-    subject: "#{@client.full_name} - New Body Composition Assessment Completed"
+    subject: "#{@client.full_name} - Body Composition Assessment Completed"
   end
 end
