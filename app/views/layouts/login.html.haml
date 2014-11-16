@@ -2,7 +2,7 @@
 %html
 
   %head
-    %title= content_for?(:title) ? yield(:title) : "tranetrak"
+    %title= content_for?(:title) ? yield(:title) : "BodyComp"
     = favicon_link_tag 'favicon.ico'
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
@@ -44,7 +44,7 @@
               %p.text-error
                 =# image_tag('train_icon_small.png')
                 = image_tag('tape_measure2-25.png')
-                tranetrak
+                BodyComp
             .nav-collapse.collapse
               %ul.nav
                 %li= mail_to 'bodycomp@jeremysenn.com', '<i class="icon-question-sign"></i> Help'.html_safe
@@ -57,7 +57,7 @@
                     %ul.dropdown-menu
                       %li
                         %a{:href => nil}
-                          WHAT IS TRANETRAK?
+                          WHAT IS BODYCOMP?
                   %li.dropdown
                     %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
                       HOW
