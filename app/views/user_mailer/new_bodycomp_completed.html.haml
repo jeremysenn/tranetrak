@@ -4,14 +4,14 @@
     To view your overall progress and graphs, sign-in
     = link_to 'here', "http://71.84.141.163:8081"
 %table{:style=>"border: 1px solid #ddd;"}
-  %tr
+  %tr{:style=>"border-bottom: 1px solid #ddd;"}
     %th
       Percentage Body Fat
     %th
       Lean Body Mass
     %th
       Body Fat Mass
-  %tr
+  %tr{:style=>"border-bottom: 1px solid #ddd;"}
     %td
       = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
     %td
@@ -20,7 +20,6 @@
     %td
       = @bodycomp.fat_mass.round(1)
       = @bodycomp.weight_units
-%br
 %br
 %table{:style=>"border: 1px solid #ddd;"}
   %tr
@@ -102,9 +101,6 @@
   As reference, athletic body types will have a higher proportion of Lean Body Mass compared to normal body types. As such, it is important for
   all body types alike to monitor their Lean Body Mass.
 
-%br
-%br
-
 %p
   %strong Body Mass Index (BMI):
   = @bodycomp.bmi
@@ -151,8 +147,6 @@
   medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
   applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
   the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. 
-%br
-%br
 
 %p
   %strong Basil Metabolic Rate (BMR):
@@ -183,12 +177,7 @@
   LBM. Therefore, should the examinee gain LBM during the weight management program, their BMR would also increase, which is a desirable result in
   any weight management program.
   
-%br
-%br
-
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
-  %br
-  %br
   %p
     %strong Waist Circumference
     = @bodycomp.waist
@@ -268,6 +257,7 @@
 
 %p
   %strong Visceral Fat Area
+  %br
   Visceral Fat is the fat surrounding your major organs. The Waist and Waist-to-hip Ratio measures provide an output of the amount of visceral fat area an
   examinee has. Because of the location of visceral fat, the amount of visceral fat the examinee has is associated with the risk of developing certain health
   diseases. An accumulation of visceral fat can contribute to increased risk of Insulin-Resistant Diabetes, Heart Disease, Stroke, and even Dementia. The
