@@ -4,20 +4,20 @@
     To view your overall progress and graphs, sign-in
     = link_to 'here', "http://71.84.141.163:8081"
 %table{:style=>"border: 1px solid #ddd;"}
-  %tr{:style=>"border-bottom: 1px solid #ddd;"}
-    %th
+  %tr
+    %th{:style=>"border-bottom: 1px solid #ddd;"}
       Percentage Body Fat
-    %th
+    %th{:style=>"border-bottom: 1px solid #ddd;"}
       Lean Body Mass
-    %th
+    %th{:style=>"border-bottom: 1px solid #ddd;"}
       Body Fat Mass
-  %tr{:style=>"border-bottom: 1px solid #ddd;"}
-    %td
+  %tr
+    %td{:style=>"border-bottom: 1px solid #ddd;"}
       = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
-    %td
+    %td{:style=>"border-bottom: 1px solid #ddd;"}
       = @bodycomp.lean_mass.round(1)
       = @bodycomp.weight_units
-    %td
+    %td{:style=>"border-bottom: 1px solid #ddd;"}
       = @bodycomp.fat_mass.round(1)
       = @bodycomp.weight_units
 %br
