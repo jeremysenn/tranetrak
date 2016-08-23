@@ -1,81 +1,119 @@
-%h4= "#{@client.full_name} - Body Composition Assessment - See What You're Made Of"
+%h4
+  = @client.full_name
+  %br
+  Body Composition Assessment
+  %br
+  = @bodycomp.date.strftime("%B %e %Y")
 -#
   %p
     To view your overall progress and graphs, sign-in
     = link_to 'here', "http://71.84.141.163:8081"
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %tr
-    %th{:style=>"border: 1px solid #ddd;"}
-      Percentage Body Fat
-    %th{:style=>"border: 1px solid #ddd;"}
-      Lean Body Mass
-    %th{:style=>"border: 1px solid #ddd;"}
-      Body Fat Mass
-  %tr
-    %td{:style=>"border: 1px solid #ddd;"}
-      = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
-    %td{:style=>"border: 1px solid #ddd;"}
-      = @bodycomp.lean_mass.round(1)
-      = @bodycomp.weight_units
-    %td{:style=>"border: 1px solid #ddd;"}
-      = @bodycomp.fat_mass.round(1)
-      = @bodycomp.weight_units
+  %caption
+    %h5 Body Composition
+  %thead
+    %tr
+      %th{:style=>"border: 1px solid #ddd;"}
+        Percentage Body Fat
+      %th{:style=>"border: 1px solid #ddd;"}
+        Lean Body Mass
+      %th{:style=>"border: 1px solid #ddd;"}
+        Body Fat Mass
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}
+        = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
+      %td{:style=>"border: 1px solid #ddd;"}
+        = @bodycomp.lean_mass.round(1)
+        = @bodycomp.weight_units
+      %td{:style=>"border: 1px solid #ddd;"}
+        = @bodycomp.fat_mass.round(1)
+        = @bodycomp.weight_units
 %br
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %tr
-    %th{:style=>"border: 1px solid #ddd;"} Classification
-    %th{:style=>"border: 1px solid #ddd;"} Women (fat)
-    %th{:style=>"border: 1px solid #ddd;"} Men (fat)
-  - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 12)
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Essential Fat
-      %td{:style=>"border: 1px solid #ddd;"} 10-12%
-      %td{:style=>"border: 1px solid #ddd;"} 2-4%
-  - else
+  %caption
+    %h5 Classification
+  %thead
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Essential Fat
-      %td{:style=>"border: 1px solid #ddd;"} 10-12%
-      %td{:style=>"border: 1px solid #ddd;"} 2-4%
-  - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 13 and @bodycomp.bodyfat_percent > 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 20 and @bodycomp.bodyfat_percent > 12)
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Athletes
-      %td{:style=>"border: 1px solid #ddd;"} 14-20%
-      %td{:style=>"border: 1px solid #ddd;"} 6-13%
-  - else
+      %th{:style=>"border: 1px solid #ddd;"} Classification
+      %th{:style=>"border: 1px solid #ddd;"} Women (fat)
+      %th{:style=>"border: 1px solid #ddd;"} Men (fat)
+  %tbody
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 12)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Essential Fat
+        %td{:style=>"border: 1px solid #ddd;"} 10-12%
+        %td{:style=>"border: 1px solid #ddd;"} 2-4%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Essential Fat
+        %td{:style=>"border: 1px solid #ddd;"} 10-12%
+        %td{:style=>"border: 1px solid #ddd;"} 2-4%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 13 and @bodycomp.bodyfat_percent > 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 20 and @bodycomp.bodyfat_percent > 12)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Athletes
+        %td{:style=>"border: 1px solid #ddd;"} 14-20%
+        %td{:style=>"border: 1px solid #ddd;"} 6-13%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Athletes
+        %td{:style=>"border: 1px solid #ddd;"} 14-20%
+        %td{:style=>"border: 1px solid #ddd;"} 6-13%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 17 and @bodycomp.bodyfat_percent > 13) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 24 and @bodycomp.bodyfat_percent > 20)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Fitness
+        %td{:style=>"border: 1px solid #ddd;"} 21-24%
+        %td{:style=>"border: 1px solid #ddd;"} 14-17%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Fitness
+        %td{:style=>"border: 1px solid #ddd;"} 21-24%
+        %td{:style=>"border: 1px solid #ddd;"} 14-17%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Acceptable
+        %td{:style=>"border: 1px solid #ddd;"} 25-31%
+        %td{:style=>"border: 1px solid #ddd;"} 18-25%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Acceptable
+        %td{:style=>"border: 1px solid #ddd;"} 25-31%
+        %td{:style=>"border: 1px solid #ddd;"} 18-25%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent > 31)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd;"} 32%+
+        %td{:style=>"border: 1px solid #ddd;"} 25%+
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd;"} 32%+
+        %td{:style=>"border: 1px solid #ddd;"} 25%+
+
+%br
+
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %caption
+    %h5 Skin Fold Measures (millimeters)
+  %thead
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Athletes
-      %td{:style=>"border: 1px solid #ddd;"} 14-20%
-      %td{:style=>"border: 1px solid #ddd;"} 6-13%
-  - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 17 and @bodycomp.bodyfat_percent > 13) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 24 and @bodycomp.bodyfat_percent > 20)
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Fitness
-      %td{:style=>"border: 1px solid #ddd;"} 21-24%
-      %td{:style=>"border: 1px solid #ddd;"} 14-17%
-  - else
+      %th{:style=>"border: 1px solid #ddd;"} Chest
+      %th{:style=>"border: 1px solid #ddd;"} Triceps
+      %th{:style=>"border: 1px solid #ddd;"} Subscapular
+      %th{:style=>"border: 1px solid #ddd;"} Suprailiac
+      %th{:style=>"border: 1px solid #ddd;"} Midaxillary
+      %th{:style=>"border: 1px solid #ddd;"} Abdominal
+      %th{:style=>"border: 1px solid #ddd;"} Thigh
+  %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Fitness
-      %td{:style=>"border: 1px solid #ddd;"} 21-24%
-      %td{:style=>"border: 1px solid #ddd;"} 14-17%
-  - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Acceptable
-      %td{:style=>"border: 1px solid #ddd;"} 25-31%
-      %td{:style=>"border: 1px solid #ddd;"} 18-25%
-  - else
-    %tr
-      %td{:style=>"border: 1px solid #ddd;"} Acceptable
-      %td{:style=>"border: 1px solid #ddd;"} 25-31%
-      %td{:style=>"border: 1px solid #ddd;"} 18-25%
-  - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent > 31)
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Obese
-      %td{:style=>"border: 1px solid #ddd;"} 32%+
-      %td{:style=>"border: 1px solid #ddd;"} 25%+
-  - else
-    %tr
-      %td{:style=>"border: 1px solid #ddd;"} Obese
-      %td{:style=>"border: 1px solid #ddd;"} 32%+
-      %td{:style=>"border: 1px solid #ddd;"} 25%+
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+
 %p
   %strong Percent Body Fat
   %br
@@ -101,10 +139,11 @@
   As reference, athletic body types will have a higher proportion of Lean Body Mass compared to normal body types. As such, it is important for
   all body types alike to monitor their Lean Body Mass.
 
-%p
-  %strong Body Mass Index (BMI):
-  = @bodycomp.bmi
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %caption
+    %h5 
+      Body Mass Index (BMI):
+      = @bodycomp.bmi
   %tr
     %th{:style=>"border: 1px solid #ddd;"}
       BMI
@@ -148,10 +187,11 @@
   applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
   the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. 
 
-%p
-  %strong Basil Metabolic Rate (BMR):
-  = @bodycomp.bmr.round.to_s + " calories"
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %caption
+    %h5 
+      Basil Metabolic Rate (BMR):
+      = @bodycomp.bmr.round.to_s + " calories"
   %tr
     %th{:style=>"border: 1px solid #ddd;"} Activity Level
     %th{:style=>"border: 1px solid #ddd;"} Daily Calories
@@ -176,13 +216,38 @@
   closely related to BMR. BMR is usually calculated using indirect Calorimetry, which measures oxygen demand. However, we calculate BMR using
   LBM. Therefore, should the examinee gain LBM during the weight management program, their BMR would also increase, which is a desirable result in
   any weight management program.
+
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %caption
+    %h5 Circumference Measures (inches)
+  %thead
+    %tr
+      %th{:style=>"border: 1px solid #ddd;"} Waist
+      %th{:style=>"border: 1px solid #ddd;"} Hip
+      %th{:style=>"border: 1px solid #ddd;"} Neck
+      %th{:style=>"border: 1px solid #ddd;"} Shoulder
+      %th{:style=>"border: 1px solid #ddd;"} Chest
+      %th{:style=>"border: 1px solid #ddd;"} Arm
+      %th{:style=>"border: 1px solid #ddd;"} Thigh
+      %th{:style=>"border: 1px solid #ddd;"} Calf
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.hip
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.neck
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.shoulder
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.chest
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.arm
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.thigh
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.gastroc
   
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
-  %p
-    %strong Waist Circumference
-    = @bodycomp.waist
-    = @bodycomp.circumference_units
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+    %caption
+      %h5 
+        Waist Circumference:
+        = @bodycomp.waist
+        = @bodycomp.circumference_units
     %tr
       %th{:style=>"border: 1px solid #ddd;"}
         Male
@@ -211,12 +276,11 @@
         %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
         %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
-    %br
-    %br
-    %p
-      %strong Waist-to-hip Ratio (WHR):
-      = @bodycomp.waist_hip_ratio
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+      %caption
+        %h5 
+          %strong Waist-to-hip Ratio (WHR):
+          = @bodycomp.waist_hip_ratio
       %tr
         %th{:style=>"border: 1px solid #ddd;"}
           Male
