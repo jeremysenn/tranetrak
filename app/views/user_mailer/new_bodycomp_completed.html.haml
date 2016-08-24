@@ -1,4 +1,4 @@
-%h2
+%h3
   = @client.full_name
   %br
   Body Composition Analysis
@@ -7,7 +7,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h3 Body Composition
+    %strong Body Composition
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"}
@@ -27,9 +27,34 @@
         = @bodycomp.fat_mass.round(1)
         = @bodycomp.weight_units
 %br
+
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h3 Classification
+    %strong Skinfold Measures (millimeters)
+  %thead
+    %tr
+      %th{:style=>"border: 1px solid #ddd;"} Chest
+      %th{:style=>"border: 1px solid #ddd;"} Triceps
+      %th{:style=>"border: 1px solid #ddd;"} Subscapular
+      %th{:style=>"border: 1px solid #ddd;"} Suprailiac
+      %th{:style=>"border: 1px solid #ddd;"} Midaxillary
+      %th{:style=>"border: 1px solid #ddd;"} Abdominal
+      %th{:style=>"border: 1px solid #ddd;"} Thigh
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+
+%br
+
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %caption
+    %strong Classification
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"} Classification
@@ -87,30 +112,6 @@
         %td{:style=>"border: 1px solid #ddd;"} 32%+
         %td{:style=>"border: 1px solid #ddd;"} 25%+
 
-%br
-
-%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %h3 Skinfold Measures (millimeters)
-  %thead
-    %tr
-      %th{:style=>"border: 1px solid #ddd;"} Chest
-      %th{:style=>"border: 1px solid #ddd;"} Triceps
-      %th{:style=>"border: 1px solid #ddd;"} Subscapular
-      %th{:style=>"border: 1px solid #ddd;"} Suprailiac
-      %th{:style=>"border: 1px solid #ddd;"} Midaxillary
-      %th{:style=>"border: 1px solid #ddd;"} Abdominal
-      %th{:style=>"border: 1px solid #ddd;"} Thigh
-  %tbody
-    %tr
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
-
 %p
   %strong Percent Body Fat
   %br
@@ -138,7 +139,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h3
+    %strong
       Body Mass Index (BMI):
       = @bodycomp.bmi
   %tr
@@ -179,6 +180,8 @@
       %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
       %td{:style=>"border: 1px solid #ddd;"} Obese
 %p
+  %strong Body Mass Index
+  %br
   Body Mass Index (BMI) is an index used to determine obesity by using height and weight. The BMI method has been widely relied on in general
   medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
   applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
@@ -186,7 +189,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h3
+    %strong
       Basil Metabolic Rate (BMR):
       = @bodycomp.bmr.round.to_s + " calories"
   %tr
@@ -208,6 +211,8 @@
     %td{:style=>"border: 1px solid #ddd;"} Extremely Active (hard daily exercise/sports & physical job or 2X day training)
     %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.9).round
 %p
+  %strong Basal Metabolic Rate
+  %br
   The Basal Metabolic Rate (BMR) indicates the minimum energy required to sustain vital functions while at rest. We use the Katch-McArdle formula
   to determine the BMR using a known regression equation based on the amount of Lean Body Mass (LBM) an individual has. LBM is known to be
   closely related to BMR. BMR is usually calculated using indirect Calorimetry, which measures oxygen demand. However, we calculate BMR using
@@ -216,7 +221,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h3 Circumference Measures (inches)
+    %strong Circumference Measures (inches)
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"} Waist
@@ -241,7 +246,7 @@
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
     %caption
-      %h3 
+      %strong 
         Waist Circumference:
         = @bodycomp.waist
         = @bodycomp.circumference_units
@@ -275,7 +280,7 @@
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
       %caption
-        %h3
+        %strong
           %strong Waist-to-hip Ratio (WHR):
           = @bodycomp.waist_hip_ratio
       %tr
