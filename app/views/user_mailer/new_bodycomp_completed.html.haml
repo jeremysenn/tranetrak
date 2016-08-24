@@ -1,16 +1,13 @@
-%h4
+%h2
   = @client.full_name
   %br
-  Body Composition Assessment
+  Body Composition Analysis
   %br
   = @bodycomp.date.strftime("%B %e %Y")
--#
-  %p
-    To view your overall progress and graphs, sign-in
-    = link_to 'here', "http://71.84.141.163:8081"
+
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 Body Composition
+    %h3 Body Composition
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"}
@@ -32,7 +29,7 @@
 %br
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 Classification
+    %h3 Classification
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"} Classification
@@ -94,7 +91,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 Skinfold Measures (millimeters)
+    %h3 Skinfold Measures (millimeters)
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"} Chest
@@ -141,7 +138,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 
+    %h3
       Body Mass Index (BMI):
       = @bodycomp.bmi
   %tr
@@ -189,7 +186,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 
+    %h3
       Basil Metabolic Rate (BMR):
       = @bodycomp.bmr.round.to_s + " calories"
   %tr
@@ -219,7 +216,7 @@
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
-    %h5 Circumference Measures (inches)
+    %h3 Circumference Measures (inches)
   %thead
     %tr
       %th{:style=>"border: 1px solid #ddd;"} Waist
@@ -244,7 +241,7 @@
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
     %caption
-      %h5 
+      %h3 
         Waist Circumference:
         = @bodycomp.waist
         = @bodycomp.circumference_units
@@ -278,7 +275,7 @@
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
       %caption
-        %h5 
+        %h3
           %strong Waist-to-hip Ratio (WHR):
           = @bodycomp.waist_hip_ratio
       %tr
