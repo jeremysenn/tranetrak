@@ -250,6 +250,7 @@
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.gastroc
   
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
+  %br
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
     %caption
       %strong 
@@ -284,6 +285,7 @@
         %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
         %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
+    %br
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
       %caption
         %strong
