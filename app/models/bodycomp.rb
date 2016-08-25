@@ -147,4 +147,29 @@ class Bodycomp < ActiveRecord::Base
       return weight*2.2
     end
   end
+  
+  def priority_site
+    if (umbilical > suprailiac) and (umbilical > quad)
+      "Umbilical"
+    elsif (suprailiac > umbilical) and (suprailiac > quad)
+      "Suprailiac"
+    elsif (quad > suprailiac) and (quad > umbilical)
+      "Quad"
+    else
+      "None"
+    end
+  end
+  
+  def cortisol_priority?
+    priority_site == "Umbilical"
+  end
+  
+  def insulin_priority?
+    priority_site == "Suprailiac"
+  end
+  
+  def estrogen_priority?
+    priority_site == "Quad"
+  end
+  
 end
