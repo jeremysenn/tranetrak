@@ -1,10 +1,12 @@
 %p
-  = @client.full_name
-  %div{style: "text-align: right;"}
+  %strong
+    = @client.full_name
+    %br
+    Body Composition Analysis
+    %br
     = @bodycomp.date.strftime("%B %e %Y")
-  %br
-  Body Composition Analysis
-  
+
+%hr  
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %caption
