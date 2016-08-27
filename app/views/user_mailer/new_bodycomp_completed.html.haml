@@ -8,9 +8,8 @@
 
 %hr  
 
+%strong Body Composition
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong Body Composition
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"}
@@ -31,9 +30,8 @@
         = @bodycomp.weight_units
 %br
 
+%strong Classification
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong Classification
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"} Classification
@@ -118,9 +116,8 @@
 
 %hr
 
+%strong Skinfold Measures (millimeters)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong Skinfold Measures (millimeters)
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"} Chest
@@ -338,11 +335,10 @@
 
 %hr
 
+%strong
+  Body Mass Index (BMI):
+  = @bodycomp.bmi
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong
-      Body Mass Index (BMI):
-      = @bodycomp.bmi
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"}
@@ -396,11 +392,10 @@
 
 %hr
 
+%strong
+  Basil Metabolic Rate (BMR):
+  = @bodycomp.bmr.round.to_s + " calories"
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong
-      Basil Metabolic Rate (BMR):
-      = @bodycomp.bmr.round.to_s + " calories"
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"} Activity Level
@@ -433,9 +428,8 @@
 
 %hr
 
+%strong Circumference Measures (inches)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %caption
-    %strong Circumference Measures (inches)
   %thead
     %tr{style: 'background-color: #B0C4DE'}
       %th{:style=>"border: 1px solid #ddd;"} Waist
@@ -459,12 +453,11 @@
   
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %br
+  %strong 
+    Waist Circumference:
+    = @bodycomp.waist
+    = @bodycomp.circumference_units
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-    %caption
-      %strong 
-        Waist Circumference:
-        = @bodycomp.waist
-        = @bodycomp.circumference_units
     %thead
       %tr{style: 'background-color: #B0C4DE'}
         %th{:style=>"border: 1px solid #ddd;"}
@@ -496,11 +489,10 @@
           %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
     %br
+    %strong
+      Waist-to-hip Ratio (WHR):
+      = @bodycomp.waist_hip_ratio
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-      %caption
-        %strong
-          %strong Waist-to-hip Ratio (WHR):
-          = @bodycomp.waist_hip_ratio
       %thead
         %tr{style: 'background-color: #B0C4DE'}
           %th{:style=>"border: 1px solid #ddd;"}
