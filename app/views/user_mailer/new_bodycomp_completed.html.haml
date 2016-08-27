@@ -1,16 +1,17 @@
 %p{style: 'color: #954535;'}
-  = @client.full_name
-  %br
-  Body Composition Analysis
-  %br
-  = @bodycomp.date.strftime("%B %e %Y")
+  %strong
+    = @client.full_name
+    %br
+    Body Composition Analysis
+    %br
+    = @bodycomp.date.strftime("%B %e %Y")
 
 %hr  
 
 %strong Body Composition
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"}
         Percentage Body Fat
       %th{:style=>"border: 1px solid #ddd;"}
@@ -29,10 +30,10 @@
         = @bodycomp.weight_units
 %br
 
-%strong Classification
+%strong Body Composition Classification
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"} Classification
       %th{:style=>"border: 1px solid #ddd;"} Women (fat)
       %th{:style=>"border: 1px solid #ddd;"} Men (fat)
@@ -118,7 +119,7 @@
 %strong Skinfold Measures (millimeters)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"} Chest
       %th{:style=>"border: 1px solid #ddd;"} Triceps
       %th{:style=>"border: 1px solid #ddd;"} Subscapular
@@ -339,7 +340,7 @@
   = @bodycomp.bmi
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"}
         BMI
       %th{:style=>"border: 1px solid #ddd;"}
@@ -396,7 +397,7 @@
   = @bodycomp.bmr.round.to_s + " calories"
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"} Activity Level
       %th{:style=>"border: 1px solid #ddd;"} Daily Calories
   %tbody
@@ -430,7 +431,7 @@
 %strong Circumference Measures (inches)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
-    %tr{style: 'background-color: #98AFC7'}
+    %tr{style: 'background-color: #B7CEEC'}
       %th{:style=>"border: 1px solid #ddd;"} Waist
       %th{:style=>"border: 1px solid #ddd;"} Hip
       %th{:style=>"border: 1px solid #ddd;"} Neck
@@ -458,7 +459,7 @@
     = @bodycomp.circumference_units
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
     %thead
-      %tr{style: 'background-color: #98AFC7'}
+      %tr{style: 'background-color: #B7CEEC'}
         %th{:style=>"border: 1px solid #ddd;"}
           Male
         %th{:style=>"border: 1px solid #ddd;"}
@@ -493,7 +494,7 @@
       = @bodycomp.waist_hip_ratio
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
       %thead
-        %tr{style: 'background-color: #98AFC7'}
+        %tr{style: 'background-color: #B7CEEC'}
           %th{:style=>"border: 1px solid #ddd;"}
             Male
           %th{:style=>"border: 1px solid #ddd;"}
