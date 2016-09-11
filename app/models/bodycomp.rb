@@ -172,4 +172,20 @@ class Bodycomp < ActiveRecord::Base
     priority_site == "Quad"
   end
   
+  def underweight_bmi?
+    bmi < 18.5
+  end
+  
+  def normal_bmi?
+    bmi >= 18.5 and bmi <= 24.9
+  end
+  
+  def overweight_bmi?
+    bmi >= 25 and bmi <= 29.9
+  end
+  
+  def obese_bmi?
+    bmi >= 30
+  end
+  
 end

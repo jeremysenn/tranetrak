@@ -18,6 +18,6 @@ class UserMailer < ActionMailer::Base
 #    mail to: 'senn.jeremy@gmail.com',
       cc:    @user.email,
       from:  @user.email,
-    subject: "#{@client.full_name} - Body Composition Assessment Completed"
+    subject: "#{@client.full_name} - Body Composition Assessment Results"
   end
 end
