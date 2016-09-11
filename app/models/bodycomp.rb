@@ -172,6 +172,7 @@ class Bodycomp < ActiveRecord::Base
     priority_site == "Quad"
   end
   
+  ### BMI Calculations ###
   def underweight_bmi?
     bmi < 18.5
   end
@@ -188,4 +189,52 @@ class Bodycomp < ActiveRecord::Base
     bmi >= 30
   end
   
+  def bmi_next_level_down
+    if underweight_bmi? or normal_bmi?
+      "N/A"
+    elsif overweight_bmi?
+      "Normal"
+    elsif obese_bmi?
+      "Overweight"
+    else
+      "N/A"
+    end
+  end
+  
+  ### End BMI Calculations ###
+  
+  def essential_fat_bodycomp?
+    (sex == "Male" and bodyfat_percent <= 4) or (sex == "Female" and bodyfat_percent <= 12)
+  end
+  
+  def athlete_bodycomp?
+    (sex == "Male" and bodyfat_percent <= 13 and bodyfat_percent > 4) or (sex == "Female" and bodyfat_percent <= 20 and bodyfat_percent > 12)
+  end
+  
+  def fitness_bodycomp?
+    (sex == "Male" and bodyfat_percent <= 17 and bodyfat_percent > 13) or (sex == "Female" and bodyfat_percent <= 24 and bodyfat_percent > 20)
+  end
+  
+  def acceptable_bodycomp?
+    (sex == "Male" and bodyfat_percent <= 25 and bodyfat_percent > 17) or (sex == "Female" and bodyfat_percent <= 31 and bodyfat_percent > 24)
+  end
+  
+  def obese_bodycomp?
+    (sex == "Male" and bodyfat_percent >= 25) or (sex == "Female" and bodyfat_percent > 31)
+  end
+  
+  def bodycomp_next_level_up
+    if essential_fat_bodycomp? or athlete_bodycomp?
+      "N/A"
+    elsif fitness_bodycomp?
+      "Athletes"
+    elsif acceptable_bodycomp?
+      "Fitness"
+    elsif obese_bodycomp?
+      "Acceptable"
+    else
+      "N/A"
+    end
+  end
+      
 end
