@@ -1,58 +1,59 @@
 - model_class = Bodycomp
 .container
   .row-fluid
-    .span2
-      .sidebar-nav{:style => "border-right: 2px solid #B7410E; margin-right: 0; padding-right: 19px;"}
-        %h4.text-orange
-          %i.icon-th-list
-          Bodycomp
-        %p
-          %strong= "Client"
-          %br
-          = link_to @bodycomp.client.full_name, client_path(@bodycomp.client)
-        %p
-          %strong= "Date"
-          %br
-          = @bodycomp.date.strftime("%b %e %Y")
-        %p
-          %strong= "Weight"
-          %br
-          = @bodycomp.weight
-          = @bodycomp.weight_units
-        %p
-          %strong= "Body Fat"
-          %br
-          = @bodycomp.bodyfat_percent.round(1).to_s + "%" unless @bodycomp.bodydensity.blank?
-        %p
-          %strong= "Lean Mass"
-          %br
-          = @bodycomp.lean_mass.round(1) unless @bodycomp.bodydensity.blank?
-          = @bodycomp.weight_units
-        %p
-          %strong= "Fat Mass"
-          %br
-          = @bodycomp.fat_mass.round(1) unless @bodycomp.bodydensity.blank?
-          = @bodycomp.weight_units
-        %p
-          %strong= "BMR"
-          %br
-          = @bodycomp.bmr.round unless @bodycomp.bodydensity.blank?
-          Calories
-        %p
-          %strong= "BMI"
-          %br
-          = @bodycomp.bmi
-        - unless @bodycomp.waist_hip_ratio.blank?
+    -#
+      .span2
+        .sidebar-nav{:style => "border-right: 2px solid #B7410E; margin-right: 0; padding-right: 19px;"}
+          %h4.text-orange
+            %i.icon-th-list
+            Bodycomp
           %p
-            %strong= "WHR"
+            %strong= "Client"
             %br
-            = @bodycomp.waist_hip_ratio
-        - unless @bodycomp.notes.blank?
+            = link_to @bodycomp.client.full_name, client_path(@bodycomp.client)
           %p
-            %strong= "Notes"
+            %strong= "Date"
             %br
-            = @bodycomp.notes
-    .span10
+            = @bodycomp.date.strftime("%b %e %Y")
+          %p
+            %strong= "Weight"
+            %br
+            = @bodycomp.weight
+            = @bodycomp.weight_units
+          %p
+            %strong= "Body Fat"
+            %br
+            = @bodycomp.bodyfat_percent.round(1).to_s + "%" unless @bodycomp.bodydensity.blank?
+          %p
+            %strong= "Lean Mass"
+            %br
+            = @bodycomp.lean_mass.round(1) unless @bodycomp.bodydensity.blank?
+            = @bodycomp.weight_units
+          %p
+            %strong= "Fat Mass"
+            %br
+            = @bodycomp.fat_mass.round(1) unless @bodycomp.bodydensity.blank?
+            = @bodycomp.weight_units
+          %p
+            %strong= "BMR"
+            %br
+            = @bodycomp.bmr.round unless @bodycomp.bodydensity.blank?
+            Calories
+          %p
+            %strong= "BMI"
+            %br
+            = @bodycomp.bmi
+          - unless @bodycomp.waist_hip_ratio.blank?
+            %p
+              %strong= "WHR"
+              %br
+              = @bodycomp.waist_hip_ratio
+          - unless @bodycomp.notes.blank?
+            %p
+              %strong= "Notes"
+              %br
+              = @bodycomp.notes
+    .span12
       .tabbable{:style => "margin-bottom: 18px;"}
         .btn-group
           %ul.nav.nav-tabs
