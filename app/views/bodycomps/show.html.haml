@@ -57,6 +57,11 @@
         .btn-group
           %ul.nav.nav-tabs
             %li
+              %a{:href => "#summary", :data => {:toggle => "tab"}}
+                %button.btn.btn-small
+                  %i.icon-list
+                  Summary
+            %li
               %a{:href => "#classifications", :data => {:toggle => "tab"}}
                 %button.btn.btn-small
                   %i.icon-check
@@ -80,6 +85,8 @@
         .tab-content
           .tab-pane.active{:id => "graphs"}
             = render :partial => 'bodycomp_graphs'
+          .tab-pane{:id => "summary"}
+            = render :partial => 'summary'
           .tab-pane{:id => "classifications"}
             = render :partial => 'classifications'
           .tab-pane{:id => "results"}

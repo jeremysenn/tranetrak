@@ -21,6 +21,7 @@ class BodycompsController < ApplicationController
   def show
     @bodycomp = Bodycomp.find(params[:id])
     @bodycomps = @bodycomp.client.bodycomps
+    @client = @bodycomp.client
 
     respond_to do |format|
       format.html # show.html.erb

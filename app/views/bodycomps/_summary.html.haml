@@ -1,0 +1,567 @@
+%p{style: 'color: #954535;'}
+  %strong
+    = @client.full_name
+    %br
+    Body Composition Analysis
+    %br
+    = @bodycomp.date.strftime("%B %e %Y")
+
+%hr  
+
+%strong Body Composition
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"}
+        Percentage Body Fat
+      %th{:style=>"border: 1px solid #ddd;"}
+        Lean Body Mass
+      %th{:style=>"border: 1px solid #ddd;"}
+        Body Fat Mass
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}
+        = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
+      %td{:style=>"border: 1px solid #ddd;"}
+        = @bodycomp.lean_mass.round(1)
+        = @bodycomp.weight_units
+      %td{:style=>"border: 1px solid #ddd;"}
+        = @bodycomp.fat_mass.round(1)
+        = @bodycomp.weight_units
+%br
+
+%strong Body Composition Classification
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"} Classification
+      %th{:style=>"border: 1px solid #ddd;"} Women (fat)
+      %th{:style=>"border: 1px solid #ddd;"} Men (fat)
+  %tbody
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 12)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Essential Fat
+        %td{:style=>"border: 1px solid #ddd;"} 10-12%
+        %td{:style=>"border: 1px solid #ddd;"} 2-4%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Essential Fat
+        %td{:style=>"border: 1px solid #ddd;"} 10-12%
+        %td{:style=>"border: 1px solid #ddd;"} 2-4%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 13 and @bodycomp.bodyfat_percent > 4) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 20 and @bodycomp.bodyfat_percent > 12)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Athletes
+        %td{:style=>"border: 1px solid #ddd;"} 14-20%
+        %td{:style=>"border: 1px solid #ddd;"} 6-13%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Athletes
+        %td{:style=>"border: 1px solid #ddd;"} 14-20%
+        %td{:style=>"border: 1px solid #ddd;"} 6-13%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 17 and @bodycomp.bodyfat_percent > 13) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 24 and @bodycomp.bodyfat_percent > 20)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Fitness
+        %td{:style=>"border: 1px solid #ddd;"} 21-24%
+        %td{:style=>"border: 1px solid #ddd;"} 14-17%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Fitness
+        %td{:style=>"border: 1px solid #ddd;"} 21-24%
+        %td{:style=>"border: 1px solid #ddd;"} 14-17%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Acceptable
+        %td{:style=>"border: 1px solid #ddd;"} 25-31%
+        %td{:style=>"border: 1px solid #ddd;"} 18-25%
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Acceptable
+        %td{:style=>"border: 1px solid #ddd;"} 25-31%
+        %td{:style=>"border: 1px solid #ddd;"} 18-25%
+    - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent > 31)
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd;"} 32%+
+        %td{:style=>"border: 1px solid #ddd;"} 25%+
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd;"} 32%+
+        %td{:style=>"border: 1px solid #ddd;"} 25%+
+
+%p
+  %strong Percent Body Fat
+  %br
+  The standard percent body fat (PBF) is 15% for males and 23% for females, which are respective midpoints of the standard ranges of Body Fat
+  Mass in relation to standard weight: 10-20% of the standard weight for males and 18-28% for females. An individual with a calculated PBF that
+  is greater than the standard range is regarded as having a high level of body fat. When an individual's PBF is below the standard range, they
+  are regarded as having a low level of body fat. Individuals with low levels of body fat can be separated into two categories. The first has
+  muscle mass that is deemed an appropriate amount for that individual's body composition. The second type has an inadequate amount of muscle
+  mass in relation to their body composition. These individuals can be considered to be in an unhealthy state due to their imbalance of Body
+  Fat Mass and Lean Body Mass, and these individuals have a higher possibility of contracting clinical diseases.
+%p
+  %strong Body Fat Mass
+  %br
+  Body Fat Mass indicates the total quantity of lipids that can be extracted from fat and all other cells. Skinfold measures do not directly 
+  measure Body Fat Mass, but is determined by inserting the measures into a body density formula. Body Fat Mass is found stored under the skin,
+  in visceral areas (around organs in the chest and abdomen), and between muscles. When an individual's fat mass is higher than the standard range, 
+  he/she is diagnosed as being obese. Monitoring the amount of body fat mass an individual has is critical to maintaining good health.
+%p
+  %strong Lean Body Mass
+  %br
+  Lean Body Mass refers to the entire body weight with the exception of Body Fat Mass. Your body composition assessment provides both the
+  fundamentals as well as the comprehensive data related to Lean Body Mass that can aid in the evaluation of the health status of the examinee.
+  As reference, athletic body types will have a higher proportion of Lean Body Mass compared to normal body types. As such, it is important for
+  all body types alike to monitor their Lean Body Mass.
+
+%hr
+
+%strong Skinfold Measures (millimeters)
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"} Chest
+      %th{:style=>"border: 1px solid #ddd;"} Triceps
+      %th{:style=>"border: 1px solid #ddd;"} Subscapular
+      %th{:style=>"border: 1px solid #ddd;"} Suprailiac
+      %th{:style=>"border: 1px solid #ddd;"} Midaxillary
+      %th{:style=>"border: 1px solid #ddd;"} Abdominal
+      %th{:style=>"border: 1px solid #ddd;"} Thigh
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+
+-# if @bodycomp.cortisol_priority?
+%p
+  %strong Sites: Abdominal, Calf, Triceps
+  %br
+  %strong Priority Hormone: Cortisol/Growth Hormone
+%strong
+  Hormone Issues (Cortisol):
+%ul
+  %li
+    A high umbilicus measure or high stress may indicate current or past high circulating cortisol. Chronically high levels of cortisol due
+    to stress, insufficient sleep, diminished recovery, or blood sugar imbalances can increase fat mass (especially in the abdomen), decrease
+    muscle mass, hamper the body's ability to handle carbohydrates, decrease sleep quality and duration, depress the immune system, and raise
+    blood pressure. Too much stress and/or cortisol can promote pregnenolone steal, which decreases the body's androgens in favor of more
+    cortisol production.  Abdominal fat has four times more cortisol receptors than other body fat, so the tendency is to gain fat in the
+    abdominal region when chronically stressed. High levels of abdominal fat increase the risk for heart disease, promote conversion of
+    testosterone to estrogen through aromatization, increase the creation of cortisol, and is associated with the metabolic syndrome.
+
+%strong
+  Lifestyle Modifications (Cortisol):
+%ul
+  %li
+    = "Water - Get plenty of water by drinking at least #{(@bodycomp.weight/2).round} ounces of water per day spread throughout."
+  %li
+    Multiple Meals - Focus on smaller, more frequent meals throughout the day that are high in fiber and include a complete protein,
+    vegetable carbohydrate, and fat, making sure not to skip breakfast. Eat within the first hour upon awakening. Eat a small snack
+    before bedtime. Eat before you become hungry.
+  %li
+    Sleep - Improve sleep quality and duration with the following: Eat yin producing protein sources at last meal (cottage cheese,
+    swiss cheese, light/white meats, fish, shell fish). Turn lights down or off at least one hour before bed. Fiction reading
+    and/or slow-paced instrumental music 30-60 minutes before bed. Make your bedroom as dark as possible (no electronic's lights or
+    T.V.) or wear a night eye mask. Keep bedroom as quiet as possible or wear earplugs. Go to bed by 11pm. Shoot for at least eight
+    hours of sleep per night.
+  %li
+    Grateful Log
+  %li
+    Exercise - Perform strength training and cardiovascular exercise (intervals) earlier in the day to prevent nighttime cortisol production.
+  %li
+    Stimulants - Coffee/caffeine in moderation, no more than two cups per day, consumed before 2pm.
+  %li
+    High Fructose Corn Syrup (HFCS) - Reduce or eliminate HFCS because it can increase intra-abdominal fat, decrease insulin sensitivity, and increase cholesterol.
+  %li
+    Relax - Make time to do meditation, full-body stretching, deep breathing, or yoga - at least 10 minutes per day.
+
+%strong
+  Supplemental Help (Cortisol):
+%ul
+  %li
+    Multivitamin - take a high-quality multivitamin each day - helps cover nutritional gaps as well as detoxification.
+  %li
+    Magnesium (chelate form) - later in the day is best - reduces cortisol & calms the nervous system. Epsom salt baths and/or topical magnesium if poor gut health.
+  %li
+    B Vitamins  - used up quickly under stressful situations
+  %li
+    EPA/DHA - helps to reduce inflammation.
+  %li
+    Phosphatidyl Serine (PS) - anti-cortisol.
+  %li
+    Inositol
+  %li
+    Taurine
+  %li
+    Holy Basil - anti-cortisol.
+  %li
+    Licorice Root - helps extend the half-life of cortisol, which aids in the problem of low morning energy.
+  %li
+    Ashwaganda - anti-cortisol.
+  %li
+    Magnolia bark - anti-cortisol.
+  %li
+    Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
+
+-# if @bodycomp.insulin_priority?
+%p
+  %strong Sites: Suprailiac, Subscapular, Abdominal
+  %br
+  %strong Priority Hormone: Insulin
+%strong
+  Hormone Issues (Insulin):
+%ul
+  %li
+    A high Suprailiac skin fold measure or blood sugar imbalances can indicate high insulin levels and/or reduced
+    insulin sensitivity. It can also indicate that non-vegetable carbohydrate (starches and sugar) intake has been too
+    high. Chronically high insulin can induce insulin-cortisol see-saw, is associated with the metabolic syndrome, and
+    can lead to health problems.
+
+%strong
+  Lifestyle Modifications (Insulin):
+%ul
+  %li
+    Multiple Meals - To keep blood sugar levels steady, focus on smaller, more frequent meals throughout the day that are
+    high in fiber and include a complete protein, vegetable carbohydrate, and fat, making sure not to skip breakfast.
+  %li
+    Low Glycemic - Focus on low-glycemic foods, especially vegetables, saving most grains and processed carbohydrates for
+    the three hour post-workout window (if at all).
+  %li
+    Processed Carbohydrates - stay away from processed carbohydrates and stuff that comes in a box.
+  %li
+    = "Protein Intake - shoot for #{@bodycomp.weight_in_pounds/2} to #{@bodycomp.weight_in_pounds} grams of protein per day, depending on activity levels, spread throughout."
+  %li
+    Condiments - add these to your whole food meals to lower the blood sugar response: dill/sweet pickles, green olives,
+    horseradish, lemon/lime juice, artichoke hearts, pickled beets, garlic, sauerkraut, no-sugar salsa, vinegar, olive oil.
+  %li
+    Exercise - moderate amounts of cardiovascular and strength training balance blood sugar and improve insulin sensitivity.
+  %li
+    Coconut Oil - balance blood sugar, decrease insulin response, & improve digestive health.
+  %li
+    Berries - balance blood sugar and increase insulin sensitivity
+
+%strong
+  Supplemental Help (Insulin):
+%ul
+  %li
+    EPA/DHA - decrease glycemic response, increase fat utilization for energy, decrease inflammation, and increase insulin sensitivity.
+  %li
+    Flax Seed Meal - help control blood sugar and insulin.
+  %li
+    Fenugreek - increase insulin sensitivity, lower cholesterol, lower triglycerides.
+  %li
+    Insulinomics - increase insulin sensitivity.
+  %li
+    Vitamin D3
+  %li
+    Cinnamon - decrease blood sugar response.
+  %li
+    Gymnema Sylvestre - decrease blood sugar response, increase insulin sensitivity, improve pancreatic health, lower cholesterol,
+    lower triglycerides.
+  %li
+    Alpha-Lipoic Acid (ALA) - decrease insulin response.
+  %li
+    Magnesium (chelate form)
+  %li
+    Zinc
+
+-# if @bodycomp.estrogen_priority?
+%p
+  %strong Sites: Quadriceps, Hamstring, Pectoral
+  %br
+  %strong Priority Hormone: Estrogen
+%strong
+  Hormone Issues (Estrogen):
+%ul
+  %li
+    Estrogen-related issues may indicate sub-optimal estrogen clearance, high exposure to environmental estrogens, and/or excessive
+    aromatization (conversion of testosterone to estrogen). Too much estrogen has been shown to increase the risk of cancer. Often there
+    is a need to improve E2:E16 or E2:E4 ratios.
+%strong
+  Lifestyle Modifications (Estrogen):
+%ul
+  %li
+    Plastic - Do not use plastics for drinking, eating, or storing food, especially if contents are hot, and don't microwave anything
+    in plastic. BPA and Phthalates in plastics are known endocrine disruptors, decreasing androgens and increasing estrogens. Look at ewg.org for more information on which plastic containers are safe.
+  %li
+    Teflon - Limit/eliminate cooking in Teflon pots & pans. Teflon is an endocrine disruptor.
+  %li
+    Cosmetics - Make sure your cosmetics are free of Parabens. Parabens mimic estrogen in the body, so check your products at the
+    website ewg.org.
+  %li
+    Soy - Limit/eliminate use of processed soy products. Soy is a phytoestrogen that mimics estrogen in the body.
+  %li
+    Organic - Buy mostly organic animal products and buy pesticide-free (organic) produce (especially peaches, apples, peppers,
+    celery, nectarines, strawberries, cherries, kale, lettuce, grapes, carrots, & pears because of high pesticide absorption).
+  %li
+    Cruciferous Vegetables - Ensure adequate consumption of cruciferous vegetables (broccoli, collards, kale, kohirabi, turnip,
+    rutabaga, radish) and tomatoes.
+  %li
+    Green Tea - Drink green tea (hot or cold) throughout the day.
+  %li
+    Red Wine - Drink red wine in moderation (1-2 glasses per night: Merlot, Pinot noir, Spanish wines). Resveratrol in these wines
+    is anti-aromitization.
+  %li
+    Dark Chocolate - Eat dark chocolate (70% or higher) in moderation (1-2 oz per day). Chocolate polyphenols specifically aid the uterus.
+
+%strong
+  Supplemental Help (Estrogen) *all serve to optimize estrogen metabolism and clearance:
+%ul
+  %li
+    Diindolylmethane (DIM)
+  %li
+    Sulforaphane
+  %li
+    Calcium D-Glucarate
+  %li
+    Resveratrol (also found in red wine)
+  %li
+    Fiber (pectin variations, flax husks, psyllium, chia)
+  %li
+    Zinc
+  %li
+    Vitamin D3
+  %li
+    Curcumin (helps reduce inflammation as well)
+  %li
+    Evening Primrose
+  %li
+    Yohimbine (cream)
+
+%hr
+
+%strong
+  Body Mass Index (BMI):
+  = @bodycomp.bmi
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"}
+        BMI
+      %th{:style=>"border: 1px solid #ddd;"}
+        Status
+  %tbody
+    - if @bodycomp.bmi < 18.5
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd;"} Underweight
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd;"} Underweight
+    - if @bodycomp.bmi >= 18.5 and @bodycomp.bmi <= 24.9
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd;"} Normal
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd;"} Normal
+    - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd;"} Overweight
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd;"} Overweight
+    - if @bodycomp.bmi >= 30
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+%p
+  %strong Body Mass Index
+  %br
+  Body Mass Index (BMI) is an index used to determine obesity by using height and weight. The BMI method has been widely relied on in general
+  medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
+  applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
+  the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. Maintaining
+  a healthy weight may reduce the risk of chronic diseases. Conditions associated with overweight and obesity include high blood
+  pressure, diabetes, and high cholesterol. Anyone who is overweight should work to avoid gaining additional weight. Furthermore,
+  if you are overweight with other risk factors (such as high LDL cholesterol, low HDL cholesterol, or high blood pressure), you
+  should try to lose weight. Even a small weight loss (just 10% of your current weight) may help lower the risk of disease.
+
+%hr
+
+%strong
+  Basil Metabolic Rate (BMR):
+  = @bodycomp.bmr.round.to_s + " calories"
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"} Activity Level
+      %th{:style=>"border: 1px solid #ddd;"} Daily Calories
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"} Sedentary (little or no exercise, desk job)
+      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.2).round
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"} Lightly Active (light exercise/sports 1-3 days/wk)
+      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.375).round
+    %tr{:style => 'background-color: #fff2cc'}
+      %td{:style=>"border: 1px solid #ddd;"} Moderately Active (moderate exercise/sports 3-5 days/wk)
+      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.55).round
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"} Very Active (hard exercise/sports 6-7 days/wk)
+      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.725).round
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"} Extremely Active (hard daily exercise/sports & physical job or 2X day training)
+      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.9).round
+%p
+  %strong Basal Metabolic Rate
+  %br
+  The Basal Metabolic Rate (BMR) indicates the minimum energy required to sustain vital functions while at rest. We use the Katch-McArdle formula
+  to determine the BMR using a known regression equation based on the amount of Lean Body Mass (LBM) an individual has. LBM is known to be
+  closely related to BMR. BMR is usually calculated using indirect Calorimetry, which measures oxygen demand. However, we calculate BMR using
+  LBM. Therefore, should the examinee gain LBM during the weight management program, their BMR would also increase, which is a desirable result in
+  any weight management program. Basal Metabolic Rate is usually the largest component of total daily caloric expenditure. BMR typically decreases with
+  age due to losses in lean body mass.
+
+%hr
+
+%strong Circumference Measures (inches)
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"} Waist
+      %th{:style=>"border: 1px solid #ddd;"} Hip
+      %th{:style=>"border: 1px solid #ddd;"} Neck
+      %th{:style=>"border: 1px solid #ddd;"} Shoulder
+      %th{:style=>"border: 1px solid #ddd;"} Chest
+      %th{:style=>"border: 1px solid #ddd;"} Arm
+      %th{:style=>"border: 1px solid #ddd;"} Thigh
+      %th{:style=>"border: 1px solid #ddd;"} Calf
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.hip
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.neck
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.shoulder
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.chest
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.arm
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.thigh
+      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.gastroc
+  
+- unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
+  %br
+  %strong 
+    Waist Circumference:
+    = @bodycomp.waist
+    = @bodycomp.circumference_units
+  %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+    %thead
+      %tr{style: 'background-color: #B7CEEC'}
+        %th{:style=>"border: 1px solid #ddd;"}
+          Male
+        %th{:style=>"border: 1px solid #ddd;"}
+          Female
+        %th{:style=>"border: 1px solid #ddd;"}
+          Classification
+    %tbody
+      - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 88)
+        %tr{:style => 'background-color: #fff2cc'}
+          %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
+          %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
+          %td{:style=>"border: 1px solid #ddd;"} Low Risk
+      - else
+        %tr
+          %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
+          %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
+          %td{:style=>"border: 1px solid #ddd;"} Low Risk
+      - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 88)
+        %tr{:style => 'background-color: #fff2cc'}
+          %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
+          %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
+          %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
+      - else
+        %tr
+          %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
+          %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
+          %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
+  - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
+    %br
+    %strong
+      Waist-to-hip Ratio (WHR):
+      = @bodycomp.waist_hip_ratio
+    %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+      %thead
+        %tr{style: 'background-color: #B7CEEC'}
+          %th{:style=>"border: 1px solid #ddd;"}
+            Male
+          %th{:style=>"border: 1px solid #ddd;"}
+            Female
+          %th{:style=>"border: 1px solid #ddd;"}
+            Health Risk Based Solely on WHR
+      %tbody
+        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio <= 0.95) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio <= 0.80)
+          %tr{:style => 'background-color: #fff2cc'}
+            %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
+            %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
+            %td{:style=>"border: 1px solid #ddd;"} Low Risk
+        - else
+          %tr
+            %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
+            %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
+            %td{:style=>"border: 1px solid #ddd;"} Low Risk
+        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 0.95 and @bodycomp.waist_hip_ratio <= 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.80 and @bodycomp.waist_hip_ratio <= 0.85)
+          %tr{:style => 'background-color: #fff2cc'}
+            %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
+            %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
+            %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
+        - else
+          %tr
+            %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
+            %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
+            %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
+        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.85)
+          %tr{:style => 'background-color: #fff2cc'}
+            %td{:style=>"border: 1px solid #ddd;"} 1.0+
+            %td{:style=>"border: 1px solid #ddd;"} 0.85+
+            %td{:style=>"border: 1px solid #ddd;"} High Risk
+        - else
+          %tr
+            %td{:style=>"border: 1px solid #ddd;"} 1.0+
+            %td{:style=>"border: 1px solid #ddd;"} 0.85+
+            %td{:style=>"border: 1px solid #ddd;"} High Risk
+
+%p
+  %strong Visceral Fat Area
+  %br
+  Visceral Fat is the fat surrounding your major organs. The Waist and Waist-to-hip Ratio measures provide an output of the amount of visceral fat area an
+  examinee has. Because of the location of visceral fat, the amount of visceral fat the examinee has is associated with the risk of developing certain health
+  diseases. An accumulation of visceral fat can contribute to increased risk of Insulin-Resistant Diabetes, Heart Disease, Stroke, and even Dementia. The
+  accumulation of visceral fat has also been associated with technical difficulties in performing surgery, specifically abdominal surgery. Therefore, it is
+  important to monitor the examinee's visceral fat levels provided by these measurements in order to properly assess that individual's current chances of
+  developing the mentioned health risks.
+  %br
+  %br
+  Waist-to-hip ratio (WHR) is the ratio of waist circumference to hip circumference. People with
+  extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
+  extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
+  health risks. A WHR of 0.7 for women and 0.9 for men has been shown to correlate strongly with general health and fertility.
+  Women within the 0.7 range have optimal levels of estrogen and are less susceptible to major diseases such as diabetes,
+  cardiovascular disorders and ovarian cancers. Women with high WHR (higher than 0.80) have significantly lower pregnancy
+  rates than women with lower WHRs (0.70–0.79), independent of their BMIs. Men with WHRs around 0.9, similarly, have been shown to
+  be more healthy and fertile with less prostate cancer and testicular cancer.
+  %br
+  %br
+  Studies show that abdominal obesity is strongly associated with an increased risk of type 2 diabetes,
+  cardiovascular disease, and death, even after controlling for body mass index (BMI). The fat surrounding the liver and
+  other abdominal organs, so-called "visceral fat", is very metabolically active. It releases fatty acids, inflammatory agents,
+  and hormones that ultimately lead to higher LDL cholesterol, triglycerides, blood glucose, and blood pressure.
+  A waist circumference measurement of over 35 inches (88 centimeters) in women, and over 40 inches (102 centimeters) in men is
+  is considered Abdominal Obesity by the American Heart Association (AHA).
+
+%p
+  %strong
+    *Always consult your physician before taking any dietary supplements if you have an existing medical condition, are taking medication, are pregnant, nursing, 
+    or may become pregnant, and/or if your health status is unknown.
