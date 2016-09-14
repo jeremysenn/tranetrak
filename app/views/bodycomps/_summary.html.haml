@@ -210,19 +210,21 @@
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
 
-%table.priority
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %%thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"} Priority
+      %th{:style=>"border: 1px solid #ddd;"} Site
+      %th{:style=>"border: 1px solid #ddd;"} Hormone
   %tr
-    %th Priority
-    %th Site
+    %td{:style=>"border: 1px solid #ddd;"} #1
+    %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.priority_list[0][0]
   %tr
-    %td #1
-    %td= @bodycomp.priority_list[0][0]
+    %td{:style=>"border: 1px solid #ddd;"} #2
+    %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.priority_list[1][0]
   %tr
-    %td #2
-    %td= @bodycomp.priority_list[1][0]
-  %tr
-    %td #3
-    %td= @bodycomp.priority_list[2][0]
+    %td{:style=>"border: 1px solid #ddd;"} #3
+    %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.priority_list[2][0]
 
 -# if @bodycomp.cortisol_priority?
 %p

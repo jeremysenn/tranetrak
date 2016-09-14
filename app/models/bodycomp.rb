@@ -290,7 +290,7 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def priority_hash ## SORTED
-    Hash["pec", pec_pvalue, "subscap", subscap_pvalue, "midaxil", midaxil_pvalue, "suprailiac", suprailiac_pvalue, "umbilical", umbilical_pvalue, "quad", quad_pvalue].sort {|a,b| a[1]<=>b[1]}.reverse
+    Hash["Chest", pec_pvalue, "Subscapular", subscap_pvalue, "Midaxillary", midaxil_pvalue, "Suprailiac", suprailiac_pvalue, "Abdominal", umbilical_pvalue, "Thigh", quad_pvalue].sort {|a,b| a[1]<=>b[1]}.reverse
   end
 
   def priority_list
