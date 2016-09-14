@@ -101,20 +101,6 @@ class Bodycomp < ActiveRecord::Base
     defense_bodyfat_percent/100 * weight
   end
 
-  def bmi
-    if height_units == "inches"
-      h = (height * 0.0254)
-    elsif height_units == "centimeters"
-      h = (height * 0.01)
-    end
-    if weight_units == "pounds"
-      w = (weight * 0.45359237)
-    elsif weight_units == "kilograms"
-      w = weight
-    end
-    (w/(h * h)).round(2)
-  end
-
   def waist_hip_ratio
     unless waist.blank? or hip.blank?
       (waist/hip).round(2)
@@ -173,6 +159,29 @@ class Bodycomp < ActiveRecord::Base
   end
   
   ### BMI Calculations ###
+  
+  def height_in_meters
+    if height_units == "inches"
+      return height * 0.0254
+    elsif height_units == "centimeters"
+      return height * 0.01
+    end
+  end
+  
+  def weight_in_kilograms
+    if weight_units == "pounds"
+      weight * 0.45359237
+    elsif weight_units == "kilograms"
+      weight
+    end
+  end
+  
+  def bmi
+    h = height_in_meters
+    w = weight_in_kilograms
+    return (w/(h * h)).round(2)
+  end
+  
   def underweight_bmi?
     bmi < 18.5
   end
@@ -189,7 +198,7 @@ class Bodycomp < ActiveRecord::Base
     bmi >= 30
   end
   
-  def bmi_next_level_down
+  def bmi_goal_status
     if underweight_bmi? or normal_bmi?
       "N/A"
     elsif overweight_bmi?
@@ -201,7 +210,26 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def bmi_goal_weight_loss
+    unless normal_bmi? or underweight_bmi?
+      if obese_bmi?
+        w = 29.9 * (height_in_meters * height_in_meters)
+      elsif overweight_bmi?
+        w = 24.9 * (height_in_meters * height_in_meters)
+      end
+      if weight_units == "pounds"
+        return (w * 2.20462) # Convert to pounds
+      elsif weight_units == "kilograms"
+        return w # Keep in kilograms
+      end
+    else
+      return 0
+    end
+  end
+  
   ### End BMI Calculations ###
+  
+  ### Bodycomp Calculations ###
   
   def essential_fat_bodycomp?
     (sex == "Male" and bodyfat_percent <= 4) or (sex == "Female" and bodyfat_percent <= 12)
@@ -223,7 +251,7 @@ class Bodycomp < ActiveRecord::Base
     (sex == "Male" and bodyfat_percent >= 25) or (sex == "Female" and bodyfat_percent > 31)
   end
   
-  def bodycomp_next_level_up
+  def bodycomp_goal_classification
     if essential_fat_bodycomp? or athlete_bodycomp?
       "N/A"
     elsif fitness_bodycomp?
@@ -236,5 +264,17 @@ class Bodycomp < ActiveRecord::Base
       "N/A"
     end
   end
+  
+  def bodycomp_goal_percentage
+    unless essential_fat_bodycomp? or athlete_bodycomp?
+      if obese_bodycomp?
+        w = 29.9 * (height_in_meters * height_in_meters)
+      end
+    else
+      return nil
+    end
+  end
+  
+  ### End Bodycomp Calculations ###
       
 end

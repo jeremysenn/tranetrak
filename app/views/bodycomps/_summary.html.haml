@@ -15,6 +15,8 @@
       %th{:style=>"border: 1px solid #ddd;"}
         Percentage Body Fat
       %th{:style=>"border: 1px solid #ddd;"}
+        Body Weight
+      %th{:style=>"border: 1px solid #ddd;"}
         Lean Body Mass
       %th{:style=>"border: 1px solid #ddd;"}
         Body Fat Mass
@@ -22,6 +24,9 @@
     %tr
       %td{:style=>"border: 1px solid #ddd;"}
         = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
+      %td{:style=>"border: 1px solid #ddd;"}
+        = @bodycomp.weight
+        = @bodycomp.weight_units
       %td{:style=>"border: 1px solid #ddd;"}
         = @bodycomp.lean_mass.round(1)
         = @bodycomp.weight_units
@@ -89,7 +94,9 @@
         %td{:style=>"border: 1px solid #ddd;"} 32%+
         %td{:style=>"border: 1px solid #ddd;"} 25%+
 
-%p= "Goal Classification: #{@bodycomp.bodycomp_next_level_up}"
+%p
+  %strong Goal Classification:
+  = #{@bodycomp.bodycomp_goal_classification}
 
 %p
   %strong Percent Body Fat
@@ -380,6 +387,13 @@
       %tr
         %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd;"} Obese
+%p
+  %strong Goal Status:
+  = #{@bodycomp.bmi_goal_classification}
+  %br
+  %strong Goal Weight Loss:
+  = "#{@bodycomp.bmi_goal_weight_loss} #{@bodycomp.weight_units}"
+
 %p
   %strong Body Mass Index
   %br
