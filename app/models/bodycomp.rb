@@ -134,30 +134,6 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
-  def priority_site
-    if (umbilical > suprailiac) and (umbilical > quad)
-      "Umbilical"
-    elsif (suprailiac > umbilical) and (suprailiac > quad)
-      "Suprailiac"
-    elsif (quad > suprailiac) and (quad > umbilical)
-      "Quad"
-    else
-      "None"
-    end
-  end
-  
-  def cortisol_priority?
-    priority_site == "Umbilical"
-  end
-  
-  def insulin_priority?
-    priority_site == "Suprailiac"
-  end
-  
-  def estrogen_priority?
-    priority_site == "Quad"
-  end
-  
   ### BMI Calculations ###
   
   def height_in_meters
@@ -276,5 +252,50 @@ class Bodycomp < ActiveRecord::Base
   end
   
   ### End Bodycomp Calculations ###
+  
+  ### Priority Values ###
+  ### All numbers relative to triceps ###
+  def pec_pvalue
+    # Optimal is pec <=3mm for Male and Female
+    (pec - tri)/tri * 100
+  end
+
+  def subscap_pvalue
+    # Optimal is subscap <=10mm for Male and Female
+    ((subscap - 5) - tri)/tri * 100
+  end
+
+  def midaxil_pvalue
+    # Optimal is midaxil <=5mm for Male and Female
+    (midaxil - tri)/tri * 100
+  end
+
+  def suprailiac_pvalue
+    # Optimal is suprailiac <10mm for Male and Female
+    ((suprailiac - 5) - tri)/tri * 100
+  end
+
+  def umbilical_pvalue
+    # Optimal is umbilical <8mm for Male and umbilical <13mm for Female
+    ((umbilical - 3) - tri)/tri * 100
+  end
+  
+  def quad_pvalue
+    # Optimal is quad <5mm for Male and quad <15mm for Female
+    if male?
+      (quad - tri)/tri * 100
+    elsif female?
+      ((quad - (0.5 * tri)) - tri)/tri * 100
+    end
+  end
+  
+  def priority_hash ## SORTED
+    Hash["pec", pec_pvalue, "subscap", subscap_pvalue, "midaxil", midaxil_pvalue, "suprailiac", suprailiac_pvalue, "umbilical", umbilical_pvalue, quad_pvalue].sort {|a,b| a[1]<=>b[1]}.reverse
+  end
+
+  def priority_list
+    priority_hash.first(3)
+  end
+  ### End Priority Values ###
       
 end

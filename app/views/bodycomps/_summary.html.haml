@@ -179,7 +179,7 @@
   %strong Body Mass Index
   %br
   Body Mass Index (BMI) is an index used to determine obesity by using height and weight. The BMI method has been widely relied on in general
-  medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
+  medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is somewhat flawed in that it cannot be
   applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
   the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. Maintaining
   a healthy weight may reduce the risk of chronic diseases. Conditions associated with overweight and obesity include high blood
@@ -209,6 +209,20 @@
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+
+%table.priority
+  %tr
+    %th Priority
+    %th Site
+  %tr
+    %td #1
+    %td= @bodycomp.priority_list[0][0]
+  %tr
+    %td #2
+    %td= @bodycomp.priority_list[1][0]
+  %tr
+    %td #3
+    %td= @bodycomp.priority_list[2][0]
 
 -# if @bodycomp.cortisol_priority?
 %p
