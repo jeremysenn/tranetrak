@@ -96,7 +96,7 @@
 
 %p
   %strong Goal Classification:
-  = #{@bodycomp.bodycomp_goal_classification}
+  = "#{@bodycomp.bodycomp_goal_classification}"
 
 %p
   %strong Percent Body Fat
@@ -389,7 +389,7 @@
         %td{:style=>"border: 1px solid #ddd;"} Obese
 %p
   %strong Goal Status:
-  = #{@bodycomp.bmi_goal_classification}
+  = "#{@bodycomp.bmi_goal_classification}"
   %br
   %strong Goal Weight Loss:
   = "#{@bodycomp.bmi_goal_weight_loss} #{@bodycomp.weight_units}"
