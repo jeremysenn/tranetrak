@@ -95,7 +95,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 25%+
 
 %p
-  %strong Goal Classification:
+  %strong Goal Body Composition Classification:
   = "#{@bodycomp.bodycomp_goal_classification}"
 
 %p
@@ -122,6 +122,70 @@
   fundamentals as well as the comprehensive data related to Lean Body Mass that can aid in the evaluation of the health status of the examinee.
   As reference, athletic body types will have a higher proportion of Lean Body Mass compared to normal body types. As such, it is important for
   all body types alike to monitor their Lean Body Mass.
+
+%hr
+
+%strong
+  Body Mass Index (BMI):
+  = @bodycomp.bmi
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #B7CEEC'}
+      %th{:style=>"border: 1px solid #ddd;"}
+        BMI
+      %th{:style=>"border: 1px solid #ddd;"}
+        Status
+  %tbody
+    - if @bodycomp.bmi < 18.5
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd;"} Underweight
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd;"} Underweight
+    - if @bodycomp.bmi >= 18.5 and @bodycomp.bmi <= 24.9
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd;"} Normal
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd;"} Normal
+    - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd;"} Overweight
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd;"} Overweight
+    - if @bodycomp.bmi >= 30
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+    - else
+      %tr
+        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd;"} Obese
+%p
+  %strong Goal BMI Status:
+  = "#{@bodycomp.bmi_goal_status}"
+  %br
+  %strong Goal Weight Loss:
+  = "#{@bodycomp.bmi_goal_weight_loss} #{@bodycomp.weight_units}"
+
+%p
+  %strong Body Mass Index
+  %br
+  Body Mass Index (BMI) is an index used to determine obesity by using height and weight. The BMI method has been widely relied on in general
+  medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
+  applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
+  the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. Maintaining
+  a healthy weight may reduce the risk of chronic diseases. Conditions associated with overweight and obesity include high blood
+  pressure, diabetes, and high cholesterol. Anyone who is overweight should work to avoid gaining additional weight. Furthermore,
+  if you are overweight with other risk factors (such as high LDL cholesterol, low HDL cholesterol, or high blood pressure), you
+  should try to lose weight. Even a small weight loss (just 10% of your current weight) may help lower the risk of disease.
 
 %hr
 
@@ -341,70 +405,6 @@
     Evening Primrose
   %li
     Yohimbine (cream)
-
-%hr
-
-%strong
-  Body Mass Index (BMI):
-  = @bodycomp.bmi
-%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
-  %thead
-    %tr{style: 'background-color: #B7CEEC'}
-      %th{:style=>"border: 1px solid #ddd;"}
-        BMI
-      %th{:style=>"border: 1px solid #ddd;"}
-        Status
-  %tbody
-    - if @bodycomp.bmi < 18.5
-      %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
-        %td{:style=>"border: 1px solid #ddd;"} Underweight
-    - else
-      %tr
-        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
-        %td{:style=>"border: 1px solid #ddd;"} Underweight
-    - if @bodycomp.bmi >= 18.5 and @bodycomp.bmi <= 24.9
-      %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
-        %td{:style=>"border: 1px solid #ddd;"} Normal
-    - else
-      %tr
-        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
-        %td{:style=>"border: 1px solid #ddd;"} Normal
-    - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
-      %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
-        %td{:style=>"border: 1px solid #ddd;"} Overweight
-    - else
-      %tr
-        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
-        %td{:style=>"border: 1px solid #ddd;"} Overweight
-    - if @bodycomp.bmi >= 30
-      %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
-        %td{:style=>"border: 1px solid #ddd;"} Obese
-    - else
-      %tr
-        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
-        %td{:style=>"border: 1px solid #ddd;"} Obese
-%p
-  %strong Goal Status:
-  = "#{@bodycomp.bmi_goal_status}"
-  %br
-  %strong Goal Weight Loss:
-  = "#{@bodycomp.bmi_goal_weight_loss} #{@bodycomp.weight_units}"
-
-%p
-  %strong Body Mass Index
-  %br
-  Body Mass Index (BMI) is an index used to determine obesity by using height and weight. The BMI method has been widely relied on in general
-  medicine, dietary, and sports medicine fields as the main means of diagnosing obesity. However, this method is flawed in that it cannot be
-  applied to adults with high levels of Lean Body Mass, children, those over the age of 65, or pregnant females. Nevertheless, as BMI has been
-  the most commonly used index, research using the BMI method to prevent adult diseases has been conducted frequently. Maintaining
-  a healthy weight may reduce the risk of chronic diseases. Conditions associated with overweight and obesity include high blood
-  pressure, diabetes, and high cholesterol. Anyone who is overweight should work to avoid gaining additional weight. Furthermore,
-  if you are overweight with other risk factors (such as high LDL cholesterol, low HDL cholesterol, or high blood pressure), you
-  should try to lose weight. Even a small weight loss (just 10% of your current weight) may help lower the risk of disease.
 
 %hr
 
