@@ -202,7 +202,7 @@
       %th{:style=>"border: 1px solid #ddd;"} Thigh
   %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
+      %td{:style=>"border: 1px solid #ddd; background-color: #fff2cc"}= @bodycomp.pec
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
@@ -210,11 +210,13 @@
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
 
-%p= "Priority Site(s): #{@bodycomp.priority_list.join(', ')}"
+%p
+  %strong Priority Site(s)
+  "#{@bodycomp.priority_list.join(', ')}"
 
 - if @bodycomp.priority_list.include?("Abdominal")
   %p
-    %strong Sites: Abdominal
+    %strong Site: Abdominal
     %br
     %strong Priority Hormone: Cortisol
   %ul
