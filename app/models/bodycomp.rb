@@ -294,7 +294,13 @@ class Bodycomp < ActiveRecord::Base
   end
 
   def priority_list
-    priority_hash.first(3)
+    list = []
+    priority_hash.first(3).each do |site|
+      if site[1] > 0
+        list << site[0]
+      end
+    end
+    return list
   end
   ### End Priority Values ###
       
