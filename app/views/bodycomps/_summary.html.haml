@@ -229,8 +229,8 @@
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
 
 %p
-  %strong Priority Site(s)
-  "#{@bodycomp.priority_list.join(', ')}"
+  %strong Priority Sites(s):
+  "#{@bodycomp.priority_list.join(', ')}".gsub!('"', '') unless @bodycomp.priority_list.blank?
 
 - if @bodycomp.priority_list.include?("Abdominal")
   %p
