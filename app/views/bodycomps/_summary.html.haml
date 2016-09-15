@@ -202,13 +202,31 @@
       %th{:style=>"border: 1px solid #ddd;"} Thigh
   %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd; background-color: #F08080"}= @bodycomp.pec
+      - if @bodycomp.priority_list.include?("Chest")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.pec
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+      - if @bodycomp.priority_list.include?("Subscapular")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.subscap
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
+      - if @bodycomp.priority_list.include?("Subscapular")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.suprailiac
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
+      - if @bodycomp.priority_list.include?("Midaxillary")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.midaxil
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
+      - if @bodycomp.priority_list.include?("Abdominal")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.umbilical
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
+      - if @bodycomp.priority_list.include?("Thigh")
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.quad
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
 
 %p
   %strong Priority Site(s)
