@@ -321,7 +321,7 @@
           %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
           %td{:style=>"border: 1px solid #ddd;"} Low Risk
       - if @bodycomp.abdominal_obesity?
-        %tr{:style => 'background-color: #fff2cc'}
+        %tr{:style => 'background-color: #F08080'}
           %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
           %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
           %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
@@ -345,7 +345,7 @@
           %th{:style=>"border: 1px solid #ddd;"}
             Health Risk Based Solely on WHR
       %tbody
-        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio <= 0.95) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio <= 0.80)
+        - if (not @bodycomp.whr_moderate_risk?) and (not @bodycomp.whr_high_risk?)
           %tr{:style => 'background-color: #fff2cc'}
             %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
             %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
@@ -355,8 +355,8 @@
             %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
             %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
             %td{:style=>"border: 1px solid #ddd;"} Low Risk
-        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 0.95 and @bodycomp.waist_hip_ratio <= 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.80 and @bodycomp.waist_hip_ratio <= 0.85)
-          %tr{:style => 'background-color: #fff2cc'}
+        - if @bodycomp.whr_moderate_risk?
+          %tr{:style => 'background-color: #F08080'}
             %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
             %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
             %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
@@ -365,8 +365,8 @@
             %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
             %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
             %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
-        - if (@bodycomp.sex == "Male" and @bodycomp.waist_hip_ratio > 1) or (@bodycomp.sex == "Female" and @bodycomp.waist_hip_ratio > 0.85)
-          %tr{:style => 'background-color: #fff2cc'}
+        - if @bodycomp.whr_high_risk?
+          %tr{:style => 'background-color: #F08080'}
             %td{:style=>"border: 1px solid #ddd;"} 1.0+
             %td{:style=>"border: 1px solid #ddd;"} 0.85+
             %td{:style=>"border: 1px solid #ddd;"} High Risk
