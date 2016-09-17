@@ -95,7 +95,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 25%+
 
 %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
-  %strong Goal Body Composition Classification:
+  %strong Goal Classification:
   = "#{@bodycomp.bodycomp_goal_classification}"
   %br
   %strong Goal Fat Loss:
@@ -156,7 +156,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
         %td{:style=>"border: 1px solid #ddd;"} Normal
     - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
-      %tr{:style => 'background-color: #fff2cc'}
+      %tr{:style => 'background-color: #F08080'}
         %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
         %td{:style=>"border: 1px solid #ddd;"} Overweight
     - else
@@ -164,14 +164,14 @@
         %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
         %td{:style=>"border: 1px solid #ddd;"} Overweight
     - if @bodycomp.bmi >= 30
-      %tr{:style => 'background-color: #fff2cc'}
+      %tr{:style => 'background-color: #F08080'}
         %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd;"} Obese
     - else
       %tr
         %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd;"} Obese
-%p
+%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
   %strong Goal BMI Status:
   = "#{@bodycomp.bmi_goal_status}"
   %br

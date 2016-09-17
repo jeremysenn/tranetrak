@@ -194,9 +194,9 @@ class Bodycomp < ActiveRecord::Base
         w = 24.9 * (height_in_meters * height_in_meters)
       end
       if weight_units == "pounds"
-        return (w * 2.20462) # Convert to pounds
+        return weight - (w * 2.20462) # Convert to pounds
       elsif weight_units == "kilograms"
-        return w # Keep in kilograms
+        return weight - w # Keep in kilograms
       end
     else
       return 0
