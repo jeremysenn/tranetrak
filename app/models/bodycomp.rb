@@ -241,6 +241,18 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def bodycomp_goal_fat_loss
+    if acceptable_bodycomp? or obese_bodycomp?
+      if acceptable_bodycomp?
+        10
+      elsif obese_bodycomp?
+        20
+      end
+    else
+      return 0
+    end
+  end
+  
   def bodycomp_goal_percentage
     unless essential_fat_bodycomp? or athlete_bodycomp?
       if obese_bodycomp?
