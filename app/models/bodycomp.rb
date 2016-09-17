@@ -113,12 +113,43 @@ class Bodycomp < ActiveRecord::Base
     (sex == "Male" and circumference_units == "inches" and waist > 40) or (sex == "Male" and circumference_units == "centimeters" and waist > 102) or (sex == "Female" and circumference_units == "inches" and waist > 35) or (sex == "Female" and circumference_units == "centimeters" and waist > 88)
   end
   
+  def whr_low_risk?
+    (sex == "Male" and waist_hip_ratio <= 0.95) or (sex == "Female" and waist_hip_ratio <= 0.80)
+  end
+  
   def whr_moderate_risk?
     (sex == "Male" and waist_hip_ratio > 0.95 and waist_hip_ratio <= 1) or (sex == "Female" and waist_hip_ratio > 0.80 and waist_hip_ratio <= 0.85)
   end
   
   def whr_high_risk?
     (sex == "Male" and waist_hip_ratio > 1) or (sex == "Female" and waist_hip_ratio > 0.85)
+  end
+  
+  def goal_waist_circumference
+    unless whr_low_risk?
+      if whr_high_risk?
+        if male?
+          w = hip * 1
+        elsif female?
+          w = hip * 0.85
+        end
+      elsif whr_moderate_risk?
+        if male?
+          w = hip * 0.95
+        elsif female?
+          w = hip * 0.80
+        end
+      end
+      return w
+    else
+      "N/A"
+    end
+  end
+  
+  def goal_waist_reduction
+    unless goal_waist_circumference == "N/A"
+      waist - goal_waist_circumference
+    end
   end
 
   ### Katch-McArdle Formula (Basil Metabolic Rate) ###

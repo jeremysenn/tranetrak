@@ -1,4 +1,4 @@
-%p{style: 'color: #993031;'}
+%p
   %strong
     = @client.full_name
     %br
@@ -380,6 +380,13 @@
             %td{:style=>"border: 1px solid #ddd;"} 1.0+
             %td{:style=>"border: 1px solid #ddd;"} 0.85+
             %td{:style=>"border: 1px solid #ddd;"} High Risk
+
+%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+  %strong Goal Waist Circumference:
+  = "#{@bodycomp.goal_waist_circumference} #{@bodycomp.circumference_units}"
+  %br
+  %strong Goal Waist Reduction:
+  = "#{@bodycomp.goal_waist_reduction} #{@bodycomp.circumference_units}"
 
 - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
   %p
