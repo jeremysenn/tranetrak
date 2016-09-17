@@ -407,9 +407,11 @@
 
 - if @bodycomp.priority_list.include?("Abdominal") 
   %p
-    %strong Site: Abdominal
+    %strong Site: 
+    Abdominal
     %br
-    %strong Priority Hormone: Cortisol
+    %strong Priority Hormone: 
+    Cortisol
   %ul
     %li
       A high umbilicus measure or high stress may indicate current or past high circulating cortisol. Chronically high levels of cortisol due
@@ -476,9 +478,11 @@
 
 - if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular") or @bodycomp.priority_list.include?("Abdominal")
   %p
-    %strong Sites: Suprailiac, Subscapular, Abdominal
+    %strong Site(s)
+    = "#{@bodycomp.priority_list.include?('Suprailiac') ? 'Suprailiac' : ''} #{@bodycomp.priority_list.include?('Subscapular') ? 'Subscapular' : ''} #{@bodycomp.priority_list.include?('Abdominal') ? 'Abdominal' : ''}"
     %br
-    %strong Priority Hormone: Insulin
+    %strong Priority Hormone: 
+    Insulin
   %ul
     %li
       A high Suprailiac skin fold measure or blood sugar imbalances can indicate high insulin levels and/or reduced
@@ -536,9 +540,11 @@
 
 - if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest")
   %p
-    %strong Sites: Quadriceps, Hamstring, Pectoral
+    %strong Site(s):
+    = "#{@bodycomp.priority_list.include?('Thigh') ? 'Thigh' : ''} #{@bodycomp.priority_list.include?('Chest') ? 'Chest' : ''}"
     %br
-    %strong Priority Hormone: Estrogen
+    %strong Priority Hormone: 
+    Estrogen
   %ul
     %li
       Estrogen-related issues may indicate sub-optimal estrogen clearance, high exposure to environmental estrogens, and/or excessive
