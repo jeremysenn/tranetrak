@@ -1,4 +1,4 @@
-%p{style: 'color: #954535;'}
+%p{style: 'color: #993031;'}
   %strong
     = @client.full_name
     %br
@@ -74,7 +74,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 21-24%
         %td{:style=>"border: 1px solid #ddd;"} 14-17%
     - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
-      %tr{:style => 'background-color: #F08080'}
+      %tr{:style => 'background-color: #EFD6D6; color: #993031'}
         %td{:style=>"border: 1px solid #ddd;"} Acceptable
         %td{:style=>"border: 1px solid #ddd;"} 25-31%
         %td{:style=>"border: 1px solid #ddd;"} 18-25%
@@ -84,7 +84,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 25-31%
         %td{:style=>"border: 1px solid #ddd;"} 18-25%
     - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent > 31)
-      %tr{:style => 'background-color: #F08080'}
+      %tr{:style => 'background-color: #EFD6D6; color: #993031'}
         %td{:style=>"border: 1px solid #ddd;"} Obese
         %td{:style=>"border: 1px solid #ddd;"} 32%+
         %td{:style=>"border: 1px solid #ddd;"} 25%+
@@ -156,7 +156,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
         %td{:style=>"border: 1px solid #ddd;"} Normal
     - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
-      %tr{:style => 'background-color: #F08080'}
+      %tr{:style => 'background-color: #EFD6D6; color: #993031'}
         %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
         %td{:style=>"border: 1px solid #ddd;"} Overweight
     - else
@@ -164,7 +164,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
         %td{:style=>"border: 1px solid #ddd;"} Overweight
     - if @bodycomp.bmi >= 30
-      %tr{:style => 'background-color: #F08080'}
+      %tr{:style => 'background-color: #EFD6D6; color: #993031'}
         %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd;"} Obese
     - else
@@ -242,28 +242,28 @@
   %tbody
     %tr
       - if @bodycomp.priority_list.include?("Chest")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.pec
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.pec
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
       - if @bodycomp.priority_list.include?("Subscapular")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.subscap
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.subscap
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
       - if @bodycomp.priority_list.include?("Subscapular")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.suprailiac
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.suprailiac
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
       - if @bodycomp.priority_list.include?("Midaxillary")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.midaxil
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.midaxil
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
       - if @bodycomp.priority_list.include?("Abdominal")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.umbilical
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.umbilical
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
       - if @bodycomp.priority_list.include?("Thigh")
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.quad
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.quad
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
 -#
@@ -288,7 +288,7 @@
   %tbody
     %tr
       - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
-        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.waist
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.waist
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.hip
@@ -326,7 +326,7 @@
           %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
           %td{:style=>"border: 1px solid #ddd;"} Low Risk
       - if @bodycomp.abdominal_obesity?
-        %tr{:style => 'background-color: #F08080'}
+        %tr{:style => 'background-color: #EFD6D6; color: #993031'}
           %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
           %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
           %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
@@ -361,7 +361,7 @@
             %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
             %td{:style=>"border: 1px solid #ddd;"} Low Risk
         - if @bodycomp.whr_moderate_risk?
-          %tr{:style => 'background-color: #F08080'}
+          %tr{:style => 'background-color: #EFD6D6; color: #993031'}
             %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
             %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
             %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
@@ -371,7 +371,7 @@
             %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
             %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
         - if @bodycomp.whr_high_risk?
-          %tr{:style => 'background-color: #F08080'}
+          %tr{:style => 'background-color: #EFD6D6; color: #993031'}
             %td{:style=>"border: 1px solid #ddd;"} 1.0+
             %td{:style=>"border: 1px solid #ddd;"} 0.85+
             %td{:style=>"border: 1px solid #ddd;"} High Risk
