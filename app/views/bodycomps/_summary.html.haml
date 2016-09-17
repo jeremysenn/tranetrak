@@ -74,7 +74,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 21-24%
         %td{:style=>"border: 1px solid #ddd;"} 14-17%
     - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent <= 25 and @bodycomp.bodyfat_percent > 17) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent <= 31 and @bodycomp.bodyfat_percent > 24)
-      %tr{:style => 'background-color: #954535'}
+      %tr{:style => 'background-color: #F08080'}
         %td{:style=>"border: 1px solid #ddd;"} Acceptable
         %td{:style=>"border: 1px solid #ddd;"} 25-31%
         %td{:style=>"border: 1px solid #ddd;"} 18-25%
@@ -84,7 +84,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 25-31%
         %td{:style=>"border: 1px solid #ddd;"} 18-25%
     - if (@bodycomp.sex == "Male" and @bodycomp.bodyfat_percent >= 25) or (@bodycomp.sex == "Female" and @bodycomp.bodyfat_percent > 31)
-      %tr{:style => 'background-color: #954535'}
+      %tr{:style => 'background-color: #F08080'}
         %td{:style=>"border: 1px solid #ddd;"} Obese
         %td{:style=>"border: 1px solid #ddd;"} 32%+
         %td{:style=>"border: 1px solid #ddd;"} 25%+
@@ -94,7 +94,7 @@
         %td{:style=>"border: 1px solid #ddd;"} 32%+
         %td{:style=>"border: 1px solid #ddd;"} 25%+
 
-%p{style: 'border: 1px solid #954535; background-color: #D3696C'}
+%p{style: 'border: 1px solid black; background-color: #fff2cc'}
   %strong Goal Body Composition Classification:
   = "#{@bodycomp.bodycomp_goal_classification}"
 
