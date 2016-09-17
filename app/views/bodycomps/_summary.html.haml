@@ -310,7 +310,7 @@
         %th{:style=>"border: 1px solid #ddd;"}
           Classification
     %tbody
-      - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist <= 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist <= 88)
+      - if not @bodycomp.abdominal_obesity?
         %tr{:style => 'background-color: #fff2cc'}
           %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
           %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
@@ -320,7 +320,7 @@
           %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
           %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
           %td{:style=>"border: 1px solid #ddd;"} Low Risk
-      - if (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 40) or (@bodycomp.sex == "Male" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 102) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "inches" and @bodycomp.waist > 35) or (@bodycomp.sex == "Female" and @bodycomp.circumference_units == "centimeters" and @bodycomp.waist > 88)
+      - if @bodycomp.abdominal_obesity?
         %tr{:style => 'background-color: #fff2cc'}
           %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
           %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)

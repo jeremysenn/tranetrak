@@ -108,6 +108,10 @@ class Bodycomp < ActiveRecord::Base
       nil
     end
   end
+  
+  def abdominal_obesity?
+    (sex == "Male" and circumference_units == "inches" and waist > 40) or (sex == "Male" and circumference_units == "centimeters" and waist > 102) or (sex == "Female" and circumference_units == "inches" and waist > 35) or (sex == "Female" and circumference_units == "centimeters" and waist > 88)
+  end
 
   ### Katch-McArdle Formula (Basil Metabolic Rate) ###
   def bmr
