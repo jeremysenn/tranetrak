@@ -300,21 +300,21 @@ class Bodycomp < ActiveRecord::Base
     if fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
       if fitness_bodycomp?
         if male?
-          13
+          0.13
         elsif female?
-          20
+         0.20
         end
       elsif acceptable_bodycomp?
         if male?
-          17
+          0.17
         elsif female?
-          24
+          0.24
         end
       elsif obese_bodycomp?
         if male?
-          25
+          0.25
         elsif female?
-          31
+          0.31
         end
       end
     else
@@ -324,13 +324,8 @@ class Bodycomp < ActiveRecord::Base
   
   def bodycomp_goal_fat_loss
     if fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
-      if fitness_bodycomp?
-        0.025 * weight
-      elsif acceptable_bodycomp?
-        0.05 * weight
-      elsif obese_bodycomp?
-        0.10 * weight
-      end
+      goal_fat_mass = (lean_mass * bodycomp_goal_percentage) / (1 - bodycomp_goal_percentage)
+      return (fat_mass - goal_fat_mass)
     else
       return 0
     end
