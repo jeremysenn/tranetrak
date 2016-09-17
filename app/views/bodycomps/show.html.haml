@@ -1,6 +1,6 @@
 - model_class = Bodycomp
 .row-fluid
-  .span12
+  .span10
     .tabbable{:style => "margin-bottom: 18px;"}
       .btn-group
         %ul.nav.nav-tabs
@@ -52,15 +52,14 @@
                     = image_tag(pic.image_url(:large).to_s)
                   .modal-footer
                     = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
--#
-  - unless current_user.is_client?
-    .form-actions
-      %a{:href => bodycomps_path, :class => 'btn'}
-        %i.icon-chevron-left
-        Back
-      %a{:href => edit_bodycomp_path(@bodycomp), :class => 'btn'}
-        = "Edit"
-        %i.icon-edit
-      %a{:href => bodycomp_path(@bodycomp), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
-        = "Delete"
-        %i.icon-remove
+- unless current_user.is_client?
+  .form-actions
+    %a{:href => bodycomps_path, :class => 'btn'}
+      %i.icon-chevron-left
+      Back
+    %a{:href => edit_bodycomp_path(@bodycomp), :class => 'btn'}
+      = "Edit"
+      %i.icon-edit
+    %a{:href => bodycomp_path(@bodycomp), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
+      = "Delete"
+      %i.icon-remove
