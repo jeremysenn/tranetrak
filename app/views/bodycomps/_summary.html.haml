@@ -271,6 +271,8 @@
     %strong Priority Site(s):
     = "#{@bodycomp.priority_list.join(', ')}"
 
+%br
+
 %strong Circumference Measures (inches)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
@@ -285,7 +287,10 @@
       %th{:style=>"border: 1px solid #ddd;"} Calf
   %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
+      - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
+        %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.waist
+      - else
+        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.hip
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.neck
       %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.shoulder
@@ -376,33 +381,34 @@
             %td{:style=>"border: 1px solid #ddd;"} 0.85+
             %td{:style=>"border: 1px solid #ddd;"} High Risk
 
-%p
-  %strong Visceral Fat Area
-  %br
-  Visceral Fat is the fat surrounding your major organs. The Waist and Waist-to-hip Ratio measures provide an output of the amount of visceral fat area an
-  examinee has. Because of the location of visceral fat, the amount of visceral fat the examinee has is associated with the risk of developing certain health
-  diseases. An accumulation of visceral fat can contribute to increased risk of Insulin-Resistant Diabetes, Heart Disease, Stroke, and even Dementia. The
-  accumulation of visceral fat has also been associated with technical difficulties in performing surgery, specifically abdominal surgery. Therefore, it is
-  important to monitor the examinee's visceral fat levels provided by these measurements in order to properly assess that individual's current chances of
-  developing the mentioned health risks.
-  %br
-  %br
-  Waist-to-hip ratio (WHR) is the ratio of waist circumference to hip circumference. People with
-  extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
-  extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
-  health risks. A WHR of 0.7 for women and 0.9 for men has been shown to correlate strongly with general health and fertility.
-  Women within the 0.7 range have optimal levels of estrogen and are less susceptible to major diseases such as diabetes,
-  cardiovascular disorders and ovarian cancers. Women with high WHR (higher than 0.80) have significantly lower pregnancy
-  rates than women with lower WHRs (0.70–0.79), independent of their BMIs. Men with WHRs around 0.9, similarly, have been shown to
-  be more healthy and fertile with less prostate cancer and testicular cancer.
-  %br
-  %br
-  Studies show that abdominal obesity is strongly associated with an increased risk of type 2 diabetes,
-  cardiovascular disease, and death, even after controlling for body mass index (BMI). The fat surrounding the liver and
-  other abdominal organs, so-called "visceral fat", is very metabolically active. It releases fatty acids, inflammatory agents,
-  and hormones that ultimately lead to higher LDL cholesterol, triglycerides, blood glucose, and blood pressure.
-  A waist circumference measurement of over 35 inches (88 centimeters) in women, and over 40 inches (102 centimeters) in men is
-  is considered Abdominal Obesity by the American Heart Association (AHA).
+- if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
+  %p
+    %strong Visceral Fat Area
+    %br
+    Visceral Fat is the fat surrounding your major organs. The Waist and Waist-to-hip Ratio measures provide an output of the amount of visceral fat area an
+    examinee has. Because of the location of visceral fat, the amount of visceral fat the examinee has is associated with the risk of developing certain health
+    diseases. An accumulation of visceral fat can contribute to increased risk of Insulin-Resistant Diabetes, Heart Disease, Stroke, and even Dementia. The
+    accumulation of visceral fat has also been associated with technical difficulties in performing surgery, specifically abdominal surgery. Therefore, it is
+    important to monitor the examinee's visceral fat levels provided by these measurements in order to properly assess that individual's current chances of
+    developing the mentioned health risks.
+    %br
+    %br
+    Waist-to-hip ratio (WHR) is the ratio of waist circumference to hip circumference. People with
+    extra fat located around the midsection are at increased risk for heart disease and diabetes compared to those who have
+    extra fat around their hips and thighs. Abdominal fat, when out of proportion to total body fat, may be an indicator of
+    health risks. A WHR of 0.7 for women and 0.9 for men has been shown to correlate strongly with general health and fertility.
+    Women within the 0.7 range have optimal levels of estrogen and are less susceptible to major diseases such as diabetes,
+    cardiovascular disorders and ovarian cancers. Women with high WHR (higher than 0.80) have significantly lower pregnancy
+    rates than women with lower WHRs (0.70–0.79), independent of their BMIs. Men with WHRs around 0.9, similarly, have been shown to
+    be more healthy and fertile with less prostate cancer and testicular cancer.
+    %br
+    %br
+    Studies show that abdominal obesity is strongly associated with an increased risk of type 2 diabetes,
+    cardiovascular disease, and death, even after controlling for body mass index (BMI). The fat surrounding the liver and
+    other abdominal organs, so-called "visceral fat", is very metabolically active. It releases fatty acids, inflammatory agents,
+    and hormones that ultimately lead to higher LDL cholesterol, triglycerides, blood glucose, and blood pressure.
+    A waist circumference measurement of over 35 inches (88 centimeters) in women, and over 40 inches (102 centimeters) in men is
+    is considered Abdominal Obesity by the American Heart Association (AHA).
 
 %hr
 
