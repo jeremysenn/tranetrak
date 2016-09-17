@@ -54,59 +54,59 @@
               %br
               = @bodycomp.notes
     .span12
-      .tabbable{:style => "margin-bottom: 18px;"}
-        .btn-group
-          %ul.nav.nav-tabs
-            %li
-              %a{:href => "#summary", :data => {:toggle => "tab"}}
-                %button.btn.btn-small
-                  %i.icon-list
-                  Summary
-            %li
-              %a{:href => "#classifications", :data => {:toggle => "tab"}}
-                %button.btn.btn-small
-                  %i.icon-check
-                  Norms
-            %li
-              %a{:href => "#results", :data => {:toggle => "tab"}}
-                %button.btn.btn-small
-                  %i.icon-male
-                  Results
-            %li.active
-              %a{:href => "#graphs", :data => {:toggle => "tab"}}
-                %button.btn.btn-small
-                  %i.icon-bar-chart
-                  Graphs
-            %li
-              %a{:href => "#pictures", :data => {:toggle => "tab"}}
-                %button.btn.btn-small
-                  %i.icon-camera
-                  Pics
-        -#
-          %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
-        .tab-content
-          .tab-pane.active{:id => "graphs"}
-            = render :partial => 'bodycomp_graphs'
-          .tab-pane{:id => "summary"}
-            = render :partial => 'summary'
-          .tab-pane{:id => "classifications"}
-            = render :partial => 'classifications'
-          .tab-pane{:id => "results"}
-            = render :partial => 'results_table'
-          .tab-pane{:id => "pictures"}
-            - @bodycomp.pictures.each_slice(3) do |pictures|
-              %ul.thumbnails
-                - pictures.each do |pic|
-                  %li.span3
-                    = link_to image_tag(pic.image_url(:thumb).to_s), "#pic" + pic.id.to_s, :class => "thumbnail", "data-toggle" => "modal", :href => "#pic" + pic.id.to_s, :type => "button", :title => "Click to view large image", :rel => 'tooltip'
-                  %div{:id => "pic" + pic.id.to_s, :class => "modal", :style => "display:none;"}
-                    .modal-header
-                      = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
-                      = @bodycomp.date.strftime("%b %e %Y")
-                    .modal-body
-                      = image_tag(pic.image_url(:large).to_s)
-                    .modal-footer
-                      = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+    .tabbable{:style => "margin-bottom: 18px;"}
+      .btn-group
+        %ul.nav.nav-tabs
+          %li
+            %a{:href => "#summary", :data => {:toggle => "tab"}}
+              %button.btn.btn-small
+                %i.icon-list
+                Summary
+          %li
+            %a{:href => "#classifications", :data => {:toggle => "tab"}}
+              %button.btn.btn-small
+                %i.icon-check
+                Norms
+          %li
+            %a{:href => "#results", :data => {:toggle => "tab"}}
+              %button.btn.btn-small
+                %i.icon-male
+                Results
+          %li.active
+            %a{:href => "#graphs", :data => {:toggle => "tab"}}
+              %button.btn.btn-small
+                %i.icon-bar-chart
+                Graphs
+          %li
+            %a{:href => "#pictures", :data => {:toggle => "tab"}}
+              %button.btn.btn-small
+                %i.icon-camera
+                Pics
+      -#
+        %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
+      .tab-content
+        .tab-pane.active{:id => "graphs"}
+          = render :partial => 'bodycomp_graphs'
+        .tab-pane{:id => "summary"}
+          = render :partial => 'summary'
+        .tab-pane{:id => "classifications"}
+          = render :partial => 'classifications'
+        .tab-pane{:id => "results"}
+          = render :partial => 'results_table'
+        .tab-pane{:id => "pictures"}
+          - @bodycomp.pictures.each_slice(3) do |pictures|
+            %ul.thumbnails
+              - pictures.each do |pic|
+                %li.span3
+                  = link_to image_tag(pic.image_url(:thumb).to_s), "#pic" + pic.id.to_s, :class => "thumbnail", "data-toggle" => "modal", :href => "#pic" + pic.id.to_s, :type => "button", :title => "Click to view large image", :rel => 'tooltip'
+                %div{:id => "pic" + pic.id.to_s, :class => "modal", :style => "display:none;"}
+                  .modal-header
+                    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+                    = @bodycomp.date.strftime("%b %e %Y")
+                  .modal-body
+                    = image_tag(pic.image_url(:large).to_s)
+                  .modal-footer
+                    = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
   - unless current_user.is_client?
     .form-actions
       %a{:href => bodycomps_path, :class => 'btn'}
