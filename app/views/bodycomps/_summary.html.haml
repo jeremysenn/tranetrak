@@ -9,6 +9,7 @@
 %hr  
 
 %strong Body Composition
+%br
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
@@ -36,6 +37,7 @@
 %br
 
 %strong Body Composition Classification
+%br
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
@@ -138,43 +140,43 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         BMI
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Status
   %tbody
     - if @bodycomp.bmi < 18.5
       %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
-        %td{:style=>"border: 1px solid #ddd;"} Underweight
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Underweight
     - else
       %tr
-        %td{:style=>"border: 1px solid #ddd;"} Below 18.5
-        %td{:style=>"border: 1px solid #ddd;"} Underweight
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Below 18.5
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Underweight
     - if @bodycomp.bmi >= 18.5 and @bodycomp.bmi <= 24.9
       %tr{:style => 'background-color: #fff2cc'}
-        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
-        %td{:style=>"border: 1px solid #ddd;"} Normal
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Normal
     - else
       %tr
-        %td{:style=>"border: 1px solid #ddd;"} 18.5 – 24.9
-        %td{:style=>"border: 1px solid #ddd;"} Normal
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 18.5 – 24.9
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Normal
     - if @bodycomp.bmi >= 25 and @bodycomp.bmi <= 29.9
       %tr{:style => 'background-color: #EFD6D6; color: #993031'}
-        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
-        %td{:style=>"border: 1px solid #ddd;"} Overweight
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Overweight
     - else
       %tr
-        %td{:style=>"border: 1px solid #ddd;"} 25.0 – 29.9
-        %td{:style=>"border: 1px solid #ddd;"} Overweight
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 25.0 – 29.9
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Overweight
     - if @bodycomp.bmi >= 30
       %tr{:style => 'background-color: #EFD6D6; color: #993031'}
-        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
-        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Obese
     - else
       %tr
-        %td{:style=>"border: 1px solid #ddd;"} 30.0 and Above
-        %td{:style=>"border: 1px solid #ddd;"} Obese
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 30.0 and Above
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Obese
 %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
   %strong Goal BMI Status:
   = "#{@bodycomp.bmi_goal_status}"
@@ -205,24 +207,24 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd;"} Activity Level
-      %th{:style=>"border: 1px solid #ddd;"} Daily Calories
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Activity Level
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Daily Calories
   %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Sedentary (little or no exercise, desk job)
-      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.2).round
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Sedentary (little or no exercise, desk job)
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= (@bodycomp.bmr*1.2).round
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Lightly Active (light exercise/sports 1-3 days/wk)
-      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.375).round
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Lightly Active (light exercise/sports 1-3 days/wk)
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= (@bodycomp.bmr*1.375).round
     %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"} Moderately Active (moderate exercise/sports 3-5 days/wk)
-      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.55).round
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Moderately Active (moderate exercise/sports 3-5 days/wk)
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= (@bodycomp.bmr*1.55).round
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Very Active (hard exercise/sports 6-7 days/wk)
-      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.725).round
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Very Active (hard exercise/sports 6-7 days/wk)
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= (@bodycomp.bmr*1.725).round
     %tr
-      %td{:style=>"border: 1px solid #ddd;"} Extremely Active (hard daily exercise/sports & physical job or 2X day training)
-      %td{:style=>"border: 1px solid #ddd;"}= (@bodycomp.bmr*1.9).round
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Extremely Active (hard daily exercise/sports & physical job or 2X day training)
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= (@bodycomp.bmr*1.9).round
 %p
   %strong Basal Metabolic Rate
   %br
@@ -239,40 +241,40 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd;"} Chest
-      %th{:style=>"border: 1px solid #ddd;"} Triceps
-      %th{:style=>"border: 1px solid #ddd;"} Subscapular
-      %th{:style=>"border: 1px solid #ddd;"} Suprailiac
-      %th{:style=>"border: 1px solid #ddd;"} Midaxillary
-      %th{:style=>"border: 1px solid #ddd;"} Abdominal
-      %th{:style=>"border: 1px solid #ddd;"} Thigh
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Chest
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Triceps
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Subscapular
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Suprailiac
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Midaxillary
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Abdominal
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
   %tbody
     %tr
       - if @bodycomp.priority_list.include?("Chest")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.pec
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.pec
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.pec
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.tri
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.pec
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.tri
       - if @bodycomp.priority_list.include?("Subscapular")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.subscap
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.subscap
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.subscap
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.subscap
       - if @bodycomp.priority_list.include?("Subscapular")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.suprailiac
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.suprailiac
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.suprailiac
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.suprailiac
       - if @bodycomp.priority_list.include?("Midaxillary")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.midaxil
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.midaxil
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.midaxil
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.midaxil
       - if @bodycomp.priority_list.include?("Abdominal")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.umbilical
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.umbilical
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.umbilical
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.umbilical
       - if @bodycomp.priority_list.include?("Thigh")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.quad
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.quad
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.quad
 -#
   %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
     %strong Priority Site(s):
@@ -478,27 +480,27 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd;"} Waist
-      %th{:style=>"border: 1px solid #ddd;"} Hip
-      %th{:style=>"border: 1px solid #ddd;"} Neck
-      %th{:style=>"border: 1px solid #ddd;"} Shoulder
-      %th{:style=>"border: 1px solid #ddd;"} Chest
-      %th{:style=>"border: 1px solid #ddd;"} Arm
-      %th{:style=>"border: 1px solid #ddd;"} Thigh
-      %th{:style=>"border: 1px solid #ddd;"} Calf
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Waist
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Hip
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Neck
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Shoulder
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Chest
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Arm
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Calf
   %tbody
     %tr
       - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031"}= @bodycomp.waist
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.waist
       - else
-        %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.waist
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.hip
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.neck
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.shoulder
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.chest
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.arm
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.thigh
-      %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.gastroc
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.waist
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.hip
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.neck
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.shoulder
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.chest
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.arm
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.thigh
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.gastroc
   
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %br
@@ -509,33 +511,33 @@
   %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
     %thead
       %tr{style: 'background-color: #F0F0F0'}
-        %th{:style=>"border: 1px solid #ddd;"}
+        %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
           Male
-        %th{:style=>"border: 1px solid #ddd;"}
+        %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
           Female
-        %th{:style=>"border: 1px solid #ddd;"}
+        %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
           Classification
     %tbody
       - if not @bodycomp.abdominal_obesity?
         %tr{:style => 'background-color: #fff2cc'}
-          %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
-          %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
-          %td{:style=>"border: 1px solid #ddd;"} Low Risk
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 40in (102cm) or less
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 35in (88cm) or less
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Low Risk
       - else
         %tr
-          %td{:style=>"border: 1px solid #ddd;"} 40in (102cm) or less
-          %td{:style=>"border: 1px solid #ddd;"} 35in (88cm) or less
-          %td{:style=>"border: 1px solid #ddd;"} Low Risk
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 40in (102cm) or less
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 35in (88cm) or less
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Low Risk
       - if @bodycomp.abdominal_obesity?
         %tr{:style => 'background-color: #EFD6D6; color: #993031'}
-          %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
-          %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
-          %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Greater than 40in (102cm)
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Greater than 35in (88cm)
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Abdominal Obesity
       - else
         %tr
-          %td{:style=>"border: 1px solid #ddd;"} Greater than 40in (102cm)
-          %td{:style=>"border: 1px solid #ddd;"} Greater than 35in (88cm)
-          %td{:style=>"border: 1px solid #ddd;"} Abdominal Obesity
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Greater than 40in (102cm)
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Greater than 35in (88cm)
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Abdominal Obesity
   - unless @bodycomp.waist.zero? or @bodycomp.hip.zero? or @bodycomp.waist.blank? or @bodycomp.hip.blank?
     %br
     %strong
@@ -544,43 +546,43 @@
     %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
       %thead
         %tr{style: 'background-color: #F0F0F0'}
-          %th{:style=>"border: 1px solid #ddd;"}
+          %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
             Male
-          %th{:style=>"border: 1px solid #ddd;"}
+          %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
             Female
-          %th{:style=>"border: 1px solid #ddd;"}
+          %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
             Health Risk Based Solely on WHR
       %tbody
         - if (not @bodycomp.whr_moderate_risk?) and (not @bodycomp.whr_high_risk?)
           %tr{:style => 'background-color: #fff2cc'}
-            %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
-            %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
-            %td{:style=>"border: 1px solid #ddd;"} Low Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.95 or below
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.80 or below
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Low Risk
         - else
           %tr
-            %td{:style=>"border: 1px solid #ddd;"} 0.95 or below
-            %td{:style=>"border: 1px solid #ddd;"} 0.80 or below
-            %td{:style=>"border: 1px solid #ddd;"} Low Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.95 or below
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.80 or below
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Low Risk
         - if @bodycomp.whr_moderate_risk?
           %tr{:style => 'background-color: #EFD6D6; color: #993031'}
-            %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
-            %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
-            %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.96 to 1.0
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.81 to 0.85
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Moderate Risk
         - else
           %tr
-            %td{:style=>"border: 1px solid #ddd;"} 0.96 to 1.0
-            %td{:style=>"border: 1px solid #ddd;"} 0.81 to 0.85
-            %td{:style=>"border: 1px solid #ddd;"} Moderate Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.96 to 1.0
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.81 to 0.85
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Moderate Risk
         - if @bodycomp.whr_high_risk?
           %tr{:style => 'background-color: #EFD6D6; color: #993031'}
-            %td{:style=>"border: 1px solid #ddd;"} 1.0+
-            %td{:style=>"border: 1px solid #ddd;"} 0.85+
-            %td{:style=>"border: 1px solid #ddd;"} High Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 1.0+
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.85+
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High Risk
         - else
           %tr
-            %td{:style=>"border: 1px solid #ddd;"} 1.0+
-            %td{:style=>"border: 1px solid #ddd;"} 0.85+
-            %td{:style=>"border: 1px solid #ddd;"} High Risk
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 1.0+
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 0.85+
+            %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High Risk
 
 %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
   %strong Goal Waist Circumference:
