@@ -281,7 +281,7 @@
     = "#{@bodycomp.priority_list.join(', ')}"
 
 - if @bodycomp.priority_list.include?("Abdominal") 
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
     %strong Priority Site: 
     Abdominal
     %br
@@ -351,7 +351,7 @@
       Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
 
 - if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular") or @bodycomp.priority_list.include?("Abdominal")
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
     %strong Priority Site(s)
     = "#{@bodycomp.priority_list.include?('Suprailiac') ? 'Suprailiac' : ''} #{@bodycomp.priority_list.include?('Subscapular') ? 'Subscapular' : ''} #{@bodycomp.priority_list.include?('Abdominal') ? 'Abdominal' : ''}"
     %br
@@ -412,7 +412,7 @@
       Zinc
 
 - if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest")
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
     %strong Priority Site(s):
     = "#{@bodycomp.priority_list.include?('Thigh') ? 'Thigh' : ''} #{@bodycomp.priority_list.include?('Chest') ? 'Chest' : ''}"
     %br
@@ -551,7 +551,7 @@
           %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
             Female
           %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
-            Health Risk Based Solely on WHR
+            Health Risk
       %tbody
         - if (not @bodycomp.whr_moderate_risk?) and (not @bodycomp.whr_high_risk?)
           %tr{:style => 'background-color: #fff2cc'}
