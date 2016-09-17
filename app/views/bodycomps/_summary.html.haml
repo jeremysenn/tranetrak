@@ -99,7 +99,7 @@
   = "#{@bodycomp.bodycomp_goal_classification}"
   %br
   %strong Goal Percentage Body Fat:
-  = "#{number_to_percentage(@bodycomp.bodycomp_goal_percentage * 100, precision: 0)}%" unless @bodycomp.bodycomp_goal_percentage == "N/A"
+  = "#{number_to_percentage(@bodycomp.bodycomp_goal_percentage * 100, precision: 0)}" unless @bodycomp.bodycomp_goal_percentage == "N/A"
   = "N/A" if @bodycomp.bodycomp_goal_percentage == "N/A"
   %br
   %strong Goal Fat Loss:
