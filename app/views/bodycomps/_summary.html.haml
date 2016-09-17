@@ -176,7 +176,7 @@
   = "#{@bodycomp.bmi_goal_status}"
   %br
   %strong Goal Weight Loss:
-  = "#{@bodycomp.bmi_goal_weight_loss} #{@bodycomp.weight_units}"
+  = "#{@bodycomp.bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
 
 %p
   %strong Body Mass Index
@@ -266,12 +266,10 @@
         %td{:style=>"border: 1px solid #ddd; background-color: #F08080;"}= @bodycomp.quad
       - else
         %td{:style=>"border: 1px solid #ddd;"}= @bodycomp.quad
-
-%p
-  %strong Priority Site(s):
-  = "#{@bodycomp.priority_list.join(', ')}"
-
-%hr
+-#
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+    %strong Priority Site(s):
+    = "#{@bodycomp.priority_list.join(', ')}"
 
 %strong Circumference Measures (inches)
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
@@ -409,8 +407,8 @@
 %hr
 
 - if @bodycomp.priority_list.include?("Abdominal") 
-  %p
-    %strong Site: 
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+    %strong Priority Site: 
     Abdominal
     %br
     %strong Priority Hormone: 
@@ -480,8 +478,8 @@
       Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
 
 - if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular") or @bodycomp.priority_list.include?("Abdominal")
-  %p
-    %strong Site(s)
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+    %strong Priority Site(s)
     = "#{@bodycomp.priority_list.include?('Suprailiac') ? 'Suprailiac' : ''} #{@bodycomp.priority_list.include?('Subscapular') ? 'Subscapular' : ''} #{@bodycomp.priority_list.include?('Abdominal') ? 'Abdominal' : ''}"
     %br
     %strong Priority Hormone: 
@@ -542,8 +540,8 @@
       Zinc
 
 - if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest")
-  %p
-    %strong Site(s):
+  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE'}
+    %strong Priority Site(s):
     = "#{@bodycomp.priority_list.include?('Thigh') ? 'Thigh' : ''} #{@bodycomp.priority_list.include?('Chest') ? 'Chest' : ''}"
     %br
     %strong Priority Hormone: 
