@@ -9,28 +9,28 @@
 %hr  
 
 %strong Body Composition
-%table{:style=>"border: 1px solid #ddd; border-collapse: collapse; padding: 10px;"}
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Percentage Body Fat
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Body Weight
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Lean Weight
-      %th{:style=>"border: 1px solid #ddd;"}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Fat Weight
   %tbody
     %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
         = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
-      %td{:style=>"border: 1px solid #ddd;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
         = @bodycomp.weight
         = @bodycomp.weight_units
-      %td{:style=>"border: 1px solid #ddd;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
         = @bodycomp.lean_mass.round(1)
         = @bodycomp.weight_units
-      %td{:style=>"border: 1px solid #ddd;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
         = @bodycomp.fat_mass.round(1)
         = @bodycomp.weight_units
 %br
