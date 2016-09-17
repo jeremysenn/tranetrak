@@ -229,6 +229,18 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def bmi_goal
+    if underweight_bmi? or normal_bmi?
+      "N/A"
+    elsif overweight_bmi?
+      24.9
+    elsif obese_bmi?
+      29.9
+    else
+      "N/A"
+    end
+  end
+  
   def bmi_goal_weight_loss
     unless normal_bmi? or underweight_bmi?
       if obese_bmi?
