@@ -490,7 +490,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Calf
   %tbody
     %tr
-      - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
+      - if not (@bodycomp.waist.blank? or @bodycomp.waist.zero?) and (@bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?)
         %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.waist
       - else
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.waist
