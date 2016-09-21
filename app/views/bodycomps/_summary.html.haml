@@ -587,7 +587,7 @@
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
     %strong Goal Waist:
-    = "#{@bodycomp.goal_waist_circumference.floor} #{@bodycomp.circumference_units}"
+    = "#{@bodycomp.goal_waist_circumference.floor} #{@bodycomp.circumference_units}" unless @bodycomp.goal_waist_circumference == "N/A"
     %br
     %strong Goal Waist Reduction:
     = "#{@bodycomp.goal_waist_reduction.round} #{@bodycomp.circumference_units}"
