@@ -149,6 +149,8 @@ class Bodycomp < ActiveRecord::Base
   def goal_waist_reduction
     unless goal_waist_circumference == "N/A"
       waist - goal_waist_circumference
+    else
+      0
     end
   end
 
