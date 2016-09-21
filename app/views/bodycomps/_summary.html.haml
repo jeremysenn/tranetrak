@@ -590,7 +590,7 @@
     = "#{@bodycomp.goal_waist_circumference.floor} #{@bodycomp.circumference_units}" unless @bodycomp.goal_waist_circumference == "N/A"
     %br
     %strong Goal Waist Reduction:
-    = "#{@bodycomp.goal_waist_reduction.round} #{@bodycomp.circumference_units}"
+    = "#{@bodycomp.goal_waist_reduction.round} #{@bodycomp.circumference_units}" unless @bodycomp.goal_waist_reduction.blank?
 
   - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
     %p
