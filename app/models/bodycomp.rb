@@ -200,7 +200,7 @@ class Bodycomp < ActiveRecord::Base
   def bmi
     h = height_in_meters
     w = weight_in_kilograms
-    return (w/(h * h)).round(2)
+    return (w/(h * h)).round(1)
   end
   
   def underweight_bmi?
