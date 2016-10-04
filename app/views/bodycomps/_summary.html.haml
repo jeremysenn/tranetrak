@@ -186,7 +186,8 @@
   %br
   %strong Goal Weight Loss:
   = "#{@bodycomp.bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
-  - if @bodycomp.obese_bmi?
+- if @bodycomp.obese_bmi?
+  %p{style: 'border: 1px solid #F0F0F0; color: #245C7E; background-color: #D0E8F6; padding: 10px;'}
     %br
     %br
     %strong Long Term Goal BMI Status:
