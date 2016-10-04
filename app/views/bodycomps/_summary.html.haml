@@ -303,7 +303,7 @@
     = "#{@bodycomp.priority_list.join(', ')}"
 
 - if @bodycomp.priority_list.include?("Abdominal") 
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+  %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Priority Site: 
     Abdominal
     %br
@@ -373,7 +373,7 @@
       Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
 
 - if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular") or @bodycomp.priority_list.include?("Abdominal")
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+  %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Priority Site(s)
     = "#{@bodycomp.priority_list.include?('Suprailiac') ? 'Suprailiac' : ''} #{@bodycomp.priority_list.include?('Subscapular') ? 'Subscapular' : ''} #{@bodycomp.priority_list.include?('Abdominal') ? 'Abdominal' : ''}"
     %br
@@ -434,7 +434,7 @@
       Zinc
 
 - if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest")
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+  %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Priority Site(s):
     = "#{@bodycomp.priority_list.include?('Thigh') ? 'Thigh' : ''} #{@bodycomp.priority_list.include?('Chest') ? 'Chest' : ''}"
     %br
@@ -608,12 +608,19 @@
             %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High Risk
 
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
-  %p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+  %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Goal Waist:
     = "#{@bodycomp.goal_waist_circumference == 'N/A' ? 'N/A' : @bodycomp.goal_waist_circumference.floor} #{@bodycomp.goal_waist_circumference == 'N/A' ? '' : @bodycomp.circumference_units}" 
     %br
     %strong Goal Waist Reduction:
     = "#{@bodycomp.goal_waist_reduction.round} #{@bodycomp.circumference_units}"
+  - unless @bodycomp.long_term_goal_waist_circumference.blank?
+    %p{style: 'border: 1px solid #88C4E6; color: #245C7E; background-color: #D0E8F6; padding: 10px; border-radius: 25px;'}
+      %strong Long Term Goal Waist:
+      = "#{@bodycomp.long_term_goal_waist_circumference.floor} #{@bodycomp.circumference_units}" 
+      %br
+      %strong Long Term Goal Waist Reduction:
+      = "#{@bodycomp.long_term_goal_waist_reduction.round} #{@bodycomp.circumference_units}"
 
   - if @bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?
     %p

@@ -146,9 +146,30 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def long_term_goal_waist_circumference
+    unless whr_low_risk? or whr_moderate_risk?
+      if male?
+          w = hip * 0.95
+      elsif female?
+        w = hip * 0.80
+      end
+      return w
+    else
+      nil
+    end
+  end
+  
   def goal_waist_reduction
     unless goal_waist_circumference == "N/A"
       waist - goal_waist_circumference
+    else
+      0
+    end
+  end
+  
+  def long_term_goal_waist_reduction
+    unless long_term_goal_waist_circumference.blank?
+      waist - long_term_goal_waist_circumference
     else
       0
     end
