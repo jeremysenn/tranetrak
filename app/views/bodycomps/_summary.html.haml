@@ -115,7 +115,7 @@
     = "#{number_to_percentage(@bodycomp.long_term_bodycomp_goal_percentage * 100, precision: 0)}"
     %br
     %strong Long Term Goal Fat Loss:
-    = "#{@bodycomp.long_term_bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
+    = "#{@bodycomp.bodycomp_goal_fat_loss.round} #{@bodycomp.weight_units}"
   
 
 %p
