@@ -96,7 +96,7 @@
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 32%+
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 25%+
 
-%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+%p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
   %strong Goal Classification:
   = "#{@bodycomp.bodycomp_goal_classification}"
   %br
@@ -106,6 +106,17 @@
   %br
   %strong Goal Fat Loss:
   = "#{@bodycomp.bodycomp_goal_fat_loss.round} #{@bodycomp.weight_units}"
+- unless @bodycomp.long_term_goal_classification.blank?
+  %p{style: 'border: 1px solid #88C4E6; color: #245C7E; background-color: #D0E8F6; padding: 10px; border-radius: 25px;'}
+    %strong Long Term Goal Classification:
+    = "#{@bodycomp.long_term_bodycomp_goal_classification}"
+    %br
+    %strong Long Term Goal Percentage Body Fat:
+    = "#{@bodycomp.long_term_bodycomp_goal_percentage}"
+    %br
+    %strong Long Term Goal Fat Loss:
+    = "#{@bodycomp.long_term_bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
+  
 
 %p
   %strong Percent Body Fat
@@ -177,7 +188,7 @@
       %tr
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Obese
-%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
+%p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
   %strong Goal BMI Status:
   = "#{@bodycomp.bmi_goal_status}"
   %br

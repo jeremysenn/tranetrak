@@ -311,6 +311,20 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def long_term_bodycomp_goal_classification
+    if essential_fat_bodycomp? or athlete_bodycomp?
+      nil
+    elsif fitness_bodycomp?
+      "Athletes"
+    elsif acceptable_bodycomp?
+      "Fitness"
+    elsif obese_bodycomp?
+      "Acceptable"
+    else
+      nil
+    end
+  end
+  
   def bodycomp_goal_percentage
     if fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
       if fitness_bodycomp?
@@ -334,6 +348,26 @@ class Bodycomp < ActiveRecord::Base
       end
     else
       return "N/A"
+    end
+  end
+  
+  def long_term_bodycomp_goal_percentage
+    if acceptable_bodycomp? or obese_bodycomp?
+      if acceptable_bodycomp?
+        if male?
+          0.13
+        elsif female?
+         0.20
+        end
+      elsif obese_bodycomp?
+        if male?
+          0.17
+        elsif female?
+          0.24
+        end
+      end
+    else
+      nil
     end
   end
   
