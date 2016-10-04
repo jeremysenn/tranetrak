@@ -177,7 +177,7 @@
       %tr
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 30.0 and Above
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"} Obese
-%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px;'}
+%p{style: 'border: 1px solid #F0F0F0; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
   %strong Goal BMI Status:
   = "#{@bodycomp.bmi_goal_status}"
   %br
@@ -187,7 +187,7 @@
   %strong Goal Weight Loss:
   = "#{@bodycomp.bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
 - if @bodycomp.obese_bmi?
-  %p{style: 'border: 1px solid #245C7E; color: #245C7E; background-color: #D0E8F6; padding: 10px;'}
+  %p{style: 'border: 1px solid #88C4E6; color: #245C7E; background-color: #D0E8F6; padding: 10px; border-radius: 25px;'}
     %strong Long Term Goal BMI Status:
     Normal
     %br
