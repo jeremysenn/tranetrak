@@ -260,6 +260,19 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def long_term_bmi_goal_weight_loss
+    if obese_bmi?
+      w = 24.9 * (height_in_meters * height_in_meters)
+      if weight_units == "pounds"
+        return weight - (w * 2.20462) # Convert to pounds
+      elsif weight_units == "kilograms"
+        return weight - w # Keep in kilograms
+      end
+    else
+      return 0
+    end
+  end
+  
   ### End BMI Calculations ###
   
   ### Bodycomp Calculations ###

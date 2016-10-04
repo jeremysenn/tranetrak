@@ -186,6 +186,18 @@
   %br
   %strong Goal Weight Loss:
   = "#{@bodycomp.bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
+  - if @bodycomp.obese_bmi?
+    %br
+    %br
+    %strong Long Term Goal BMI Status:
+    Normal
+    %br
+    %strong Long Term Goal BMI:
+    24.9
+    %br
+    %strong Long Term Goal Weight Loss:
+    = "#{@bodycomp.long_term_bmi_goal_weight_loss.round} #{@bodycomp.weight_units}"
+  
 
 %p
   %strong Body Mass Index
