@@ -312,14 +312,12 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def long_term_bodycomp_goal_classification
-    if essential_fat_bodycomp? or athlete_bodycomp?
+    if essential_fat_bodycomp? or athlete_bodycomp? or fitness_bodycomp?
       nil
-    elsif fitness_bodycomp?
-      "Athletes"
     elsif acceptable_bodycomp?
-      "Fitness"
+      "Athletes"
     elsif obese_bodycomp?
-      "Acceptable"
+      "Fitness"
     else
       nil
     end
