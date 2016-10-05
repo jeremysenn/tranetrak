@@ -35,7 +35,13 @@
       <%= f.date_select :dob, :id => "datepicker", :class => 'input-small', :default => 30.years.ago, :start_year => Time.now.year - 90, :end_year => Time.now.year - 10 %>
     </div>
   </div>
-  
+  <div class="control-group">
+    <%= f.label :sex, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.input :sex, :collection => { "Female" => "Female", "Male" => "Male"}, :input_html => { :class => 'input-small' }, :include_blank => false %>
+    </div>
+  </div>
+
   <div class="control-group">
     <div class="controls">
       <div class="btn">
