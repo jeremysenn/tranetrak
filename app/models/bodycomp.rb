@@ -345,8 +345,14 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def bodycomp_goal_percentage
-    if fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
-      if fitness_bodycomp?
+    if athlete_bodycomp? or fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
+      if athlete_bodycomp?
+        if male?
+          0.06
+        elsif female?
+         0.14
+        end
+      elsif fitness_bodycomp?
         if male?
           0.13
         elsif female?
@@ -396,7 +402,7 @@ class Bodycomp < ActiveRecord::Base
     # (fat mass / (fat mass + lean mass)) = bodyfat%            #
     # fat mass = (lean mass * body fat percent) / (1 - bodyfat%)#
     #############################################################
-    if fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
+    if athlete_bodycomp? or fitness_bodycomp? or acceptable_bodycomp? or obese_bodycomp?
       goal_fat_mass = (lean_mass * bodycomp_goal_percentage) / (1 - bodycomp_goal_percentage)
       return (fat_mass - goal_fat_mass)
     else
