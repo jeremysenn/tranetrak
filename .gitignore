@@ -19,3 +19,8 @@
 
 ### LOCAL ENVIRONMENT VARIABLES ###
 config/application.yml
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
