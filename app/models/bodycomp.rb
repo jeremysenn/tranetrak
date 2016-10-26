@@ -485,6 +485,14 @@ class Bodycomp < ActiveRecord::Base
     end
   end
   
+  def high_triceps_skinfold?
+    if male?
+      tri > 10
+    elsif female?
+      tri > 15
+    end
+  end
+  
   def priority_hash ## SORTED
     Hash["Chest", pec_pvalue, "Subscapular", subscap_pvalue, "Midaxillary", midaxil_pvalue, "Suprailiac", suprailiac_pvalue, "Abdominal", umbilical_pvalue, "Thigh", quad_pvalue].sort {|a,b| a[1]<=>b[1]}.reverse
   end
