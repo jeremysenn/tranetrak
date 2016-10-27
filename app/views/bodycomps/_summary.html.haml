@@ -311,7 +311,8 @@
         Potential Strategy
   %tbody
     %tr{:style => "#{@bodycomp.priority_list.include?('Abdominal') ? 'background-color: #fff2cc' : ''}"}
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High abdominal skinfold
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+        %strong High abdominal skinfold
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         High cortisol
         %br
@@ -329,17 +330,18 @@
         %br
         Stress-reduction techniques
     %tr{:style => "#{@bodycomp.priority_list.include?('Suprailiac') ? 'background-color: #fff2cc' : ''}"}
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High suprailiac skinfold
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+        %strong High suprailiac skinfold
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Large insulin release w/meals
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Control carb intake
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
-        Reduce carbohydrate intake
-        %br
-        Nutrient timing strategies
+        %p Reduce carbohydrate intake
+        %p Nutrient timing strategies
     %tr{:style => "#{@bodycomp.priority_list.include?('Subscapular') ? 'background-color: #fff2cc' : ''}"}
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High subscapular skinfold
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+        %strong High subscapular skinfold
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Poor insulin sensitivity
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
@@ -349,7 +351,8 @@
         %br
         Add R-ALA
     %tr{:style => "#{@bodycomp.priority_list.include?('Chest') ? 'background-color: #fff2cc' : ''}"}
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} High chest skinfold
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+        %strong High chest skinfold
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Low testosterone
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
@@ -360,9 +363,9 @@
         Adequate dietary fat
     %tr{:style => "#{(@bodycomp.high_triceps_skinfold? or @bodycomp.priority_list.include?('Thigh')) ? 'background-color: #fff2cc' : ''}"}
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
-        High triceps skinfold
+        %strong High triceps skinfold
         %br
-        High thigh skinfold
+        %strong High thigh skinfold
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         High estrogen
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
