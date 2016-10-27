@@ -276,7 +276,10 @@
         %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.pec
       - else
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.pec
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.tri
+      - if @bodycomp.high_triceps_skinfold?
+        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.tri
+      - else
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.tri
       - if @bodycomp.priority_list.include?("Subscapular")
         %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.subscap
       - else
@@ -365,7 +368,7 @@
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Reduce estrogen levels
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"} 
-        %p Increase exercise volume
+        %p Increase strength training exercise volume
         %p Add cruciferous vegetables
         %p Discuss prescription estrogens with doctor
     
