@@ -447,7 +447,7 @@
     %li
       Dehydrated fruits and/or vegetable powder - anti-oxidation, cortisol reduction, & alkalizing.
 
-- if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular") or @bodycomp.priority_list.include?("Abdominal")
+- if @bodycomp.priority_list.include?("Suprailiac") or @bodycomp.priority_list.include?("Subscapular")
   %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Priority Site(s):
     = "#{@bodycomp.priority_list.include?('Suprailiac') ? 'Suprailiac' : ''} #{@bodycomp.priority_list.include?('Subscapular') ? 'Subscapular' : ''} #{@bodycomp.priority_list.include?('Abdominal') ? 'Abdominal' : ''}"
