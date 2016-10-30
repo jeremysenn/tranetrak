@@ -23,7 +23,7 @@ gem "rolify" #Roles library
 gem 'birthday' #show birthday from dob, anniversaries, etc.
 gem 'kaminari' #Pagination
 gem 'carrierwave' #File uploads
-gem "rmagick" #Image manipulation
+#gem "rmagick" #Image manipulation
 gem 'nested_form' #Nested forms for uploading multiple files at a time.
 gem 'twitter-bootstrap-calendar'
 gem 'stripe'
