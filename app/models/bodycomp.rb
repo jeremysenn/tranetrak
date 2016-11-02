@@ -241,10 +241,8 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def bmi_goal_status
-    if underweight_bmi?
+    if underweight_bmi? or normal_bmi?
       "N/A"
-    elsif  normal_bmi?
-      "Normal - Low End"
     elsif overweight_bmi?
       "Normal"
     elsif obese_bmi?
@@ -255,10 +253,8 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def bmi_goal
-    if underweight_bmi?
+    if underweight_bmi? or normal_bmi?
       "N/A"
-    elsif  normal_bmi?
-      18.5
     elsif overweight_bmi?
       24.9
     elsif obese_bmi?
@@ -269,13 +265,11 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def bmi_goal_weight_loss
-    unless underweight_bmi?
+    unless underweight_bmi? or normal_bmi?
       if obese_bmi?
         w = 29.9 * (height_in_meters * height_in_meters)
       elsif overweight_bmi?
         w = 24.9 * (height_in_meters * height_in_meters)
-      elsif normal_bmi?
-        w = 18.5 * (height_in_meters * height_in_meters)
       end
       if weight_units == "pounds"
         return weight - (w * 2.20462) # Convert to pounds
@@ -290,13 +284,6 @@ class Bodycomp < ActiveRecord::Base
   def long_term_bmi_goal_weight_loss
     if obese_bmi?
       w = 24.9 * (height_in_meters * height_in_meters)
-      if weight_units == "pounds"
-        return weight - (w * 2.20462) # Convert to pounds
-      elsif weight_units == "kilograms"
-        return weight - w # Keep in kilograms
-      end
-    elsif overweight_bmi?
-      w = 18.5 * (height_in_meters * height_in_meters)
       if weight_units == "pounds"
         return weight - (w * 2.20462) # Convert to pounds
       elsif weight_units == "kilograms"
