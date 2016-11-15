@@ -29,7 +29,7 @@ gem 'twitter-bootstrap-calendar'
 gem 'stripe'
 
 # Gibbon is an API wrapper for MailChimp's API https://github.com/amro/gibbon
-gem "gibbon", '~> 1.2.1'
+gem "gibbon", '~> 1.0.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
