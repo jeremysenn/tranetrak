@@ -28,6 +28,9 @@ gem 'nested_form' #Nested forms for uploading multiple files at a time.
 gem 'twitter-bootstrap-calendar'
 gem 'stripe'
 
+# Gibbon is an API wrapper for MailChimp's API https://github.com/amro/gibbon
+gem "gibbon", '~> 1.2.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
