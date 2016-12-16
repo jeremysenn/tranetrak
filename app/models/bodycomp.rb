@@ -142,15 +142,15 @@ class Bodycomp < ActiveRecord::Base
       elsif abdominal_obesity?
         if male?
           if circumference_units == "inches"
-            40
+            w= 40
           else
-            102
+            w= 102
           end
         elsif female?
           if circumference_units == "inches"
-            35
+            w = 35
           else
-            88
+            w= 88
           end
         end
       end
