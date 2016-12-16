@@ -126,7 +126,7 @@ class Bodycomp < ActiveRecord::Base
   end
   
   def goal_waist_circumference
-    unless whr_low_risk?
+    unless whr_low_risk? and not abdominal_obesity?
       if whr_high_risk?
         if male?
           w = hip * 1
@@ -138,6 +138,20 @@ class Bodycomp < ActiveRecord::Base
           w = hip * 0.95
         elsif female?
           w = hip * 0.80
+        end
+      elsif abdominal_obesity?
+        if male?
+          if circumference_units == "inches"
+            40
+          else
+            102
+          end
+        elsif female?
+          if circumference_units == "inches"
+            35
+          else
+            88
+          end
         end
       end
       return w

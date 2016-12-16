@@ -508,7 +508,7 @@
     %li
       Zinc
 
-- if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest")
+- if @bodycomp.priority_list.include?("Thigh") or @bodycomp.priority_list.include?("Chest") or @bodycomp.high_triceps_skinfold?
   %p{style: 'border: 1px solid #A3D78D; color: #367934; background-color: #D8EECE; padding: 10px; border-radius: 25px;'}
     %strong Priority Site(s):
     = "#{@bodycomp.priority_list.include?('Thigh') ? 'Thigh' : ''} #{@bodycomp.priority_list.include?('Chest') ? 'Chest' : ''}"
@@ -544,7 +544,7 @@
       Green Tea - Drink green tea (hot or cold) throughout the day.
     %li
       Red Wine - Drink red wine in moderation (1-2 glasses per night: Merlot, Pinot noir, Spanish wines). Resveratrol in these wines
-      is anti-aromitization.
+      is anti-aromitazation.
     %li
       Dark Chocolate - Eat dark chocolate (70% or higher) in moderation (1-2 oz per day). Chocolate polyphenols specifically aid the uterus.
 
