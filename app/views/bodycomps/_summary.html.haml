@@ -1,10 +1,29 @@
-%p
-  %strong
-    = @client.full_name
-    %br
-    Body Composition Analysis
-    %br
-    = @bodycomp.date.strftime("%B %e %Y")
+-#
+  %p
+    %strong
+      = @client.full_name
+      %br
+      Body Composition Analysis
+      %br
+      = @bodycomp.date.strftime("%B %e %Y")
+
+%table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
+  %thead
+    %tr{style: 'background-color: #F0F0F0'}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
+        Client
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
+        Age
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
+        Gender
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
+        Date
+  %tbody
+    %tr
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @client.full_name
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @client.dob_age unless @client.dob.blank?
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.sex
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.date.strftime("%B %e %Y")
 
 %hr  
 
