@@ -21,7 +21,7 @@
   %tbody
     %tr
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @client.full_name
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @client.dob_age unless @client.dob.blank?
+      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.age
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.sex
       %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.date.strftime("%B %e %Y")
 %br
