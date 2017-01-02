@@ -46,6 +46,10 @@
           %br
           = @client.dob.strftime("%m/%d/%Y") unless @client.dob.blank?
         %p
+          %strong= "Sex"
+          %br
+          = @client.sex
+        %p
           %strong= "Age"
           %br
           = @client.dob_age unless @client.dob.blank?
