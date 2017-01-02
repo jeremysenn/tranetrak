@@ -52,7 +52,7 @@
                     = image_tag(pic.image_url(:large).to_s)
                   .modal-footer
                     = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
-- unless current_user.is_client?
+- unless current_user.is_client? or current_user.blank?
   .form-actions
     %a{:href => bodycomps_path, :class => 'btn'}
       %i.icon-chevron-left
