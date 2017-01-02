@@ -2,7 +2,7 @@
   %span.icon-bar
   %span.icon-bar
   %span.icon-bar
-- unless current_user.is_client?
+- unless current_user.blank? or current_user.is_client?
   %a.brand{:href => "/home#index"}
     .text-error
       - if current_user.is_trainer? and not current_user.trainer.pictures.empty?
