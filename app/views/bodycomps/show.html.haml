@@ -4,7 +4,7 @@
     .tabbable{:style => "margin-bottom: 18px;"}
       .btn-group
         %ul.nav.nav-tabs
-          %li
+          %li.active
             %a{:href => "#summary", :data => {:toggle => "tab"}}
               %button.btn.btn-small
                 %i.icon-list
@@ -19,7 +19,7 @@
               %button.btn.btn-small
                 %i.icon-male
                 Results
-          %li.active
+          %li
             %a{:href => "#graphs", :data => {:toggle => "tab"}}
               %button.btn.btn-small
                 %i.icon-bar-chart
