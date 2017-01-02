@@ -40,6 +40,7 @@ class BodycompsController < ApplicationController
       unless @client.blank?
         @bodycomp.client_id = @client.id
         @bodycomp.age = @client.dob_age
+        @bodycomp.sex = @client.sex
       end
     end
 
