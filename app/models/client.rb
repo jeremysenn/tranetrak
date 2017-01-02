@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :email, :phone, :dob, :trainer_id, :image, :remote_image_url
+  attr_accessible :first_name, :last_name, :email, :phone, :dob, :trainer_id, :image, :remote_image_url, :sex, :height, :height_units
 #  default_scope order: 'clients.first_name ASC'
   acts_as_birthday :dob
   mount_uploader :image, ImageUploader
