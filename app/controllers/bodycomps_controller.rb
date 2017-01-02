@@ -34,6 +34,7 @@ class BodycompsController < ApplicationController
   def new
     @bodycomp = Bodycomp.new
 #    @bodycomp.pictures.build
+    @bodycomp.date = Date.today
     unless params[:client].blank?
       @client = current_user.trainer.clients.find(params[:client])
       unless @client.blank?
