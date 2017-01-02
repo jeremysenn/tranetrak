@@ -4,7 +4,7 @@
     .tabbable{:style => "margin-bottom: 18px;"}
       .btn-group
         %ul.nav.nav-tabs
-          %li.active
+          %li
             %a{:href => "#summary", :data => {:toggle => "tab"}}
               %button.btn.btn-small
                 %i.icon-list
@@ -19,7 +19,7 @@
               %button.btn.btn-small
                 %i.icon-male
                 Results
-          %li
+          %li.active
             %a{:href => "#graphs", :data => {:toggle => "tab"}}
               %button.btn.btn-small
                 %i.icon-bar-chart
@@ -30,9 +30,9 @@
                 %i.icon-camera
                 Pics
       .tab-content
-        .tab-pane{:id => "graphs"}
+        .tab-pane.active{:id => "graphs"}
           = render :partial => 'bodycomp_graphs'
-        .tab-pane.active{:id => "summary"}
+        .tab-pane{:id => "summary"}
           = render :partial => 'summary'
         .tab-pane{:id => "classifications"}
           = render :partial => 'classifications'
@@ -52,7 +52,7 @@
                     = image_tag(pic.image_url(:large).to_s)
                   .modal-footer
                     = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
-- unless current_user.blank? or current_user.is_client? 
+- unless current_user.is_client?
   .form-actions
     %a{:href => bodycomps_path, :class => 'btn'}
       %i.icon-chevron-left
