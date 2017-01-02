@@ -30,9 +30,9 @@
                 %i.icon-camera
                 Pics
       .tab-content
-        .tab-pane.active{:id => "graphs"}
+        .tab-pane{:id => "graphs"}
           = render :partial => 'bodycomp_graphs'
-        .tab-pane{:id => "summary"}
+        .tab-pane.active{:id => "summary"}
           = render :partial => 'summary'
         .tab-pane{:id => "classifications"}
           = render :partial => 'classifications'
