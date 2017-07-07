@@ -276,51 +276,51 @@
   age due to losses in lean body mass.
 
 %p
-  %strong Macros
+  %strong Suggested Macros
   %br
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
-      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+      %th{:style=>"border: 1px solid #ddd; padding: 10px; #{(@bodycomp.essential_fat_bodycomp? or @bodycomp.athlete_bodycomp?) ? 'background-color: #fff2cc' : ''}"} 
         Moderate-High Carb
         %br
-        (Gain Weight / Fuel High Intensity Exercise)
-      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+        (Gain Weight / Fuel Exercise)
+      %th{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.fitness_bodycomp? ? 'background-color: #fff2cc' : ''}"} 
         Moderate Carb
         %br
         (Maintain Weight)
-      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+      %th{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.acceptable_bodycomp? ? 'background-color: #fff2cc' : ''}"} 
         Low Carb
         %br
         (Lose Fat)
-      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
+      %th{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.obese_bodycomp? ? 'background-color: #fff2cc' : ''}"} 
         Very Low Carb ("Keto")
         %br
         (Lose Lots of Fat)
   %tbody
     %tr
       %td{:style=>"border: 1px solid #ddd; padding: 10px; #{(@bodycomp.essential_fat_bodycomp? or @bodycomp.athlete_bodycomp?) ? 'background-color: #fff2cc' : ''}"}
-        Protein: 25%
-        %br
         Carbohydrate: 55%
+        %br
+        Protein: 25%
         %br
         Fat: 20%
       %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.fitness_bodycomp? ? 'background-color: #fff2cc' : ''}"}
-        Protein: 30%
-        %br
         Carbohydrate: 40%
+        %br
+        Protein: 30%
         %br
         Fat: 30%
       %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.acceptable_bodycomp? ? 'background-color: #fff2cc' : ''}"}
-        Protein: 35%
-        %br
         Carbohydrate: 25%
+        %br
+        Protein: 35%
         %br
         Fat: 40%
       %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.obese_bodycomp? ? 'background-color: #fff2cc' : ''}"}
-        Protein: 35%
-        %br
         Carbohydrate: 10%
+        %br
+        Protein: 35%
         %br
         Fat: 60%
 
