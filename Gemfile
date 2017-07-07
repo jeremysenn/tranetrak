@@ -19,7 +19,7 @@ gem 'cancan', '1.5' #Authorization
 gem 'simple_form'
 gem "figaro", ">= 0.5.0" #setting environment variables
 gem "rolify" #Roles library
-gem 'localtunnel' #share localhost web servers to the rest of the world
+#gem 'localtunnel' #share localhost web servers to the rest of the world
 gem 'birthday' #show birthday from dob, anniversaries, etc.
 gem 'kaminari' #Pagination
 gem 'carrierwave' #File uploads

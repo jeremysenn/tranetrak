@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207152826) do
+ActiveRecord::Schema.define(:version => 20161005142210) do
 
   create_table "bodycomps", :force => true do |t|
     t.date     "date"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20131207152826) do
     t.float    "gastroc"
     t.string   "circumference_units", :default => "inches"
     t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "clients", :force => true do |t|
@@ -53,10 +53,13 @@ ActiveRecord::Schema.define(:version => 20131207152826) do
     t.string   "phone"
     t.date     "dob"
     t.integer  "trainer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.string   "image"
+    t.string   "sex"
+    t.integer  "height"
+    t.string   "height_units"
   end
 
   create_table "exercise_sessions", :force => true do |t|
@@ -123,8 +126,8 @@ ActiveRecord::Schema.define(:version => 20131207152826) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "company_name"
   end
 
@@ -133,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20131207152826) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.boolean  "is_trainer"
     t.boolean  "is_client"
     t.string   "first_name"
