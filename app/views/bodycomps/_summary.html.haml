@@ -284,38 +284,44 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Moderate-High Carb
         %br
-        High Intensity Exercise
-        %br
-        Gain Weight
+        (Gain Weight / Fuel High Intensity Exercise)
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
-        Moderate Carb ("Zone")
+        Moderate Carb
         %br
-        Maintain Weight
+        (Maintain Weight)
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Low Carb
         %br
-        Lose Fat
+        (Lose Fat)
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} 
         Very Low Carb ("Keto")
         %br
-        Lose A Lot Of Fat
+        (Lose Lots of Fat)
   %tbody
     %tr
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px; #{(@bodycomp.essential_fat_bodycomp? or @bodycomp.athlete_bodycomp?) ? 'background-color: #fff2cc' : ''}"}
         Protein: 25%
+        %br
         Carbohydrate: 55%
+        %br
         Fat: 20%
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.fitness_bodycomp? ? 'background-color: #fff2cc' : ''}"}
         Protein: 30%
+        %br
         Carbohydrate: 40%
+        %br
         Fat: 30%
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.acceptable_bodycomp? ? 'background-color: #fff2cc' : ''}"}
         Protein: 35%
+        %br
         Carbohydrate: 25%
+        %br
         Fat: 40%
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+      %td{:style=>"border: 1px solid #ddd; padding: 10px; #{@bodycomp.obese_bodycomp? ? 'background-color: #fff2cc' : ''}"}
         Protein: 35%
+        %br
         Carbohydrate: 10%
+        %br
         Fat: 60%
 
 %hr
