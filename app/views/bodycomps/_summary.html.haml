@@ -301,6 +301,11 @@
     %tr
       %td{:style=>"border: 1px solid #ddd; padding: 10px; #{(@bodycomp.essential_fat_bodycomp? or @bodycomp.athlete_bodycomp?) ? 'background-color: #fff2cc' : ''}"}
         Carbohydrate: 55%
+        %hr
+        %br
+        = "#{(@bodycomp.bmr*1.55 * .55).round} calories per day"
+        %br
+        = "#{((@bodycomp.bmr*1.55 * .55) / 4).round} grams per day"
         %br
         Protein: 25%
         %br
