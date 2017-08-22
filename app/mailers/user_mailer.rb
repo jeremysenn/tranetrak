@@ -12,6 +12,7 @@ class UserMailer < ActionMailer::Base
 
   def new_bodycomp_completed(bodycomp)
     @bodycomp = bodycomp
+    @bodycomps = bodycomp.client.bodycomps
     @client = bodycomp.client
     @user = bodycomp.client.trainer.user
     mail to: @client.email,

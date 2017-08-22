@@ -32,6 +32,8 @@
   %thead
     %tr{style: 'background-color: #F0F0F0'}
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
+        Date
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Percentage Body Fat
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Body Weight
@@ -40,18 +42,21 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Fat Weight
   %tbody
-    %tr{:style => 'background-color: #fff2cc'}
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
-        = "#{@bodycomp.bodyfat_percent.round(1).to_s}%"
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
-        = @bodycomp.weight
-        = @bodycomp.weight_units
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
-        = @bodycomp.lean_mass.round
-        = @bodycomp.weight_units
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
-        = @bodycomp.fat_mass.round
-        = @bodycomp.weight_units
+    - @bodycomps.each_with_index do |bodycomp, index|
+      %tr{:style => 'background-color: #fff2cc'}
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+          = bodycomp.date.strftime("%B %e, %Y")
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+          = "#{bodycomp.bodyfat_percent.round(1).to_s}%"
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+          = bodycomp.weight
+          = bodycomp.weight_units
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+          = bodycomp.lean_mass.round
+          = bodycomp.weight_units
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
+          = bodycomp.fat_mass.round
+          = bodycomp.weight_units
 %br
 
 %strong Body Composition Classification
@@ -378,6 +383,7 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Date
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Chest
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Triceps
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Subscapular
@@ -386,35 +392,37 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Abdominal
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
   %tbody
-    %tr
-      - if @bodycomp.priority_list.include?("Chest")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.pec
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.pec
-      - if @bodycomp.high_triceps_skinfold?
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.tri
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.tri
-      - if @bodycomp.priority_list.include?("Subscapular")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.subscap
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.subscap
-      - if @bodycomp.priority_list.include?("Suprailiac")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.suprailiac
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.suprailiac
-      - if @bodycomp.priority_list.include?("Midaxillary")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.midaxil
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.midaxil
-      - if @bodycomp.priority_list.include?("Abdominal")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.umbilical
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.umbilical
-      - if @bodycomp.priority_list.include?("Thigh")
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.quad
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.quad
+    - @bodycomps.each_with_index do |bodycomp, index|
+      %tr
+        %td= bodycomp.date.strftime("%B %e, %Y")
+        - if bodycomp.priority_list.include?("Chest")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.pec
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.pec
+        - if bodycomp.high_triceps_skinfold?
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.tri
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.tri
+        - if bodycomp.priority_list.include?("Subscapular")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.subscap
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.subscap
+        - if bodycomp.priority_list.include?("Suprailiac")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.suprailiac
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.suprailiac
+        - if bodycomp.priority_list.include?("Midaxillary")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.midaxil
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.midaxil
+        - if bodycomp.priority_list.include?("Abdominal")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.umbilical
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.umbilical
+        - if bodycomp.priority_list.include?("Thigh")
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.quad
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.quad
 
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
@@ -693,6 +701,7 @@
 %table{:style=>"border: 1px solid #ddd; border-collapse: collapse;"}
   %thead
     %tr{style: 'background-color: #F0F0F0'}
+      %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Date
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Waist
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Hip
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Neck
@@ -702,18 +711,20 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Calf
   %tbody
-    %tr
-      - if not (@bodycomp.waist.blank? or @bodycomp.waist.zero?) and (@bodycomp.abdominal_obesity? or @bodycomp.whr_moderate_risk? or @bodycomp.whr_high_risk?)
-        %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= @bodycomp.waist
-      - else
-        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.waist
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.hip
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.neck
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.shoulder
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.chest
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.arm
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.thigh
-      %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= @bodycomp.gastroc
+    - @bodycomps.each_with_index do |bodycomp, index|
+      %tr
+        %td= bodycomp.date.strftime("%B %e, %Y")
+        - if not (bodycomp.waist.blank? or bodycomp.waist.zero?) and (bodycomp.abdominal_obesity? or bodycomp.whr_moderate_risk? or bodycomp.whr_high_risk?)
+          %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.waist
+        - else
+          %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.waist
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.hip
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.neck
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.shoulder
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.chest
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.arm
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.thigh
+        %td{:style=>"border: 1px solid #ddd; padding: 10px;"}= bodycomp.gastroc
   
 - unless @bodycomp.waist.blank? or @bodycomp.waist.zero?
   %br
