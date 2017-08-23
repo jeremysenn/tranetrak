@@ -43,7 +43,7 @@
         Fat Weight
   %tbody
     - @bodycomps.each_with_index do |bodycomp, index|
-      %tr{:style => 'background-color: #fff2cc'}
+      %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
           = bodycomp.date.strftime("%B %e, %Y")
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
@@ -393,7 +393,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
   %tbody
     - @bodycomps.each_with_index do |bodycomp, index|
-      %tr
+      %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td= bodycomp.date.strftime("%B %e, %Y")
         - if bodycomp.priority_list.include?("Chest")
           %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.pec
@@ -712,7 +712,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Calf
   %tbody
     - @bodycomps.each_with_index do |bodycomp, index|
-      %tr
+      %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td= bodycomp.date.strftime("%B %e, %Y")
         - if not (bodycomp.waist.blank? or bodycomp.waist.zero?) and (bodycomp.abdominal_obesity? or bodycomp.whr_moderate_risk? or bodycomp.whr_high_risk?)
           %td{:style=>"border: 1px solid #ddd; background-color: #EFD6D6; color: #993031; padding: 10px;"}= bodycomp.waist
