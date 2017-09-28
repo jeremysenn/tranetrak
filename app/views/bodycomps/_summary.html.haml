@@ -42,7 +42,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"}
         Fat Weight
   %tbody
-    - @bodycomps.each_with_index do |bodycomp, index|
+    - @bodycomps.reverse.each_with_index do |bodycomp, index|
       %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
           = bodycomp.date.strftime("%B %e, %Y")
@@ -392,7 +392,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Abdominal
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
   %tbody
-    - @bodycomps.each_with_index do |bodycomp, index|
+    - @bodycomps.reverse.each_with_index do |bodycomp, index|
       %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
           = bodycomp.date.strftime("%B %e, %Y")
@@ -712,7 +712,7 @@
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Thigh
       %th{:style=>"border: 1px solid #ddd; padding: 10px;"} Calf
   %tbody
-    - @bodycomps.each_with_index do |bodycomp, index|
+    - @bodycomps.reverse.each_with_index do |bodycomp, index|
       %tr{:style => "background-color: #{index == 0 ? '#fff2cc' : ''}"}
         %td{:style=>"border: 1px solid #ddd; padding: 10px;"}
           = bodycomp.date.strftime("%B %e, %Y")

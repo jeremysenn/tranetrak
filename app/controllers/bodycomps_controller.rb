@@ -20,7 +20,7 @@ class BodycompsController < ApplicationController
   # GET /bodycomps/1.json
   def show
     @bodycomp = Bodycomp.find(params[:id])
-    @bodycomps = @bodycomp.client.bodycomps.reverse.last(5)
+    @bodycomps = @bodycomp.client.bodycomps.last(15)
     @client = @bodycomp.client
 
     respond_to do |format|
